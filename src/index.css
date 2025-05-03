@@ -1,4 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Make html/body/root full height */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+/* Global background gradient for the whole page */
 body {
+  @apply bg-gradient-to-br from-gray-200 via-white to-gray-200;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -7,7 +19,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Section wrappers get a soft card look */
+.section-card {
+  @apply bg-white bg-opacity-80 backdrop-blur-sm rounded-3xl p-8 shadow-xl;
+}
+
+/* Footer sits on its own darker band */
+.footer-bg {
+  @apply bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300;
+}
+
+/* Headings get a pop */
+h1, h2, h3 {
+  @apply drop-shadow-lg;
+}
+
+/* Utility to center full-screen loaders or splash screens */
+.full-screen-center {
+  @apply flex items-center justify-center w-full h-full;
 }
