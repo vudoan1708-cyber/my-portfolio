@@ -8,7 +8,7 @@ import { projectCollections } from '../data/projects';
 export default function Portfolio() {
   const { collection } = useParams();
   const navigate = useNavigate();
-  console.log('collection', collection);
+
   // If a collection slug is in the URL, show its projects:
   if (collection) {
     return <ProjectGrid collection={collection} />;

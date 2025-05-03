@@ -4,18 +4,23 @@ import { motion } from 'framer-motion';
 import NavItem from './NavItem';
 
 import Avatar from './Avatar';
+import { useLocation } from 'react-router-dom';
 
 export default function Navbar() {
-  const [showMiniAvatar, setShowMiniAvatar] = useState(false);
+  const location = useLocation();
+  // Match /portfolio/:collection/:projectKey exactly
+  const isDetail = /^\/portfolio\/[^\\/]+\/[^\\/]+$/.test(location.pathname);
+  const [ showMiniAvatar, setShowMiniAvatar ] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const triggerHeight = 100; // adjust based on avatar size/position
-      setShowMiniAvatar(window.scrollY > window.innerHeight - triggerHeight);
+      setShowMiniAvatar(window.scrollY > window.innerHeight - triggerHeight || isDetail);
     };
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [ isDetail ]);
 
   return (
     <nav className="bg-black fixed top-0 left-0 w-full z-50 flex items-center justify-between p-4">

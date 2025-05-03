@@ -21,12 +21,12 @@ export default function PageWrapper({ children }) {
       <motion.div
         location={location}
         key={location.pathname}
-        initial="initial"
-        animate="in"
-        exit="out"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -50 }}
         variants={pageVariants}
         transition={pageTransition}
-        className="p-8  bg-neutral-950 min-h-screen"
+        className="p-8 bg-neutral-950 min-h-screen"
       >
         {children}
       </motion.div>
