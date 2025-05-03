@@ -7,7 +7,7 @@ export default function NavItem({ to, label, hasDropdown, children }) {
       <NavLink
         to={to}
         className={({ isActive }) =>
-          `${isActive ? 'text-yellow-300' : 'text-white'} hover:text-yellow-200 transition-colors font-semibold`
+          `${isActive ? 'text-red-300' : 'text-white'} hover:text-red-200 transition-colors font-semibold`
         }
       >
         {label}

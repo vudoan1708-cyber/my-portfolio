@@ -1,20 +1,44 @@
 import React from 'react';
-import ProjectCard from '../components/ProjectCard';
+import { useNavigate, Outlet, useParams } from 'react-router-dom';
 
-export function Portfolio({ title }) {
+import ProjectGrid from '../components/ProjectGrid';
+
+import { projectCollections } from '../data/projects';
+
+export default function Portfolio() {
+  const { collection } = useParams();
+  const navigate = useNavigate();
+  console.log('collection', collection);
+  // If a collection slug is in the URL, show its projects:
+  if (collection) {
+    return <ProjectGrid collection={collection} />;
+  }
+
   return (
-    <section className="mb-12 section-card">
-      <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-rose-500 via-pink-500 to-red-500 text-transparent bg-clip-text">
-        {title}
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {[1, 2, 3, 4].map(i => <ProjectCard key={i} index={i} />)}
+    <div className="max-w-6xl mx-auto py-12">
+      <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+        {projectCollections.map((collection) => (
+          <div
+            key={collection.key}
+            onClick={() => navigate(`/portfolio/${collection.key}`)}
+            className="relative break-inside-avoid cursor-pointer overflow-hidden rounded-xl shadow-lg hover:scale-105 transform transition-transform duration-300"
+          >
+            <img
+              src={collection.img}
+              alt={collection.label}
+              className="w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <span className="text-2xl font-bold text-white">{collection.label}</span>
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
+
+      {/* Nested route outlet will render the individual ProjectGrid */}
+      <div className="mt-12">
+        <Outlet />
+      </div>
+    </div>
   );
 }
-
-export const WebApps     = () => <Portfolio title="Web Apps" />;
-export const Games       = () => <Portfolio title="Games" />;
-export const Utilities   = () => <Portfolio title="Utilities" />;
-export const AIProjects  = () => <Portfolio title="AI Projects" />;

@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import NavItem from './NavItem';
-import DropdownItem from './DropdownItem';
 
-import { portfolioItems } from '../data/portfolioItems';
 import Avatar from './Avatar';
 
 export default function Navbar() {
@@ -29,7 +27,7 @@ export default function Navbar() {
           animate={{ opacity: showMiniAvatar ? 1 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <Avatar src="/avatar.webp" alt="My avatar image on nav bar" size="sm" />
+          <Avatar src="/images/avatar.webp" alt="My avatar image on nav bar" size="sm" />
         </motion.div>
         <motion.span
           className="text-slate-50"
@@ -39,13 +37,7 @@ export default function Navbar() {
         </motion.span>
       </div>
       <ul className="flex space-x-8 items-center">
-        <NavItem to="/portfolio/web-apps" label="Portfolio" hasDropdown>
-          {portfolioItems.map(item => (
-            <DropdownItem key={item.path} to={`/portfolio/${item.path}`}>
-              {item.name}
-            </DropdownItem>
-          ))}
-        </NavItem>
+        <NavItem to="/portfolio" label="Portfolio" />
         <NavItem to="/blog"  label="Blog" />
         <NavItem to="/resume" label="Resume" />
       </ul>

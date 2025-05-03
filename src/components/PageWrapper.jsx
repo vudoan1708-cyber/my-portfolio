@@ -26,7 +26,7 @@ export default function PageWrapper({ children }) {
         exit="out"
         variants={pageVariants}
         transition={pageTransition}
-        className="p-8 bg-gradient-to-b from-white to-gray-100 min-h-screen"
+        className="p-8  bg-neutral-950 min-h-screen"
       >
         {children}
       </motion.div>

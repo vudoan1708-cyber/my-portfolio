@@ -45,7 +45,7 @@ export default function AnimatedHeader() {
           animate={{ opacity: scrolledPast ? 0 : 1 }}
           transition={{ duration: 0.3 }}
         >
-          <Avatar src="/avatar.webp" alt="My avatar image" size="lg" />
+          <Avatar src="/images/avatar.webp" alt="My avatar image" size="lg" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

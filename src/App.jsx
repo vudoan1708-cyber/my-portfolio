@@ -7,7 +7,7 @@ import AnimatedHeader from './components/AnimatedHeader';
 import PageWrapper from './components/PageWrapper';
 import Footer from './components/Footer';
 
-import { WebApps, Games, Utilities, AIProjects } from './pages/Portfolio';
+import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
 import Resume from './pages/Resume';
 
@@ -19,14 +19,13 @@ export default function App() {
         <AnimatedHeader />
         <PageWrapper>
           <Routes>
-            <Route path="/portfolio/web-apps" element={<WebApps />} />
-            <Route path="/portfolio/games" element={<Games />} />
-            <Route path="/portfolio/utilities" element={<Utilities />} />
-            <Route path="/portfolio/ai-projects" element={<AIProjects />} />
+            <Route path="/portfolio/*" element={<Portfolio />} />
+            {/* One route for both list & detail; ‘collection’ will be undefined at /portfolio */}
+           <Route path="/portfolio/:collection?" element={<Portfolio />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/resume" element={<Resume />} />
-            <Route path="/" element={<Navigate to="/portfolio/web-apps" replace />} />
-            <Route path="*" element={<Navigate to="/portfolio/web-apps" replace />} />
+            <Route path="/" element={<Navigate to="/portfolio" replace />} />
+            <Route path="*" element={<Navigate to="/portfolio" replace />} />
           </Routes>
         </PageWrapper>
         <Footer />
