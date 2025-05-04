@@ -1,5 +1,5 @@
 const GITHUB_TECH_IMG_BASE_URL = 'https://vudoan1708-cyber.github.io/logos/portfolio/projects';
-const GITHUB_GALLERY_PUNCHLINER_BASE_URL = 'https://vudoan1708-cyber.github.io/logos/portfolio/punchliner';
+const GITHUB_GALLERY_PUNCHLINER_BASE_URL = `${GITHUB_TECH_IMG_BASE_URL}/punchliner`;
 
 export const projects = {
   'web-apps': [

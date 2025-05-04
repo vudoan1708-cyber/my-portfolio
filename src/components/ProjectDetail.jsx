@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 // lookup function: find the project in your data
 import { projects } from '../data/projects';
+import ProjectImageGallery from './ProjectImageGallery';
 
 export default function ProjectDetail() {
   const { collection, projectKey } = useParams();
@@ -80,13 +81,7 @@ export default function ProjectDetail() {
   };
   const createImageGallery = () => {
     if (project.gallery.length > 0) {
-      return (
-        <div>
-          {project.gallery.map((item, idx) => (
-            <img key={idx} src={item.img} alt={item.alt} />
-          ))}
-        </div>
-      );
+      return <ProjectImageGallery gallery={project.gallery} />;
     }
     return null;
   };
@@ -104,24 +99,22 @@ export default function ProjectDetail() {
         </div>
       </div>
 
-      <section className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <div className="flex flex-row flex-wrap gap-24 prose prose-invert max-w-3xl py-12 px-6 text-white">
-            {createProjectDate()}
-            {createProjectType()}
-            {createProjectCode()}
-          </div>
-          <div className="flex flex-row flex-wrap gap-12 prose prose-invert max-w-3xl py-12 px-6 text-white">
-            {createProjectTechnologies()}
-          </div>
-          <div className="prose prose-invert max-w-3xl py-12 px-6 text-white">
-            {createProjectDescription()}
-          </div>
+      <div>
+        <div className="flex flex-row flex-wrap gap-24 prose prose-invert max-w-3xl py-12 px-6 text-white">
+          {createProjectDate()}
+          {createProjectType()}
+          {createProjectCode()}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-12 px-6">
-
+        <div className="flex flex-row flex-wrap gap-12 prose prose-invert max-w-3xl py-12 px-6 text-white">
+          {createProjectTechnologies()}
         </div>
-      </section>
+        <div className="prose prose-invert max-w-3xl py-12 px-6 text-white">
+          {createProjectDescription()}
+        </div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 py-12 px-6">
+        {createImageGallery()}
+      </div>
     </div>
   );
 }
