@@ -16,6 +16,8 @@ const pageTransition = {
 
 export default function PageWrapper({ children }) {
   const location = useLocation();
+  // Match /portfolio/:collection/:projectKey exactly
+  const isDetail = /^\/portfolio\/[^\\/]+\/[^\\/]+$/.test(location.pathname);
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div
@@ -26,7 +28,7 @@ export default function PageWrapper({ children }) {
         exit={{ opacity: 0, x: -50 }}
         variants={pageVariants}
         transition={pageTransition}
-        className="p-8 bg-neutral-950 min-h-screen"
+        className={isDetail ? "py-8 bg-neutral-950 min-h-screen" : "p-8 bg-neutral-950 min-h-screen"}
       >
         {children}
       </motion.div>

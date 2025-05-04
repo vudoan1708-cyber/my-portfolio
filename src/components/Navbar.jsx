@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import NavItem from './NavItem';
 
 import Avatar from './Avatar';
-import { useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const location = useLocation();
@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-black fixed top-0 left-0 w-full z-50 flex items-center justify-between p-4">
-      <div className="flex items-center space-x-3">
+      <NavLink to="/portfolio" className="flex items-center space-x-3">
         <motion.div
           layoutId="avatar"
           className="overflow-hidden rounded-full"
@@ -40,7 +40,7 @@ export default function Navbar() {
           transition={{ duration: 0.3 }}>
           Vu Doan
         </motion.span>
-      </div>
+      </NavLink>
       <ul className="flex space-x-8 items-center">
         <NavItem to="/portfolio" label="Portfolio" />
         <NavItem to="/blog"  label="Blog" />

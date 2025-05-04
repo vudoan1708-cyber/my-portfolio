@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { projects } from '../data/projects';
+import { projectCollections, projects } from '../data/projects';
 import { NavLink } from 'react-router-dom';
 
 export default function ProjectGrid({ collection }) {
@@ -11,10 +11,12 @@ export default function ProjectGrid({ collection }) {
       // tie-break: alphabetical
       return a.title.localeCompare(b.title);
     });
+  const collectionDescription = projectCollections.find((coll) => coll.key === collection)?.description;
 
   return (
     <div className="w-full px-4 sm:px-8 py-12 text-white">
       <h3 className="text-3xl font-semibold mb-6 text-white">{collection.replace('-', ' ').toUpperCase()}</h3>
+      {collectionDescription ? <p className="mb-6">{collectionDescription}</p> : null}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
         {list.map(({ id, title, img, link, startDate, endDate }) => (
           <NavLink
