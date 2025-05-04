@@ -58,7 +58,7 @@ export default function ProjectDetail() {
       return (
         <div className="flex flex-row flex-wrap gap-12">
           {project.technologies.map((tech) => (
-            <a key={tech.id} className="w-12" target="_blank" href={tech.link} rel="noreferrer">
+            <a key={tech.id} className="w-12 hover:scale-105" target="_blank" href={tech.link} rel="noreferrer">
               <img id={tech.id} src={tech.img} alt={tech.name} />
             </a>
           ))}

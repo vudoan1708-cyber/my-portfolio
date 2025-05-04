@@ -45,7 +45,7 @@ export default function ProjectImageGallery({ gallery }) {
             style={{ zIndex: 100 }}
             onClick={closeGallery}
           >
-            <X className="w-5 h-5 text-white group-hover:text-red-200 group-hover:scale-120 transition" />
+            <X className="w-5 h-5 text-white group-hover:text-red-200 transition" />
           </button>
           <div className="w-full h-full relative z-40">
             <ImageGallery
@@ -69,7 +69,7 @@ export default function ProjectImageGallery({ gallery }) {
                   className="group absolute left-4 top-1/2 transform -translate-y-1/2 z-50 p-2 bg-black/50 rounded-full transition"
                   style={{ width: 32, height: 32 }}
                 >
-                  <ChevronLeft className="w-6 h-6 text-white group-hover:text-red-200 group-hover:scale-120 transition" />
+                  <ChevronLeft className="w-6 h-6 text-white group-hover:text-red-200 transition" />
                 </button>
               )}
               renderRightNav={(onClick, disabled) => (
