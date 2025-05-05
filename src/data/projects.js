@@ -1,13 +1,16 @@
 const GITHUB_IMG_BASE_URL = 'https://vudoan1708-cyber.github.io/logos/portfolio';
 const GITHUB_PROJECTS_BASE_URL = `${GITHUB_IMG_BASE_URL}/projects`;
 const GITHUB_COLLECTIONS_BASE_URL = `${GITHUB_IMG_BASE_URL}/collections`;
-
+// Web apps
 const GITHUB_GALLERY_PUNCHLINER_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/punchliner`;
 const GITHUB_GALLERY_CERBERUS_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/cerberus`;
 const GITHUB_GALLERY_MUSERFLY_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/muserfly`;
 const GITHUB_GALLERY_AQ_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/aq`;
 const GITHUB_GALLERY_ECHO_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/echoarchitect`;
 const GITHUB_GALLERY_PET_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/petpolice`;
+// Games
+const GITHUB_GALLERY_BIRDIE_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/birdiejump`;
+const GITHUB_GALLERY_TURTLE_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/turtlerace`;
 
 export const projects = {
   'web-apps': [
@@ -359,7 +362,96 @@ export const projects = {
     },
   ],
   games: [
-    { id: 1, title: 'Game A', img: '/images/games-1.jpg', link: '/portfolio/games/1' },
+    {
+      id: 1,
+      key: 'birdiejump',
+      title: 'Birdie Jump!!!',
+      img: `${GITHUB_GALLERY_BIRDIE_BASE_URL}/birdie_jump_main_screen.webp`,
+      link: '/portfolio/games/birdiejump',
+      startDate: '2020',
+      role: 'Lead Developer',
+      projectType: 'Web game',
+      projectCode: {
+        title: 'Project code',
+        label: 'Github URL',
+        link: 'https://github.com/vudoan1708-cyber/Birdie-_Jump',
+      },
+      projectLog: null,
+      projectURL: {
+        title: 'Project URL',
+        label: 'Birdie Jump',
+        link: 'https://birdiejump.glitch.me/',
+      },
+      report: null,
+      videos: [],
+      design: null,
+      technologies: [
+        { id: 'p5js', name: 'p5.js', link: 'https://p5js.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/p5.webp` },
+        { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
+      ],
+      apis: [],
+      description: [
+        'A fun game which was inspired from the famous \'offline\' dinosaur game with a little bit of a twist.',
+        '<br />',
+        'The game contains two modes with different rules to explore and a leaderboard to compete with other players.',
+        'What I learned from this project is:',
+        '<li>How to build a web game for the first time.</li>',
+        '<li>How to use <a target="_blank" rel="noopener noreferrer" href="https://p5js.org/">p5.js</a> library for the first time.</li>',
+        '<li>How to integrate audio into a game.</li>',
+        '<li>And how to create a leaderboard that displays best personal scores and comparison.</li>',
+      ],
+      gallery: [
+        { alt: 'Welcome page (mobile)', img: `${GITHUB_GALLERY_BIRDIE_BASE_URL}/birdie_mobile_welcoming_page.webp` },
+        { alt: 'Login (mobile)', img: `${GITHUB_GALLERY_BIRDIE_BASE_URL}/birdie_mobile_login.webp` },
+        { alt: 'Over the planes mode (mobile)', img: `${GITHUB_GALLERY_BIRDIE_BASE_URL}/birdie_1mode.webp` },
+        { alt: 'Game of thorns mode (mobile)', img: `${GITHUB_GALLERY_BIRDIE_BASE_URL}/birdie_2mode.webp` },
+      ],
+    },
+    {
+      id: 2,
+      key: 'turtlerace',
+      title: 'Turtle Race',
+      img: `${GITHUB_GALLERY_TURTLE_BASE_URL}/turtle_race_main_screen.webp`,
+      link: '/portfolio/games/turtlerace',
+      startDate: '2020',
+      role: 'Lead Developer',
+      projectType: 'Web game',
+      projectCode: {
+        title: 'Project code',
+        label: 'Github URL',
+        link: 'https://github.com/vudoan1708-cyber/Turtle-Race',
+      },
+      projectLog: null,
+      projectURL: {
+        title: 'Project URL',
+        label: 'Turtle Race',
+        link: 'https://turtlerace.glitch.me/',
+      },
+      report: null,
+      videos: [],
+      design: null,
+      technologies: [
+        { id: 'p5js', name: 'p5.js', link: 'https://p5js.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/p5.webp` },
+        { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
+      ],
+      apis: [],
+      description: [
+        'A racing game which was was made to raise awareness on the morality of animal abuse and animal sports betting activities with the use 3D renderings of the 3D modelled turtles, and a top-down perspective which gives a typical 2D racing game look.',
+        '<br />',
+        'What I learned from this project is:',
+        '<li>How to create a 3D model of a turtle from scratch. More info please visit the <a rel="noopener noreferrer" href="/portfolio/designs">Design page</a>.</li>',
+        '<li>How to render a 3D animation of a turtle crawling and export it into a sequence of image files that is looped infinitely to create an animation on the web.</li>',
+      ],
+      gallery: [
+        { alt: 'Enter the race (mobile)', img: `${GITHUB_GALLERY_TURTLE_BASE_URL}/turtle_race_mobile_enter.webp` },
+        { alt: 'Welcome page (mobile)', img: `${GITHUB_GALLERY_TURTLE_BASE_URL}/turtle_race_mobile_welcoming_page.webp` },
+        { alt: 'Countdown (mobile)', img: `${GITHUB_GALLERY_TURTLE_BASE_URL}/turtle_race_mobile_countdown.webp` },
+        { alt: 'Stage 1 (mobile)', img: `${GITHUB_GALLERY_TURTLE_BASE_URL}/turtle_race_mobile_1stage.webp` },
+        { alt: 'Transition (mobile)', img: `${GITHUB_GALLERY_TURTLE_BASE_URL}/turtle_race_mobile_transition.webp` },
+        { alt: 'Boss intro (mobile)', img: `${GITHUB_GALLERY_TURTLE_BASE_URL}/turtle_race_mobile_boss_intro.webp` },
+        { alt: 'Boss fight (mobile)', img: `${GITHUB_GALLERY_TURTLE_BASE_URL}/turtle_race_mobile_boss_fight.webp` },
+      ],
+    },
   ],
   utilities: [
     { id: 1, title: 'Utility A', img: '/images/utilities-1.jpg', link: '/portfolio/utilities/1' },
