@@ -36,8 +36,8 @@ export default function ProjectGrid({ collection }) {
               <time className="text-sm text-gray-400">
                 {
                   startDate && endDate
-                   ? `${new Date(startDate).toLocaleDateString()} - ${new Date(endDate).toLocaleDateString()}`
-                   : new Date(startDate).toLocaleDateString()
+                   ? `${startDate} - ${endDate}`
+                   : startDate
                 }
               </time>
             </div>

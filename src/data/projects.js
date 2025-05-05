@@ -6,6 +6,7 @@ const GITHUB_GALLERY_PUNCHLINER_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/punchlin
 const GITHUB_GALLERY_CERBERUS_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/cerberus`;
 const GITHUB_GALLERY_MUSERFLY_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/muserfly`;
 const GITHUB_GALLERY_AQ_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/aq`;
+const GITHUB_GALLERY_ECHO_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/echoarchitect`;
 
 export const projects = {
   'web-apps': [
@@ -151,7 +152,7 @@ export const projects = {
           title: 'Final demo video',
           source: 'youtube',
           link: 'https://www.youtube.com/watch?v=LFQIMeK7dqw',
-        }
+        },
       ],
       design: null,
       technologies: [
@@ -175,7 +176,8 @@ export const projects = {
         'What I learned from this project is:',
         '<li>How emotions can be represented in different <mark>graph models</mark> and choosing one that particularly works for a scenario takes time.</li>',
         '<li>How <mark>MongoDB</mark> and <mark>network whitelisting</mark> works.</li>',
-        '<li>And how terrible it was to work on a full-fledged project on your own 😩.</li>',
+        '<li>What <mark>Oauth workflow</mark> is when integrating with Spotify.</li>',
+        '<li>And how terrible it was to work on a full-fledged project on your own 😩, and write a 4-page long report 🥲.</li>',
       ],
       gallery: [
         { alt: 'Welcoming page', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/muserfly_mobile_welcoming_page.webp` },
@@ -189,6 +191,11 @@ export const projects = {
         { alt: 'Record (mobile)', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/muserfly_mobile_records.webp` },
         { alt: 'Record details (mobile)', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/muserfly_mobile_record_detail.webp` },
         { alt: 'Settings (mobile)', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/muserfly_mobile_settings.webp` },
+        { alt: 'Ideation - Homepage', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/ideation_homepage.webp` },
+        { alt: 'Ideation - Speaker', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/ideation_speaker.webp` },
+        { alt: 'Ideation - Collect tracks', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/ideation_collecting_tracks.webp` },
+        { alt: 'Ideation - Travel in your emotion', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/ideation_emotion_traverse.webp` },
+        { alt: 'Ideation - Settings', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/ideation_settings.webp` },
       ],
     },
     {
@@ -228,6 +235,7 @@ export const projects = {
       ],
       description: [
         'A web app project shows historical data of world-wide air quality using <a target="_blank" rel="noopener noreferrer" href="https://docs.openaq.org/">OpenAQ API</a>, raises awareness of individual contributions to making a better world.',
+        '<br />',
         'What I learned from this project is:',
         '<li>How, for the first time ever developing a web app in my life, to create a <mark>user interface that is engaging and immersive</mark>.</li>',
         '<li>How to use a lightweight <mark>database</mark> to store data for the first time.</li>',
@@ -242,6 +250,60 @@ export const projects = {
         { alt: 'Votes (mobile)', img: `${GITHUB_GALLERY_AQ_BASE_URL}/aq_mobile_homepage_voted.webp` },
         { alt: 'Filters (mobile)', img: `${GITHUB_GALLERY_AQ_BASE_URL}/aq_mobile_filtering.webp` },
       ],
+    },
+    {
+      id: 5,
+      key: 'echoarchitect',
+      title: 'Echo Architect',
+      img: `${GITHUB_GALLERY_ECHO_BASE_URL}/echo_architect_main_screen.webp`,
+      link: '/portfolio/web-apps/echoarchitect',
+      startDate: 'Dec 9, 2019',
+      endDate: 'Apr 25, 2020',
+      role: '3D designer (Maya, Rhino3D) and Backend Engineer (Node.js and socket.io)',
+      projectType: 'Web app + 3D prototyping + Arduino',
+      projectCode: {
+        title: 'Project code',
+        label: 'Github URL',
+        link: 'https://github.com/spikethea/echo_architect',
+      },
+      projectLog: null,
+      projectURL: null,
+      report: null,
+      videos: [
+        {
+          title: 'Proof-of-concept demo video',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=oxfEUbGulws',
+        },
+        {
+          title: 'Final demo video',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=Qw-OJ1nJhOA',
+        },
+      ],
+      design: null,
+      technologies: [
+        { id: 'react', name: 'React.js', link: 'https://react.dev/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/react.svg` },
+        { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
+        { id: 'socketio', name: 'Socket.io', link: 'https://socket.io/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/socketio.webp` },
+        { id: 'makerbot', name: 'MakerBot', link: 'https://www.makerbot.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/makerbot.webp` },
+        { id: 'illustrator', name: 'Adobe Illustrator', link: 'https://www.adobe.com/products/illustrator.html', img: `${GITHUB_PROJECTS_BASE_URL}/techs/illustrator.webp` },
+      ],
+      apis: [],
+      description: [
+        'A university group project that was created based on a playful connection theme, which combined design, software, hardware and programming skills.',
+        'Within the first four months (1st semester), we conducted user research (interviews) based on our ideas, 3D visualised potential looks of the final physical prototype.',
+        '<br />',
+        'In the second semester, we started the design and build of the physical prototype, created front-end web presence and system, developed real-time machine communication and server logic.',
+        '<br />',
+        'Finally, we wrote a design and evaluation report to sum up our experience and effort put into the project as well as our conclusive thoughts on the teamwork, the project concept and success rate.',
+        '<br />',
+        'What I learned from this project is:',
+        '<li>How I can visualise <mark>3D prototypes</mark> with 3D modelling and printing skills. More on this on the <a rel="noopener noreferrer" href="/portfolio/designs">Design page</a> if you\'re interested.</li>',
+        '<li>How to develop a <mark>backend server</mark> using Node.js.</li>',
+        '<li>How to build the hardware and connect it to an <mark>Arduino</mark> and run the firmware using <a target="_blank" rel="noopener noreferrer" href="https://www.arduino.cc/en/software/">the Arduino IDE</a>.</li>',
+      ],
+      gallery: [],
     },
   ],
   games: [
