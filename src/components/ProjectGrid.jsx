@@ -22,7 +22,7 @@ export default function ProjectGrid({ collection }) {
           <NavLink
             key={id}
             to={link}
-            className="block overflow-hidden rounded-lg shadow-xl ring-1 ring-white/20 hover:opacity-90 transition-opacity"
+            className="block overflow-hidden rounded-lg shadow-xl ring-1 ring-white/20 hover:opacity-90 hover:scale-105 transition"
           >
             <div className="h-96 overflow-hidden">
               <img

@@ -4,12 +4,13 @@ import { useParams } from 'react-router-dom';
 // lookup function: find the project in your data
 import { projects } from '../data/projects';
 import ProjectImageGallery from './ProjectImageGallery';
+import VideoDisplay from './VideoDisplay';
 
 export default function ProjectDetail() {
   const { collection, projectKey } = useParams();
 
   const project = (projects[collection] || []).find((p) => p.key === projectKey);
-  if (!project) return <p className="p-8 text-white">Project not found.</p>;
+  if (!project) return <p className="p-8 text-gray-300">Project not found.</p>;
 
   const createProjectDate = () => {
     if (project.startDate && project.endDate) {
@@ -31,23 +32,49 @@ export default function ProjectDetail() {
     }
     return null;
   };
-  const createProjectType = () => {
-    if (project.projectType) {
+  const createRole = () => {
+    if (project.role) {
       return (
         <div>
-          <h2 className="font-bold">Project type</h2>
-          <p>{project.projectType}</p>
+          <h2 className="font-bold">Role</h2>
+          <p className="w-fit break-words">{project.role}</p>
         </div>
       );
     }
     return null;
   };
-  const createProjectCode = () => {
-    if (project.projectCode) {
+  const createProjectType = () => {
+    if (project.projectType) {
       return (
         <div>
-          <h2 className="font-bold">Project code</h2>
-          <a target="_blank" href={project.projectCode.link} rel="noreferrer">{project.projectCode.title}</a>
+          <h2 className="font-bold">Project type</h2>
+          <p className="w-fit break-words">{project.projectType}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+  const createProjectDetailBlockWithLinks = ({ target = 'projectCode' }) => {
+    if (project[target]) {
+      return (
+        <div>
+          <h2 className="font-bold">{project[target].title}</h2>
+          <a target="_blank" href={project[target].link} rel="noreferrer">{project[target].label}</a>
+        </div>
+      );
+    }
+    return null;
+  };
+  const createProjectShowcaseVideo = () => {
+    if (project.videos.length > 0) {
+      return (
+        <div className="flex flex-row flex-wrap gap-12">
+          {project.videos.map((video, idx) => (
+            <div key={idx}>
+              <h2 className="font-bold">{video.title}</h2>
+              <VideoDisplay video={video} />
+            </div>
+          ))}
         </div>
       );
     }
@@ -87,28 +114,35 @@ export default function ProjectDetail() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black text-white">
+    <div className="relative min-h-screen bg-black text-gray-300">
       {/* Project header with blurred bottom overlay and title */}
       <div
-        className="relative w-full h-screen bg-center bg-cover bg-absolute"
+        className="relative w-full h-[calc(100vh-4rem)] top-8 bg-center bg-cover bg-absolute rounded"
         style={{ backgroundImage: `url(${project.img})` }}
       >
+        {/* Half-screen blur overlay */}
+        <div className="absolute bottom-0 left-0 w-full h-1/6 bg-gradient-to-t from-black/40 to-transparent backdrop-blur-xs" />
         {/* Title overlay */}
-        <div className="absolute bottom-1/4 left-0 w-full bg-gradient-to-t from-black/50 to-transparent backdrop-blur-md px-4 py-2 rounded">
-          <h1 className="text-5xl font-bold text-white">{project.title}</h1>
+        <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/75 to-transparent backdrop-blur-md px-4 py-2 rounded">
+          <h1 className="text-5xl font-bold text-gray-300">{project.title}</h1>
         </div>
       </div>
 
-      <div>
-        <div className="flex flex-row flex-wrap gap-24 prose prose-invert max-w-3xl py-12 px-6 text-white">
+      <div id="project_detail_body" className="mt-12">
+        <div className="flex flex-row flex-wrap gap-12 prose prose-invert max-w-screen py-12 px-6 text-gray-300">
           {createProjectDate()}
+          {createRole()}
           {createProjectType()}
-          {createProjectCode()}
+          {createProjectDetailBlockWithLinks({ target: 'projectCode' })}
+          {createProjectDetailBlockWithLinks({ target: 'projectLog' })}
+          {createProjectDetailBlockWithLinks({ target: 'projectURL' })}
+          {createProjectDetailBlockWithLinks({ target: 'report' })}
+          {createProjectShowcaseVideo()}
         </div>
-        <div className="flex flex-row flex-wrap gap-12 prose prose-invert max-w-3xl py-12 px-6 text-white">
+        <div className="flex flex-row flex-wrap gap-12 prose prose-invert max-w-3xl py-12 px-6 text-gray-300">
           {createProjectTechnologies()}
         </div>
-        <div className="prose prose-invert max-w-3xl py-12 px-6 text-white">
+        <div className="prose prose-invert max-w-3xl py-12 px-6 text-gray-300">
           {createProjectDescription()}
         </div>
       </div>

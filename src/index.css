@@ -35,7 +35,15 @@ h1, h2, h3 {
   @apply drop-shadow-lg;
 }
 
-a {
+mark {
+  @apply bg-white/50 rounded;
+}
+
+li {
+  @apply leading-7;
+}
+
+#project_detail_body a {
   @apply underline underline-offset-8 hover:text-red-200;
 }
 
