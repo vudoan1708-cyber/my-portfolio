@@ -94,6 +94,20 @@ export default function ProjectDetail() {
     }
     return null;
   };
+  const createProjectApiIntegrations = () => {
+    if (project.apis.length > 0) {
+      return (
+        <div className="flex flex-row flex-wrap gap-12">
+          {project.apis.map((api) => (
+            <a key={api.id} className="w-12 hover:scale-105" target="_blank" href={api.link} rel="noreferrer">
+              <img id={api.id} src={api.img} alt={api.name} />
+            </a>
+          ))}
+        </div>
+      );
+    }
+    return null;
+  };
   const createProjectDescription = () => {
     if (project.description.length > 0) {
       return (
@@ -141,6 +155,7 @@ export default function ProjectDetail() {
         </div>
         <div className="flex flex-row flex-wrap gap-12 prose prose-invert max-w-3xl py-12 px-6 text-gray-300">
           {createProjectTechnologies()}
+          {createProjectApiIntegrations()}
         </div>
         <div className="prose prose-invert max-w-3xl py-12 px-6 text-gray-300">
           {createProjectDescription()}
