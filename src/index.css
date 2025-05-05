@@ -43,6 +43,10 @@ li {
   @apply leading-7;
 }
 
+code {
+  @apply italic;
+}
+
 #project_detail_body a {
   @apply underline underline-offset-8 hover:text-red-200;
 }

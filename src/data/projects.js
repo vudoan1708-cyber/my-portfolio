@@ -13,6 +13,7 @@ const GITHUB_GALLERY_BIRDIE_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/birdiejump`;
 const GITHUB_GALLERY_TURTLE_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/turtlerace`;
 //Utilities
 const GITHUB_GALLERY_VOLYFEQUICKDEV_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/volyfequickdev`;
+const GITHUB_GALLERY_I2T_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/i2t`;
 
 export const projects = {
   'web-apps': [
@@ -508,7 +509,7 @@ export const projects = {
         { id: 'visualstudiocode', name: 'Visual Studio Code API', link: 'https://code.visualstudio.com/api/references/vscode-api', img: `${GITHUB_PROJECTS_BASE_URL}/apis/visual-studio-code.svg` },
       ],
       description: [
-        'At Voly, we use Storybook as the main tool for FE component development environment.',
+        'At <a target="_blank" rel="noopener noreferrer" href="https://www.volygroup.com/">Voly</a>, we use <a target="_blank" rel="noopener noreferrer" href="https://storybook.js.org/">Storybook</a> as the main tool for FE component development.',
         '<br />',
         'But this becomes a tedious process when it comes to debugging, particularly in scenarios where it’s not possible to replicate live data on storybook’s local server.',
         '<br />',
@@ -527,6 +528,76 @@ export const projects = {
         '<li>As mentioned above, rollup watch builder helps the extension achieve the instant rebuild of files, but browser has to be reloaded over again for the new UI to be reflected. There is a <code>livereload</code> option from the rollup build config that is worth investigating for instant hot reloads.</li>',
       ],
       gallery: [],
+    },
+    {
+      id: 2,
+      key: 'i2t',
+      title: 'interaction-2-test',
+      img: `${GITHUB_COLLECTIONS_BASE_URL}/i2t-logo.webp`,
+      'img-lg': `${GITHUB_GALLERY_I2T_BASE_URL}/i2t-logo.svg`,
+      link: '/portfolio/utilities/i2t',
+      startDate: 'Apr 13, 2025',
+      endDate: 'Apr 28, 2025',
+      role: 'Lead Developer',
+      projectType: 'Storybook addon',
+      projectCode: {
+        title: 'Project code',
+        label: 'Github URL',
+        link: 'https://github.com/vudoan1708-cyber/storybook-interaction-2-test/',
+      },
+      projectLog: {
+        title: 'Project log',
+        label: 'Confluence',
+        link: 'https://vudoan.atlassian.net/wiki/spaces/~627f7edc6ba8640069d0b960/pages/1343489/Interaction-2-Test+Storybook+addon',
+      },
+      projectURL: {
+        title: 'NPM open-source library',
+        label: 'https://www.npmjs.com/package/interaction-2-test',
+        link: 'https://www.npmjs.com/package/interaction-2-test',
+      },
+      report: null,
+      videos: [
+        {
+          title: 'Proof-of-concept demo video',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=O7h45BbSfRc',
+        },
+        {
+          title: 'Expect statement builder',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=0MQJyhWu9h0',
+        },
+      ],
+      design: null,
+      technologies: [
+        { id: 'react', name: 'React.js', link: 'https://react.dev/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/react.svg` },
+        { id: 'styledcomponents', name: 'Styled components', link: 'https://styled-components.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/styled-components.webp` },
+        { id: 'muireact', name: 'MUI React', link: 'https://mui.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/muireact.svg` },
+        { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
+        { id: 'websocket', name: 'Websocket', link: 'https://www.npmjs.com/package/websocket', img: `${GITHUB_PROJECTS_BASE_URL}/techs/websocket.webp` },
+        { id: 'babel', name: 'Babel', link: 'https://babeljs.io/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/babel.webp` },
+      ],
+      apis: [],
+      description: [
+        'Another <a target="_blank" rel="noopener noreferrer" href="https://www.volygroup.com/">Voly</a>-relevant side project to boost my productivity whilst working there was a <a target="_blank" rel="noopener noreferrer" href="https://storybook.js.org/">Storybook</a> addon that can map all the user interactions happen in the Storybook UI to Jest test code.',
+        '<br />',
+        'I learned tonnes from this project, particularly after working in Svelte for a long time professionally, I could finally get my hands on some React project and reminisce.',
+        '<br />',
+        'Please bare in mind this is still a working hi-fi prototype that can be used to generate Jest tests but the accuracy rate is not very high.',
+        '<br />',
+        'What I learned from this project is:',
+        '<li>How Stoybook internal server <mark>(preset)</mark> communicates with its UI <mark>(manager and preview)</mark></li>',
+        '<li>How to <mark>set up a project from scratch</mark>, no command lines, no boilerplate at all 🥲.</li>',
+        '<li>How <mark>Abstract Syntax Tree (AST)</mark> sort of works so I can roughly replicate something similar which I myself name it Jest Syntax Tree (JST). This is style the Jest code printed on the addon UI on every user interaction.</li>',
+        '<li>And how <mark>monkey patching a global function</mark> works and use it with a precaution in mind.</li>',
+        '<br />',
+        'What can be improved:',
+        '<li>As mentioned above, monkey patching a global function (in this case, it\'s the <code>window.fetch</code>) was the only way I could record API calls (tried <code>Mock Service Worker</code> and it couldn\'t pick up any important ones because <code>fetch-mock</code> swallows them all). But very limitedly, my addon could only take over the <code>window.fetch</code> function a bit later in the life cycle of the app, which means early API calls might be missed.</li>',
+      ],
+      gallery: [
+        { alt: 'Register the addon in main.js', img: `${GITHUB_GALLERY_I2T_BASE_URL}/i2t_register_addon.webp` },
+        { alt: 'Map user interactions to Jest', img: `${GITHUB_GALLERY_I2T_BASE_URL}/i2t_track_and_map_user_interactions.webp` },
+      ],
     },
   ],
   'ai-projects': [
