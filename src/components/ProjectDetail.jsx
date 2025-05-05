@@ -99,7 +99,7 @@ export default function ProjectDetail() {
       return (
         <div className="flex flex-row flex-wrap items-center gap-12">
           {project.apis.map((api) => (
-            <a key={api.id} className="w-12 hover:scale-105" target="_blank" href={api.link} rel="noreferrer">
+            <a key={api.id} className={`w-12 hover:scale-105 ${api.tailwindCssClass ?? ''}`} target="_blank" href={api.link} rel="noreferrer">
               <img id={api.id} src={api.img} alt={api.name} />
             </a>
           ))}

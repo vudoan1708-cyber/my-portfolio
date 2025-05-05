@@ -7,6 +7,7 @@ const GITHUB_GALLERY_CERBERUS_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/cerberus`;
 const GITHUB_GALLERY_MUSERFLY_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/muserfly`;
 const GITHUB_GALLERY_AQ_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/aq`;
 const GITHUB_GALLERY_ECHO_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/echoarchitect`;
+const GITHUB_GALLERY_PET_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/petpolice`;
 
 export const projects = {
   'web-apps': [
@@ -83,7 +84,7 @@ export const projects = {
           title: 'Showcase video',
           source: 'youtube',
           link: 'https://www.youtube.com/watch?v=8u69eYnbKwY',
-        }
+        },
       ],
       design: {
         title: 'Figma design',
@@ -304,6 +305,57 @@ export const projects = {
         '<li>How to build the hardware and connect it to an <mark>Arduino</mark> and run the firmware using <a target="_blank" rel="noopener noreferrer" href="https://www.arduino.cc/en/software/">the Arduino IDE</a>.</li>',
       ],
       gallery: [],
+    },
+    {
+      id: 6,
+      key: 'petpolice',
+      title: 'PET Police',
+      img: `${GITHUB_GALLERY_PET_BASE_URL}/pet_main_screen.webp`,
+      link: '/portfolio/web-apps/petpolice',
+      startDate: '2020',
+      role: 'Lead Developer',
+      projectType: 'Web app',
+      projectCode: {
+        title: 'Project code',
+        label: 'Github URL',
+        link: 'https://github.com/vudoan1708-cyber/PET-Police',
+      },
+      projectLog: null,
+      projectURL: {
+        title: 'Project URL',
+        label: 'PET Police',
+        link: 'https://p-e-tpolice.glitch.me/',
+      },
+      report: null,
+      videos: [
+        {
+          title: 'Intro video',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=oyybDd5f2mI',
+        },
+      ],
+      design: null,
+      technologies: [
+        { id: 'js', name: 'Vanilla Javascript', link: 'https://www.javascript.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/js.webp` },
+        { id: 'p5js', name: 'p5.js', link: 'https://p5js.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/p5.webp` },
+        { id: 'sass', name: 'Scss', link: 'https://sass-lang.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/scss.webp` },
+        { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
+      ],
+      apis: [
+        { id: 'openaq', name: 'face-api.js', link: 'https://justadudewhohacks.github.io/face-api.js/docs/index.html', img: `${GITHUB_PROJECTS_BASE_URL}/techs/no_logo.webp`, tailwindCssClass: 'bg-white' },
+      ],
+      description: [
+        'A university group project about automation & anxiety and information & control, which emulates how government uses the information from analysing faces of the users',
+        '<br />',
+        'What I learned from this project is:',
+        '<li>How to build a web app using <mark>Vanilla Javascript</mark> for the first time.</li>',
+        '<li>How to deviate from a design to create a different UI and manage to make it look worse than planned 😆.</li>',
+      ],
+      gallery: [
+        { alt: 'Profile gallery', img: `${GITHUB_GALLERY_PET_BASE_URL}/pet_profile_gallery.webp` },
+        { alt: 'Profile details', img: `${GITHUB_GALLERY_PET_BASE_URL}/pet_profile_details.webp` },
+        { alt: 'Profile details 2', img: `${GITHUB_GALLERY_PET_BASE_URL}/pet_profile_details_2.webp` },
+      ],
     },
   ],
   games: [
