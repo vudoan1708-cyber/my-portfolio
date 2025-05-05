@@ -5,6 +5,7 @@ const GITHUB_COLLECTIONS_BASE_URL = `${GITHUB_IMG_BASE_URL}/collections`;
 const GITHUB_GALLERY_PUNCHLINER_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/punchliner`;
 const GITHUB_GALLERY_CERBERUS_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/cerberus`;
 const GITHUB_GALLERY_MUSERFLY_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/muserfly`;
+const GITHUB_GALLERY_AQ_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/aq`;
 
 export const projects = {
   'web-apps': [
@@ -165,7 +166,7 @@ export const projects = {
         { id: 'spotify', name: 'Spotify API', link: 'https://developer.spotify.com/documentation/web-api', img: `${GITHUB_PROJECTS_BASE_URL}/apis/spotify_api.webp` },
       ],
       description: [
-        'A university final year project which uses Spotify API as the baseline for song searches and audio streaming.',
+        'A university final year project which uses <a target="_blank" rel="noopener noreferrer" href="https://developer.spotify.com/documentation/web-api">Spotify API</a> as the baseline for song searches and audio streaming.',
         '<br />',
         'The project is an Emotion-Based Music Streaming App which prioritises user\'s moods to play songs.',
         '<br />',
@@ -188,6 +189,58 @@ export const projects = {
         { alt: 'Record (mobile)', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/muserfly_mobile_records.webp` },
         { alt: 'Record details (mobile)', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/muserfly_mobile_record_detail.webp` },
         { alt: 'Settings (mobile)', img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/muserfly_mobile_settings.webp` },
+      ],
+    },
+    {
+      id: 4,
+      key: 'aq',
+      title: 'Air Quality',
+      img: `${GITHUB_GALLERY_AQ_BASE_URL}/aq_main_screen.webp`,
+      link: '/portfolio/web-apps/aq',
+      startDate: '2020',
+      role: 'Lead Developer',
+      projectType: 'Responsive web app',
+      projectCode: {
+        title: 'Project code',
+        label: 'Github URL',
+        link: 'https://github.com/vudoan1708-cyber/Air-Quality',
+      },
+      projectLog: null,
+      projectURL: {
+        title: 'Project URL',
+        label: 'Air Quality (Unmaintained)',
+        link: 'https://airpollutants.glitch.me/',
+      },
+      report: {
+        title: 'Report',
+        label: 'Github URL',
+        link: 'https://github.com/vudoan1708-cyber/Air-Quality/blob/master/Report.pdf',
+      },
+      videos: [],
+      design: null,
+      technologies: [
+        { id: 'p5js', name: 'p5.js', link: 'https://p5js.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/p5.webp` },
+        { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
+        { id: 'mappajs', name: 'Mappa.js', link: 'https://mappa.js.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/mappa.webp` },
+      ],
+      apis: [
+        { id: 'openaq', name: 'OpenAQ API', link: 'https://docs.openaq.org/', img: `${GITHUB_PROJECTS_BASE_URL}/apis/openaq_api.webp` },
+      ],
+      description: [
+        'A web app project shows historical data of world-wide air quality using <a target="_blank" rel="noopener noreferrer" href="https://docs.openaq.org/">OpenAQ API</a>, raises awareness of individual contributions to making a better world.',
+        'What I learned from this project is:',
+        '<li>How, for the first time ever developing a web app in my life, to create a <mark>user interface that is engaging and immersive</mark>.</li>',
+        '<li>How to use a lightweight <mark>database</mark> to store data for the first time.</li>',
+        '<li>And experience the pain of writing a report 🥲.</li>',
+      ],
+      gallery: [
+        { alt: 'Welcoming page (mobile)', img: `${GITHUB_GALLERY_AQ_BASE_URL}/aq_mobile_welcome_page.webp` },
+        { alt: 'Homepage (mobile)', img: `${GITHUB_GALLERY_AQ_BASE_URL}/aq_mobile_homepage.webp` },
+        { alt: 'Pollutant wiki (mobile)', img: `${GITHUB_GALLERY_AQ_BASE_URL}/aq_mobile_menu_pollutant_wiki.webp` },
+        { alt: 'About you (mobile)', img: `${GITHUB_GALLERY_AQ_BASE_URL}/aq_mobile_menu_about_you.webp` },
+        { alt: 'Menu (mobile)', img: `${GITHUB_GALLERY_AQ_BASE_URL}/aq_mobile_menu.webp` },
+        { alt: 'Votes (mobile)', img: `${GITHUB_GALLERY_AQ_BASE_URL}/aq_mobile_homepage_voted.webp` },
+        { alt: 'Filters (mobile)', img: `${GITHUB_GALLERY_AQ_BASE_URL}/aq_mobile_filtering.webp` },
       ],
     },
   ],
