@@ -83,7 +83,7 @@ export default function ProjectDetail() {
   const createProjectTechnologies = () => {
     if (project.technologies.length > 0) {
       return (
-        <div className="flex flex-row flex-wrap gap-12">
+        <div className="flex flex-row flex-wrap items-center gap-12">
           {project.technologies.map((tech) => (
             <a key={tech.id} className="w-12 hover:scale-105" target="_blank" href={tech.link} rel="noreferrer">
               <img id={tech.id} src={tech.img} alt={tech.name} />
@@ -132,7 +132,7 @@ export default function ProjectDetail() {
       {/* Project header with blurred bottom overlay and title */}
       <div
         className="relative w-full h-[calc(100vh-4rem)] top-8 bg-center bg-cover bg-absolute rounded"
-        style={{ backgroundImage: `url(${project.img})` }}
+        style={{ backgroundImage: `url(${project['img-lg'] ?? project.img})` }}
       >
         {/* Half-screen blur overlay */}
         <div className="absolute bottom-0 left-0 w-full h-1/6 bg-gradient-to-t from-black/40 to-transparent backdrop-blur-xs" />

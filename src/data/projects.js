@@ -11,6 +11,8 @@ const GITHUB_GALLERY_PET_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/petpolice`;
 // Games
 const GITHUB_GALLERY_BIRDIE_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/birdiejump`;
 const GITHUB_GALLERY_TURTLE_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/turtlerace`;
+//Utilities
+const GITHUB_GALLERY_VOLYFEQUICKDEV_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/volyfequickdev`;
 
 export const projects = {
   'web-apps': [
@@ -436,7 +438,7 @@ export const projects = {
       ],
       apis: [],
       description: [
-        'A racing game which was was made to raise awareness on the morality of animal abuse and animal sports betting activities with the use 3D renderings of the 3D modelled turtles, and a top-down perspective which gives a typical 2D racing game look.',
+        'A racing game which was made to raise awareness on the morality of animal abuse and animal sports betting activities with the use 3D renderings of the 3D modelled turtles, and a top-down perspective which gives a typical 2D racing game look.',
         '<br />',
         'What I learned from this project is:',
         '<li>How to create a 3D model of a turtle from scratch. More info please visit the <a rel="noopener noreferrer" href="/portfolio/designs">Design page</a>.</li>',
@@ -454,7 +456,78 @@ export const projects = {
     },
   ],
   utilities: [
-    { id: 1, title: 'Utility A', img: '/images/utilities-1.jpg', link: '/portfolio/utilities/1' },
+    {
+      id: 1,
+      key: 'volyfequickdev',
+      title: 'volyfequickdev',
+      img: `${GITHUB_GALLERY_VOLYFEQUICKDEV_BASE_URL}/Voly_Group.webp`,
+      'img-lg': `${GITHUB_GALLERY_VOLYFEQUICKDEV_BASE_URL}/Voly_Group_1.webp`,
+      link: '/portfolio/utilities/volyfequickdev',
+      startDate: 'Oct 8, 2023',
+      endDate: 'Apr 10, 2025',
+      role: 'Lead Developer',
+      projectType: 'VSCode extension',
+      projectCode: {
+        title: 'Project code',
+        label: 'Github URL',
+        link: 'https://github.com/vudoan1708-cyber/VSCode-Extension--Voly-FE-Quick-Dev/',
+      },
+      projectLog: {
+        title: 'Project log',
+        label: 'Confluence',
+        link: 'https://vudoan.atlassian.net/wiki/spaces/~627f7edc6ba8640069d0b960/pages/98668/FE+Quick+Dev+-+VSCode+extension',
+      },
+      projectURL: {
+        title: 'Visual Studio Marketplace',
+        label: 'https://marketplace.visualstudio.com/items/?itemName=VolyLtd.volyfequickdev',
+        link: 'https://marketplace.visualstudio.com/items/?itemName=VolyLtd.volyfequickdev',
+      },
+      report: null,
+      videos: [
+        {
+          title: 'Direct changes to the live PHP page',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=DVVkM4UMhx0',
+        },
+        {
+          title: 'Use tunnels for quick collaborations and BrowserStacks testing',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=Wz1sUeRq4ps',
+        },
+      ],
+      design: null,
+      technologies: [
+        { id: 'typescript', name: 'Typescript', link: 'https://www.typescriptlang.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/typescript.webp` },
+        { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
+        { id: 'koajs', name: 'Koa.js', link: 'https://koajs.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/koa.webp` },
+        { id: 'webpack5', name: 'Webpack 5', link: 'https://webpack.js.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/webpack5.webp` },
+        { id: 'localtunnel', name: 'Localtunnel', link: 'https://theboroer.github.io/localtunnel-www/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/localtunnel.webp` },
+        { id: 'serveo', name: 'Serveo SSH', link: 'https://serveo.net/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/serveo.webp` },
+      ],
+      apis: [
+        { id: 'visualstudiocode', name: 'Visual Studio Code API', link: 'https://code.visualstudio.com/api/references/vscode-api', img: `${GITHUB_PROJECTS_BASE_URL}/apis/visual-studio-code.svg` },
+      ],
+      description: [
+        'At Voly, we use Storybook as the main tool for FE component development environment.',
+        '<br />',
+        'But this becomes a tedious process when it comes to debugging, particularly in scenarios where it’s not possible to replicate live data on storybook’s local server.',
+        '<br />',
+        'This will subsequently require FE devs to push a change to a work branch and run a deployment pipeline (usually takes 3 - 10 minutes) just for testing purposes.',
+        'And my extension was born to fix all that.',
+        '<br />',
+        'What I learned from this project is:',
+        '<li>How to create a <mark>VSCode extension</mark> for the first time.</li>',
+        '<li>How to combine <mark>rollup watch builder</mark> with the extension to create almost instant rebuild of files that reflect on the targeted site UI.</li>',
+        '<li>Quite ashame to admit this slow learning, but also now, know more about webpack build and what the <mark>external field</mark> is used for.</li>',
+        '<li>How to set a <mark>timeout to abort API calls</mark> for better user experience, particularly for non-dev people, or backend people who don\'t use the extension at all.</li>',
+        '<li>To be aware of <mark>cross-platform differences in terminal command lines</mark> and what library to use to ensure commands are platform-agnostic.</li>',
+        '<li>How to use <mark>tunnels to expose local development environment</mark> for quick collaborations and tests on apps that prevent access to localhost like BrowserStacks.</li>',
+        '<br />',
+        'What can be improved:',
+        '<li>As mentioned above, rollup watch builder helps the extension achieve the instant rebuild of files, but browser has to be reloaded over again for the new UI to be reflected. There is a <code>livereload</code> option from the rollup build config that is worth investigating for instant hot reloads.</li>',
+      ],
+      gallery: [],
+    },
   ],
   'ai-projects': [
     { id: 1, title: 'AI A', img: '/images/ai-projects-1.jpg', link: '/portfolio/ai-projects/1' },
