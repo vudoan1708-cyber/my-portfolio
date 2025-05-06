@@ -59,7 +59,18 @@ export default function ProjectDetail() {
       return (
         <div>
           <h2 className="font-bold">{project[target].title}</h2>
-          <a target="_blank" href={project[target].link} rel="noreferrer">{project[target].label}</a>
+          {
+            project[target].links?.length > 0
+              ? (
+                  project[target].links.map((item, idx) => (
+                    <>
+                      <a target="_blank" href={item.link} rel="noreferrer">{item.label}</a>
+                      <span>{idx === project[target].links.length - 1 ? '' : ' + '}</span>
+                    </>
+                  ))
+                )
+              : <a target="_blank" href={project[target].link} rel="noreferrer">{project[target].label}</a>
+          }
         </div>
       );
     }

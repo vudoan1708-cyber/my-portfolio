@@ -11,9 +11,12 @@ const GITHUB_GALLERY_PET_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/petpolice`;
 // Games
 const GITHUB_GALLERY_BIRDIE_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/birdiejump`;
 const GITHUB_GALLERY_TURTLE_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/turtlerace`;
-//Utilities
+// Utilities
 const GITHUB_GALLERY_VOLYFEQUICKDEV_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/volyfequickdev`;
 const GITHUB_GALLERY_I2T_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/i2t`;
+// AI
+const GITHUB_GALLERY_VLOTH_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/vloth`;
+const GITHUB_GALLERY_DROWSINESS_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/drowsinessdetection`;
 
 export const projects = {
   'web-apps': [
@@ -466,7 +469,7 @@ export const projects = {
       link: '/portfolio/utilities/volyfequickdev',
       startDate: 'Oct 8, 2023',
       endDate: 'Apr 10, 2025',
-      role: 'Lead Developer',
+      role: 'Lead Engineer',
       projectType: 'VSCode extension',
       projectCode: {
         title: 'Project code',
@@ -538,7 +541,7 @@ export const projects = {
       link: '/portfolio/utilities/i2t',
       startDate: 'Apr 13, 2025',
       endDate: 'Apr 28, 2025',
-      role: 'Lead Developer',
+      role: 'Lead Engineer',
       projectType: 'Storybook addon',
       projectCode: {
         title: 'Project code',
@@ -601,7 +604,135 @@ export const projects = {
     },
   ],
   'ai-projects': [
-    { id: 1, title: 'AI A', img: '/images/ai-projects-1.jpg', link: '/portfolio/ai-projects/1' },
+    {
+      id: 1,
+      key: 'vloth',
+      title: 'Vu + Sloth (Vloth)',
+      img: `${GITHUB_GALLERY_VLOTH_BASE_URL}/stylegan.webp`,
+      link: '/portfolio/ai-projects/vloth',
+      startDate: '2021',
+      role: 'Lead Engineer',
+      projectType: 'GAN (StyleGAN)',
+      projectCode: {
+        title: 'Project code',
+        label: 'Github URL',
+        link: 'https://github.com/vudoan1708-cyber/Vu-Sloth',
+      },
+      projectLog: null,
+      projectURL: null,
+      report: {
+        title: 'Report',
+        label: 'Google Drive URL',
+        link: 'https://drive.google.com/file/d/1oGvUIXHGZFSEg_aEVzkdqlFrhsXVxO56/view',
+      },
+      videos: [
+        {
+          title: 'Video Diary - Ideation Process (and a lot of rambling 😆)',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=af5gm0RJVuw',
+        },
+        {
+          title: 'Video Diary - Data Collation',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=engPVoln4hU',
+        },
+        {
+          title: 'Video Diary - Start to implement StyleGAN for better results',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=F_9ZXAsnWrg',
+        },
+        {
+          title: 'Video Diary - Successful implementation of StyleGAN',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=JbVA3ZQWMOE',
+        },
+      ],
+      design: null,
+      technologies: [
+        { id: 'python', name: 'Python', link: 'https://www.python.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/python.webp` },
+        { id: 'tensorflow', name: 'Tensorflow', link: 'https://www.tensorflow.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/tensorflow.webp` },
+      ],
+      apis: [],
+      description: [
+        'An Artificial Intelligence project using a method called Generative Adversarial Network (GAN), particularly StyleGAN2-ADA with a pretrained model on human faces, to train a custom model which can blend features of my face and sloth\'s face.',
+        '<br />',
+        'Please be aware the image resolution is not very good as it is, as far as I can remember, 80px-80px in resolution.',
+        'This is due to the constraint on hardware and graphics power to process and produce larger-sized images. It took me weeks just to get about 5-10 good results out of 1000 selfies and another 1000 images of sloths hanging on the trees, so imagine higher resolution 😁.',
+        '<br />',
+        'What I learned from this project is:',
+        '<li>What an abomination the results of this project have turned out to be 😆.</li>',
+        '<li>But it is cool to see how with a <mark>pre-trained model</mark> integrated into your training, the training can become much easier, the result can become much more satisfying (turns out that I got the best grade for this out of all modules I took part in 🦥).</li>',
+      ],
+      gallery: [
+        { alt: 'Initial epoch', img: `${GITHUB_GALLERY_VLOTH_BASE_URL}/stylegan_init.webp` },
+        { alt: 'Result 1', img: `${GITHUB_GALLERY_VLOTH_BASE_URL}/stylegan_01.webp` },
+        { alt: 'Result 2', img: `${GITHUB_GALLERY_VLOTH_BASE_URL}/stylegan_02.webp` },
+        { alt: 'Result 3', img: `${GITHUB_GALLERY_VLOTH_BASE_URL}/stylegan_03.webp` },
+      ],
+    },
+    {
+      id: 2,
+      key: 'drowsinessdetection',
+      title: 'Drowsiness Detection',
+      img: `${GITHUB_GALLERY_DROWSINESS_BASE_URL}/drowsinessdetection_alt.webp`,
+      'img-lg': `${GITHUB_GALLERY_DROWSINESS_BASE_URL}/drowsinessdetection.webp`,
+      link: '/portfolio/ai-projects/drowsinessdetection',
+      startDate: '2021',
+      role: 'Lead Engineer',
+      projectType: 'CNN (Classification)',
+      projectCode: {
+        title: 'Project code',
+        links: [
+          {
+            label: 'Drowsiness Detection Training',
+            link: 'https://github.com/vudoan1708-cyber/Drowsiness-Detection',
+          },
+          {
+            label: 'Image Grayscaling',
+            link: 'https://github.com/vudoan1708-cyber/Image-Grayscaling',
+          },
+        ]
+      },
+      projectLog: null,
+      projectURL: null,
+      report: null,
+      videos: [
+        {
+          title: 'Video Diary - Ideation & Planning',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=Pw7ONO65TSo',
+        },
+        {
+          title: 'Video Diary - Ideation Finalisation and Prep for AI training',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=-C_0kXWlHGQ',
+        },
+        {
+          title: 'Video Diary - Use CNN for training dataset',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=P1Ikd4VCz-Y',
+        },
+      ],
+      design: null,
+      technologies: [
+        { id: 'python', name: 'Python', link: 'https://www.python.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/python.webp` },
+        { id: 'tensorflow', name: 'Tensorflow', link: 'https://www.tensorflow.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/tensorflow.webp` },
+      ],
+      apis: [],
+      description: [
+        'An Artificial Intelligence project using Convolutional Neural Network (CNN) for image recognition and classification.',
+        '<i>I spent a lot of time trying to dig out the <mark>academic report</mark> that was done for this university project but couldn\'t find any, so we\'re just gonna have to live without it 😭.</i>',
+        '<br />',
+        'What I learned from this project is:',
+        '<li>AI training is 20% coding and 80% <mark>data collating & processing</mark> skills 🥲.</li>',
+      ],
+      gallery: [
+        { alt: 'Data augmentation', img: `${GITHUB_GALLERY_DROWSINESS_BASE_URL}/data_augmentation.webp` },
+        { alt: 'Training & Validation charts', img: `${GITHUB_GALLERY_DROWSINESS_BASE_URL}/charts.webp` },
+        { alt: 'Heatmap', img: `${GITHUB_GALLERY_DROWSINESS_BASE_URL}/heat_map.webp` },
+        { alt: 'Super-imposed image results', img: `${GITHUB_GALLERY_DROWSINESS_BASE_URL}/drowsinessdetection_alt.webp` },
+      ],
+    },
   ],
   designs: [
     { id: 1, title: 'Design A', img: '/images/designs-1.jpg', link: '/portfolio/designs/1' },

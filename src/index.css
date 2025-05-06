@@ -36,7 +36,7 @@ h1, h2, h3 {
 }
 
 mark {
-  @apply bg-white/50 rounded;
+  @apply bg-white/50 rounded px-1;
 }
 
 li {
