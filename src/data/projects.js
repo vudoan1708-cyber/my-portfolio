@@ -17,6 +17,8 @@ const GITHUB_GALLERY_I2T_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/i2t`;
 // AI
 const GITHUB_GALLERY_VLOTH_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/vloth`;
 const GITHUB_GALLERY_DROWSINESS_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/drowsinessdetection`;
+// Designs
+const GITHUB_GALLERY_DESIGN_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/designs`;
 
 export const projects = {
   'web-apps': [
@@ -29,7 +31,7 @@ export const projects = {
       startDate: 'May 31, 2022',
       endDate: 'July 03, 2022',
       role: 'Frontend Developer',
-      projectType: 'Responsive web app',
+      projectType: 'Responsive web for a Fiverr client',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -296,8 +298,6 @@ export const projects = {
         { id: 'react', name: 'React.js', link: 'https://react.dev/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/react.svg` },
         { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
         { id: 'socketio', name: 'Socket.io', link: 'https://socket.io/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/socketio.webp` },
-        { id: 'makerbot', name: 'MakerBot', link: 'https://www.makerbot.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/makerbot.webp` },
-        { id: 'illustrator', name: 'Adobe Illustrator', link: 'https://www.adobe.com/products/illustrator.html', img: `${GITHUB_PROJECTS_BASE_URL}/techs/illustrator.webp` },
       ],
       apis: [],
       description: [
@@ -712,6 +712,11 @@ export const projects = {
           source: 'youtube',
           link: 'https://www.youtube.com/watch?v=P1Ikd4VCz-Y',
         },
+        {
+          title: 'Video Diary - Transfer learning using existing models',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=UMNo2hd-SjI',
+        },
       ],
       design: null,
       technologies: [
@@ -735,14 +740,144 @@ export const projects = {
     },
   ],
   designs: [
-    { id: 1, title: 'Design A', img: '/images/designs-1.jpg', link: '/portfolio/designs/1' },
+    {
+      id: 1,
+      key: '3dmodelling',
+      title: '3D Modelling',
+      img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/3d.webp`,
+      link: '/portfolio/designs/3dmodelling',
+      startDate: 'Jun 02, 2019',
+      endDate: 'Sep 12, 2019',
+      role: '3D modeller and animator',
+      projectType: 'Hobby (used to)',
+      projectCode: null,
+      projectLog: null,
+      projectURL: {
+        title: 'Project URL',
+        label: 'Blogspot URL',
+        link: 'https://vudoan387.blogspot.com/',
+      },
+      report: null,
+      videos: [],
+      design: null,
+      technologies: [
+        { id: 'maya', name: 'Maya', link: 'https://www.autodesk.com/products/maya/overview?term=1-YEAR', img: `${GITHUB_PROJECTS_BASE_URL}/techs/maya.webp` },
+        { id: 'zbrush', name: 'ZBrush', link: 'https://www.maxon.net/en/zbrush', img: `${GITHUB_PROJECTS_BASE_URL}/techs/zbrush.webp` },
+        { id: 'sp', name: 'Substance Painter', link: 'https://www.adobe.com/products/substance3d/apps/painter.html?sdid=JZBJVTGW&mv=search&mv2=paidsearch&gad_source=1&gad_campaignid=20396750522&gclid=Cj0KCQjw5ubABhDIARIsAHMighZ-pW1ooepdJOqUlhqaWKmSN8OMr_KDqBCSdS9oM7Uxz6C2YmRmQMwaAo8wEALw_wcB', img: `${GITHUB_PROJECTS_BASE_URL}/techs/sp.webp` },
+      ],
+      apis: [],
+      description: [
+        'If you have come here from the <a rel="noopener noreferrer" href="/portfolio/games">Game projects</a>, that means I\'m not too bad of a 3D artist, or maybe you just come here to laugh at my 3D skills 🥲.',
+        'Anyhow, the project URL link on this page will take you to a separate art portfolio to showcase my 3D art projects which are made using primarily 3D packages such as Maya, ZBrush, Substance Painter, and other compositing softwares such as Photoshop, After Effects...',
+        '<br />',
+        'Please be aware these are just hobby projects so no judging please 😁. Let the peace embrace you 🧘.',
+        '<br />',
+        'What I learned from this project is:',
+        '<li><mark>Retopology</mark> takes a lot of time and patience.</li>',
+        '<li>A realisation that all the complex looks from all the 3D models are just a result of complex <mark>texturing</mark>, not topology.</li>',
+      ],
+      gallery: [
+        { alt: 'Bats at night', img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/loads_of_bats.webp` },
+        { alt: 'UV mapping for texturing work', img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/UV.webp` },
+        { alt: 'Blades', img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/blades.webp` },
+      ],
+    },
+    {
+      id: 2,
+      key: '3dprinting',
+      title: '3D Printing & laser cutting',
+      img: `${GITHUB_COLLECTIONS_BASE_URL}/3d_printing.webp`,
+      link: '/portfolio/designs/3dprinting',
+      startDate: 'Mar 22, 2020',
+      role: '3D modeller',
+      projectType: 'Internet of everything prototyping',
+      projectCode: null,
+      projectLog: null,
+      projectURL: {
+        title: 'Project URL',
+        label: 'Blogspot URL',
+        link: 'https://vudoan3dprinting387.blogspot.com/',
+      },
+      report: null,
+      videos: [],
+      design: null,
+      technologies: [
+        { id: 'maya', name: 'Maya', link: 'https://www.autodesk.com/products/maya/overview?term=1-YEAR', img: `${GITHUB_PROJECTS_BASE_URL}/techs/maya.webp` },
+        { id: 'rhino6', name: 'Rhino 6', link: 'https://www.rhino3d.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/rhino.webp` },
+        { id: 'makerbot', name: 'MakerBot', link: 'https://www.makerbot.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/makerbot.webp` },
+        { id: 'illustrator', name: 'Adobe Illustrator', link: 'https://www.adobe.com/products/illustrator.html', img: `${GITHUB_PROJECTS_BASE_URL}/techs/illustrator.webp` },
+      ],
+      apis: [],
+      description: [
+        'More on the programming from <a rel="noopener noreferrer" href="/portfolio/web-apps/echoarchitect">Internet of Everything project</a>.',
+        '<br />',
+        'Another separate portfolio website to showcase all the 3D printed and laser cut artefacts which are usually a part of a technology project (Arduino, Physical computing,...). These artefacts are made available thanks to 3D packages such as Maya, Rhino, MakerBot Print, and other hardware facilities such as MakerBot Replicator+ 3D, Epilog Legend.',
+        '<br />',
+        'What I learned from this project is:',
+        '<li>How different it can be from just 3D models on the screen and physical 3D objects that are printable, in terms of <mark>accurate measurements</mark>.</li>',
+      ],
+      gallery: [
+        { alt: 'Modelling the prototype in Rhino', img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/rhino_modelling.webp` },
+        { alt: 'Laser cut pieces of the prototype', img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/laser_cut_pieces.webp` },
+        { alt: 'A physical musical note', img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/musical_note.webp` },
+      ],
+    },
+    {
+      id: 3,
+      key: 'thisismyshoes',
+      title: 'This is my shoes',
+      img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/thisismyshoes.webp`,
+      link: '/portfolio/designs/thisismyshoes',
+      startDate: 'Jan 11, 2021',
+      endDate: 'May 6th, 2021',
+      role: 'Lead Designer',
+      projectType: 'Interaction Design',
+      projectCode: null,
+      projectLog: null,
+      projectURL: null,
+      report: null,
+      videos: [
+        {
+          title: 'Video walk-through',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=9DNd6KciCAM',
+        },
+      ],
+      design: {
+        title: 'Figma design',
+        link: 'https://www.figma.com/design/DDdILJVhu7bk4gxlvwPAs5/This-is-my-shoes?node-id=0-1&p=f&t=Pg6khVfF1BXCNv4S-0',
+      },
+      technologies: [
+        { id: 'maya', name: 'Maya', link: 'https://www.autodesk.com/products/maya/overview?term=1-YEAR', img: `${GITHUB_PROJECTS_BASE_URL}/techs/maya.webp` },
+        { id: 'illustrator', name: 'Adobe Illustrator 2021', link: 'https://www.adobe.com/products/illustrator.html', img: `${GITHUB_PROJECTS_BASE_URL}/techs/illustrator.webp` },
+        { id: 'aftereffects', name: 'Adobe After Effects 2020', link: 'https://www.adobe.com/uk/products/aftereffects.html', img: `${GITHUB_PROJECTS_BASE_URL}/techs/after_effects.webp` },
+        { id: 'premierepro', name: 'Adobe Premiere Pro 2020', link: 'https://www.adobe.com/uk/products/premiere.html', img: `${GITHUB_PROJECTS_BASE_URL}/techs/premiere_pro.webp` },
+      ],
+      apis: [],
+      description: [
+        'A high-fidelity prototype in a form of a video walk-through that encapsulates the idea of putting men in women\'s shoe via the design of a content creation app whose creators will be dominantly women.',
+        '<br />',
+        'They will use the app to write their everyday story and upload the contents to the system. additionally, the app also allows content consumers, who are men, to interact the a shared story via the implementation of virtual reality.',
+        '<i>Again, I spent a lot of time trying to dig out the <mark>academic report</mark> for this university project but couldn\'t find any, so we\'re just gonna have to live without it 😭.</i>',
+        '<br />',
+        'What I learned from this project is:',
+        '<li>Make a poster combining <mark>2D elements</mark> with <mark>a 3D rendered scene</mark>.</li>',
+        '<li>Make complex design interactions for a <mark>high-fi prototype</mark>.</li>',
+      ],
+      gallery: [
+        { alt: 'Poster', img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/thisismyshoes.webp` },
+        { alt: 'Web UI prototype', img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/id_web_ui_prototype.webp` },
+        { alt: 'Social feeds prototype', img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/id_social_feeds.webp` },
+        { alt: 'Immersive VR-based story', img: `${GITHUB_GALLERY_DESIGN_BASE_URL}/id_vr.webp` },
+      ],
+    },
   ],
 };
 
 export const projectCollections = [
-  { key: 'web-apps', label: 'Web Apps', img: `${GITHUB_COLLECTIONS_BASE_URL}/muserfly_mobile_map_zoom3.webp`, description: 'Projects involve with creating a user interface for web applications ranging from non-commercial to semi-commercial and fully commercial (or in other words, working in a company)' },
-  { key: 'games', label: 'Games', img: `${GITHUB_COLLECTIONS_BASE_URL}/turtle_race_boss_fight.webp`, description: 'Projects involve with the hobby game making (primarily web-based games with little to no consideration in performance)' },
+  { key: 'web-apps', label: 'Web Apps', img: `${GITHUB_COLLECTIONS_BASE_URL}/muserfly_mobile_map_zoom3.webp`, description: 'Projects involve with creating a user interface for web applications ranging from non-commercial to semi-commercial and fully commercial (or in other words, working in a company).' },
+  { key: 'games', label: 'Games', img: `${GITHUB_COLLECTIONS_BASE_URL}/turtle_race_boss_fight.webp`, description: 'Projects involve with the hobby game making (primarily web-based games with little to no consideration in performance).' },
   { key: 'utilities', label: 'Utilities', img: `${GITHUB_COLLECTIONS_BASE_URL}/i2t-logo.webp`, description: 'Projects involve with creating extensions / plugins / addons (however you like to call it) across diffferent platforms or ecosystems.' },
-  { key: 'ai-projects', label: 'AI Projects', img: `${GITHUB_COLLECTIONS_BASE_URL}/ai-logo.webp`, description: 'Projects involve with creating AI models with or without pre-trained models' },
-  { key: 'designs', label: 'Designs', img: `${GITHUB_COLLECTIONS_BASE_URL}/3d_printing.webp`, description: 'Projects involve with designs ranging from poster design to 3D visualisation and prototyping' },
+  { key: 'ai-projects', label: 'AI Projects', img: `${GITHUB_COLLECTIONS_BASE_URL}/ai-logo.webp`, description: 'Projects involve with creating AI models with or without pre-trained models.' },
+  { key: 'designs', label: 'Designs', img: `${GITHUB_COLLECTIONS_BASE_URL}/3d_printing.webp`, description: 'Projects involve with designs ranging from poster design to 3D visualisation and prototyping.' },
 ];

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
@@ -18,6 +18,14 @@ export default function PageWrapper({ children }) {
   const location = useLocation();
   // Match /portfolio/:collection/:projectKey exactly
   const isDetail = /^\/portfolio\/[^\\/]+\/[^\\/]+$/.test(location.pathname);
+
+  // Scroll behavior: on ProjectDetail routes, scroll to top; otherwise retain
+  useEffect(() => {
+    if (isDetail) {
+      window.scrollTo(0, 0);
+    }
+  }, [ isDetail ]);
+
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div
