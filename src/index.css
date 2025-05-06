@@ -50,6 +50,9 @@ code {
 #project_detail_body a {
   @apply underline underline-offset-8 hover:text-red-200;
 }
+#music_detail_body a {
+  @apply underline underline-offset-4 hover:text-red-200;
+}
 
 /* Utility to center full-screen loaders or splash screens */
 .full-screen-center {

@@ -1,10 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-// lookup function: find the project in your data
-import { projects } from '../data/projects';
 import ProjectImageGallery from './ProjectImageGallery';
 import VideoDisplay from './VideoDisplay';
+import { projects } from '../data/projects';
 
 export default function ProjectDetail() {
   const { collection, projectKey } = useParams();

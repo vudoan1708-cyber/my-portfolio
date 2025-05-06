@@ -10,7 +10,7 @@ export default function Bio() {
   ];
   return (
     <div className="space-y-6">
-      <h1 className="text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)]">Explore My Portfolio</h1>
+      <h1 className="text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)]">About me</h1>
       {
         blocks.map((block, idx) => (
           <motion.p

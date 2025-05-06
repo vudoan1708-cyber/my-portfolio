@@ -50,7 +50,7 @@ export default function Navbar() {
       </NavLink>
       <ul className="hidden sm:block sm:flex sm:space-x-8 sm:items-center">
         <NavItem to="/portfolio" label="Portfolio" />
-        <NavItem to="/blog"  label="Blog" />
+        <NavItem to="/music"  label="Music" />
         <NavItem to="/resume" label="Resume" />
       </ul>
       
@@ -85,7 +85,7 @@ export default function Navbar() {
               transition={{ type: 'tween', duration: 0.3 }}>
               <ul className="flex flex-col items-center space-y-4 divide-y divide-white/20">
                 <NavItem to="/portfolio" label="Portfolio" />
-                <NavItem to="/blog"  label="Blog" />
+                <NavItem to="/music"  label="Music" />
                 <NavItem to="/resume" label="Resume" />
               </ul>
             </motion.div>

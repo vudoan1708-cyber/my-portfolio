@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import ProjectDetail from './components/ProjectDetail';
 
 import Portfolio from './pages/Portfolio';
-import Blog from './pages/Blog';
+import Music from './pages/Music';
 import Resume from './pages/Resume';
 
 export default function App() {
@@ -24,7 +24,7 @@ export default function App() {
             <Route path="/portfolio/:collection/:projectKey" element={<ProjectDetail />} />
             <Route path="/portfolio/:collection" element={<Portfolio />} />
             <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/blog" element={<Blog />} />
+            <Route path="/music" element={<Music />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/" element={<Navigate to="/portfolio" replace />} />
             <Route path="*" element={<Navigate to="/portfolio" replace />} />

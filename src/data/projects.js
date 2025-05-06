@@ -809,7 +809,7 @@ export const projects = {
       ],
       apis: [],
       description: [
-        'More on the programming from <a rel="noopener noreferrer" href="/portfolio/web-apps/echoarchitect">Internet of Everything project</a>.',
+        'More on the programming from <a rel="noopener noreferrer" href="/portfolio/web-apps/echoarchitect">the Internet of Everything project</a>.',
         '<br />',
         'Another separate portfolio website to showcase all the 3D printed and laser cut artefacts which are usually a part of a technology project (Arduino, Physical computing,...). These artefacts are made available thanks to 3D packages such as Maya, Rhino, MakerBot Print, and other hardware facilities such as MakerBot Replicator+ 3D, Epilog Legend.',
         '<br />',
