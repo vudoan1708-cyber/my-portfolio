@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 
 export default function Bio() {
   const blocks = [
-    'A competitive but also receptive, an innovative and imaginative individual with a productive and positive mindset.',
-    'Once a good idea and a concept have been set out, outlining and setting things up straight away is my way of dealing with the hardships of getting started, because my personality allows me to keep going with finishing things that I have started.',
-    'When working in small groups, I am able to motivate my teammates, lift their mood up and influence them with my positivity when they feel down.',
-    'Asides from the busyness, I also play guitar, sing songs with my friends and love “producing” music in my spare time. I go to the gym everyday to get fit, release stress and to also help myself come up with solutions when I’m away from problems.',
+    'A competitive but also receptive, an innovative and curious individual with a productive and positive mindset.',
+    'I always think curiosity will decide our knowledge and I’m eager to be a part of a team that values the curious and enthusiastic minds.',
+    'When working in small groups, I am able to motivate my teammates, lift their mood and influence them with my positivity.',
+    'Aside from the busyness, I also play guitar, sing songs and “produce” music in my spare time. I go to the gym everyday to get fit, release stress and to also help myself come up with solutions when I’m away from problems.',
   ];
   return (
     <div className="space-y-6">
-      <h1 className="text-5xl font-bold text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)]">Explore My Portfolio</h1>
+      <h1 className="text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)]">Explore My Portfolio</h1>
       {
         blocks.map((block, idx) => (
           <motion.p

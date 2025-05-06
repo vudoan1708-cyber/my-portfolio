@@ -26,28 +26,28 @@ export default function AnimatedHeader() {
         <React.Fragment key={i}>
           {/* Animated gradient blobs */}
           <motion.div
-            className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-gradient-to-tr from-rose-500 to-pink-400 opacity-70 filter blur-3xl"
+            className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-gradient-to-tr from-rose-500 to-pink-400 opacity-70 filter blur-3xl will-change-transform"
             animate={scrolledPast ? { x: 0, y: 0, scale: 1 } : { x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }}
             transition={scrolledPast ? { duration: 0 } : { repeat: Infinity, duration: 8, ease: 'easeInOut' }}
           />
           <motion.div
-            className="absolute top-1/2 right-1/3 w-96 h-96 rounded-full bg-gradient-to-br from-red-500 to-rose-300 opacity-60 filter blur-2xl"
+            className="absolute top-1/2 right-1/3 w-96 h-96 rounded-full bg-gradient-to-br from-red-500 to-rose-300 opacity-60 filter blur-2xl will-change-transform"
             animate={scrolledPast ? { x: 0, y: 0, scale: 1 } : { x: [-20, 50, -20], y: [0, 80, 0], scale: [1, 1.1, 1] }}
             transition={scrolledPast ? { duration: 0 } : { repeat: Infinity, duration: 10, ease: 'easeInOut' }}
           />
           <motion.div
-            className="absolute bottom-1/4 left-1/3 w-72 h-72 rounded-full bg-gradient-to-bl from-pink-500 to-red-400 opacity-50 filter blur-2xl"
+            className="absolute bottom-1/4 left-1/3 w-72 h-72 rounded-full bg-gradient-to-bl from-pink-500 to-red-400 opacity-50 filter blur-2xl will-change-transform"
             animate={scrolledPast ? { x: 0, y: 0, scale: 1 } : { x: [0, -80, 0], y: [0, 40, 0], scale: [1, 1.15, 1] }}
             transition={scrolledPast ? { duration: 0 } : { repeat: Infinity, duration: 9, ease: 'easeInOut' }}
           />
         </React.Fragment>
       ))}
 
-      <div className="flex flex-col sm:flex-row items-center gap-4 z-10 mt-8 w-full sm:w-auto justify-center">
+      <div className="flex flex-col sm:flex-row items-center gap-4 z-10 mt-8 w-full sm:w-auto justify-center pt-12">
         {/* Shared-layout Avatar */}
         <motion.div
           layoutId="avatar"
-          className="rounded-full border-4 border-white shadow-lg hover:scale-105 transition-transform duration-300"
+          className="hidden sm:block rounded-full border-4 border-white shadow-lg hover:scale-105 transition-transform duration-300"
           animate={{ opacity: scrolledPast ? 0 : 1 }}
           transition={{ duration: 0.3 }}
         >
