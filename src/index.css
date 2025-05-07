@@ -20,11 +20,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Section wrappers get a soft card look */
-.section-card {
-  @apply bg-white bg-opacity-80 backdrop-blur-sm rounded-3xl p-8 shadow-xl;
-}
-
 /* Footer sits on its own darker band */
 .footer-bg {
   @apply bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300;
@@ -47,7 +42,8 @@ code {
   @apply italic;
 }
 
-#project_detail_body a {
+#project_detail_body a,
+a.anchor_highlight {
   @apply underline underline-offset-8 hover:text-red-200;
 }
 #music_detail_body a {
