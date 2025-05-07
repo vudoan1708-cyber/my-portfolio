@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Avatar from './Avatar';
 import Bio from './Bio';
@@ -6,6 +6,10 @@ import { useLocation } from 'react-router-dom';
 
 export default function AnimatedHeader() {
   const [ scrolledPast, setScrolledPast ] = useState(false);
+
+  const onMobile = useRef(window.matchMedia('(pointer: coarse)').matches);
+
+  const numberOfBlobs = useRef(onMobile.current ? Array(6) : Array(12));
 
   useEffect(() => {
     const onScroll = () => {
@@ -22,7 +26,7 @@ export default function AnimatedHeader() {
   
   return (
     <header className="w-full h-screen bg-black relative overflow-hidden flex items-center justify-center">
-      {[...Array(12)].map((_, i) => (
+      {[...numberOfBlobs.current].map((_, i) => (
         <React.Fragment key={i}>
           {/* Animated gradient blobs */}
           <motion.div
