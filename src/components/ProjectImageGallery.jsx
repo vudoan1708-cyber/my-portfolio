@@ -1,5 +1,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+
 import { ChevronLeft, ChevronRight, Maximize, Minimize, X } from 'lucide-react';
 import ImageGallery from 'react-image-gallery';
 // import stylesheet if you're not already using CSS @import
@@ -24,8 +26,14 @@ export default function ProjectImageGallery({ gallery }) {
   return (
     <>
       {gallery.map((item, idx) => (
-        <div
+        <motion.div
           key={idx}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          exit={{ opacity: 0, y: -20 }}
+          whileHover={{ scale: 1.05, opacity: .9 }}
+          transition={{ type: 'spring', stiffness: 300 }}
           className="overflow-hidden rounded-lg shadow-lg"
           onClick={() => openAt(idx)}
         >
@@ -35,7 +43,7 @@ export default function ProjectImageGallery({ gallery }) {
             alt={item.alt}
             className="object-cover cursor-pointer hover:scale-105 transition-transform duration-200"
           />
-        </div>
+        </motion.div>
       ))}
 
       {galleryIndex >= 0 && (

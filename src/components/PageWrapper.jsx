@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
 const pageVariants = {
-  initial: { opacity: 0, x: 50 },
-  in: { opacity: 1, x: 0 },
-  out: { opacity: 0, x: -50 },
+  initial: { opacity: 0, x: -20 },
+  in: { opacity: 1, x: 20 },
+  out: { opacity: 0, x: -20 },
 };
 
 const pageTransition = {
@@ -27,19 +27,16 @@ export default function PageWrapper({ children }) {
   }, [ isDetail ]);
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <motion.div
-        location={location}
-        key={location.pathname}
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -50 }}
-        variants={pageVariants}
-        transition={pageTransition}
-        className={isDetail ? "py-8 bg-neutral-950 min-h-screen" : "p-8 bg-neutral-950 min-h-screen"}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      key={location.pathname}
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+      variants={pageVariants}
+      transition={pageTransition}
+      className={isDetail ? "py-8 bg-neutral-950 min-h-screen" : "p-8 bg-neutral-950 min-h-screen"}
+    >
+      {children}
+    </motion.div>
   );
 }

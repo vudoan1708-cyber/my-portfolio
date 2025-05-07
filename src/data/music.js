@@ -15,7 +15,7 @@ export const tracks = [
       'The piece really is just a storytell of the emotional waves I felt during the length of the series.',
       'The story is about an animalistic behaviour that infests humans and converts them into cannibals. The bloody scenes where they use their teeth to tear and munch on human flesh is so eerie and savage. And the build up scene when you know you\'re next as they all turn to you and come to chase you down.',
       '<br />',
-      'So I tried my best to capture all these concepts and feelings as hot and fresh as I could and put that into hopefully a meaningful piece of music.',
+      'So I tried my best to capture all these concepts and feelings as hot and fresh as I could and put that into hopefully a meaningful and coherent piece of music.',
     ],
   },
   {

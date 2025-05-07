@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, Outlet, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 import ProjectGrid from '../components/ProjectGrid';
 
@@ -17,11 +18,17 @@ export default function Portfolio() {
   return (
     <div className="max-w-6xl mx-auto py-12">
       <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-        {projectCollections.map((collection) => (
-          <div
+        {projectCollections.map((collection, idx) => (
+          <motion.div
             key={collection.key}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0, transition: { delay: 0.3 * (idx + 1) } }}
+            viewport={{ once: true, margin: '-50px' }}
+            exit={{ opacity: 0, y: -20 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 300 }}
             onClick={() => navigate(`/portfolio/${collection.key}`)}
-            className="relative break-inside-avoid cursor-pointer overflow-hidden rounded-xl shadow-lg hover:scale-105 transform transition-transform duration-300"
+            className="relative break-inside-avoid cursor-pointer overflow-hidden rounded-xl shadow-lg"
           >
             <img
               src={collection.img}
@@ -31,7 +38,7 @@ export default function Portfolio() {
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
               <span className="text-2xl font-bold text-white">{collection.label}</span>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 

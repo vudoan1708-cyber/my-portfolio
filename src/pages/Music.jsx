@@ -12,9 +12,13 @@ export default function Music() {
         My Music Production
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-        {tracks.map((track) => (
-          <div
+        {tracks.map((track, idx) => (
+          <motion.div
             key={track.id}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0, transition: { delay: 0.3 * (idx + 1) } }}
+            viewport={{ once: true, margin: '-50px' }}
+            exit={{ opacity: 0, y: -20 }}
             className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden shadow-lg"
           >
             <img
@@ -55,7 +59,7 @@ export default function Music() {
                 )}
               </AnimatePresence>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
