@@ -9,7 +9,7 @@ export default function AnimatedHeader() {
 
   const onMobile = useRef(window.matchMedia('(pointer: coarse)').matches);
 
-  const numberOfBlobs = useRef(onMobile.current ? Array(6) : Array(12));
+  const numberOfBlobs = useRef(onMobile.current ? Array(3) : Array(12));
 
   useEffect(() => {
     const onScroll = () => {
