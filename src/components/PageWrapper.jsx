@@ -17,14 +17,14 @@ const pageTransition = {
 export default function PageWrapper({ children }) {
   const location = useLocation();
   // Match /portfolio/:collection/:projectKey exactly
-  const isDetail = /^\/portfolio\/[^\\/]+\/[^\\/]+$/.test(location.pathname);
+  const isDetailPage = /^\/portfolio\/[^\\/]+\/[^\\/]+$/.test(location.pathname);
 
   // Scroll behavior: on ProjectDetail routes, scroll to top; otherwise retain
   useEffect(() => {
-    if (isDetail) {
+    if (isDetailPage) {
       window.scrollTo(0, 0);
     }
-  }, [ isDetail ]);
+  }, [ isDetailPage ]);
 
   return (
     <motion.div
@@ -34,7 +34,8 @@ export default function PageWrapper({ children }) {
       exit={{ opacity: 0, x: -20 }}
       variants={pageVariants}
       transition={pageTransition}
-      className={isDetail ? "py-8 bg-neutral-950 min-h-screen" : "p-8 bg-neutral-950 min-h-screen"}
+      className={`${isDetailPage ? "py-8" : "p-8"} bg-neutral-950 min-h-screen`}
+      id="Page_Content_Details"
     >
       {children}
     </motion.div>

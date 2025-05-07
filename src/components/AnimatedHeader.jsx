@@ -3,13 +3,14 @@ import { motion } from 'framer-motion';
 import Avatar from './Avatar';
 import Bio from './Bio';
 import { useLocation } from 'react-router-dom';
+import ScrollDownButton from './ScrollDownButton';
 
 export default function AnimatedHeader() {
   const [ scrolledPast, setScrolledPast ] = useState(false);
 
   const onMobile = useRef(window.matchMedia('(pointer: coarse)').matches);
 
-  const numberOfBlobs = useRef(onMobile.current ? Array(3) : Array(12));
+  const numberOfBlobs = useRef(onMobile.current ? Array(2) : Array(12));
 
   useEffect(() => {
     const onScroll = () => {
@@ -67,6 +68,8 @@ export default function AnimatedHeader() {
           <Bio />
         </motion.div>
       </div>
+
+      <ScrollDownButton />
     </header>
   );
 }

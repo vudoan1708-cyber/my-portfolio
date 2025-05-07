@@ -48,7 +48,7 @@ export default function Navbar() {
           Vu Doan
         </motion.span>
       </NavLink>
-      <ul className="hidden sm:block sm:flex sm:space-x-8 sm:items-center">
+      <ul className="hidden sm:flex sm:space-x-8 sm:items-center">
         <NavItem to="/portfolio" label="Portfolio" />
         <NavItem to="/music"  label="Music" />
         <NavItem to="/resume" label="Resume" />
