@@ -39,7 +39,7 @@ export default function ScrollDownButton() {
         repeat: visible ? Infinity : 0,
       }}
       viewport={{ once: true }}
-      className="absolute bottom-6 right-1 transform -translate-x-1/2 z-10 bg-black text-white p-2 sm:p-3 rounded-full border-2 border-slate-400 shadow-lg"
+      className="absolute bottom-6 right-1 transform -translate-x-1/2 z-10 bg-slate-900/70 text-white p-2 sm:p-3 rounded-full border-2 border-slate-400 shadow-lg"
       aria-label="Scroll to projects"
     >
       <svg

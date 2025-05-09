@@ -26,7 +26,7 @@ export default function AnimatedHeader() {
   if (isDetail) return null;
   
   return (
-    <header className="w-full h-screen bg-black relative overflow-hidden flex items-center justify-center">
+    <header className="w-full h-svh bg-black relative overflow-hidden flex items-center justify-center">
       {[...numberOfBlobs.current].map((_, i) => (
         <React.Fragment key={i}>
           {/* Animated gradient blobs */}

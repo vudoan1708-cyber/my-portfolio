@@ -591,7 +591,7 @@ export const projects = {
         'What I learned from this project is:',
         '<li>How Stoybook internal server <mark>(preset)</mark> communicates with its UI <mark>(manager and preview)</mark></li>',
         '<li>How to <mark>set up a project from scratch</mark>, no command lines, no boilerplate at all 🥲.</li>',
-        '<li>How <mark>Abstract Syntax Tree (AST)</mark> sort of works so I can roughly replicate something similar which I myself name it Jest Syntax Tree (JST). This is style the Jest code printed on the addon UI on every user interaction.</li>',
+        '<li>How <mark>Abstract Syntax Tree (AST)</mark> sort of works so I can roughly replicate something similar which I myself name it Jest Syntax Tree (JST). This is to style the Jest code printed on the addon UI on every user interaction.</li>',
         '<li>And how <mark>monkey patching a global function</mark> works and use it with a precaution in mind.</li>',
         '<br />',
         'What can be improved:',
