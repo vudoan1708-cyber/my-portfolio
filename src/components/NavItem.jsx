@@ -9,6 +9,7 @@ export default function NavItem({ to, label, hasDropdown, children }) {
         className={({ isActive }) =>
           `${isActive ? 'text-red-300' : 'text-white'} hover:text-red-200 transition-colors font-semibold`
         }
+        state={{ scrollToDetails: true }}
       >
         {label}
       </NavLink>

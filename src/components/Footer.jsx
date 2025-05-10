@@ -14,6 +14,8 @@ export default function Footer() {
   const [ email, setEmail ] = useState('');
   const [ message, setMessage ] = useState('');
 
+  const [ disabled, setDisabled ] = useState(state.submitting || !email || !message);
+
   useEffect(() => {
     if (state.succeeded) {
       toast.success('Your message has been sent to me! 🎉');
@@ -22,6 +24,9 @@ export default function Footer() {
       // If you want to allow another submission, you can call reset() here
     }
   }, [ state.succeeded ]);
+  useEffect(() => {
+    setDisabled(state.submitting || !email || !message);
+  }, [ state.submitting, email, message ]);
   return (
     <>
      <footer className="bg-black text-white py-12 px-4 sm:px-8">
@@ -59,8 +64,9 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="bg-gray-700 hover:bg-gray-600 transition px-6 py-3 rounded"
-                disabled={state.submitting || !email || !message}
+                title={disabled && 'Please fill in your email and message before submitting'}
+                className={`${disabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-700 hover:bg-gray-600 cursor-pointer'} transition px-6 py-3 rounded`}
+                disabled={disabled}
               >
                 Send
               </button>

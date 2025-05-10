@@ -138,10 +138,10 @@ export default function ProjectDetail() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black text-gray-300">
+    <div className="relative min-h-svh bg-black text-gray-300">
       {/* Project header with blurred bottom overlay and title */}
       <div
-        className="relative w-full h-[calc(100vh-4rem)] top-8 bg-center bg-cover bg-absolute rounded"
+        className="relative w-full h-[calc(100svh-4rem)] top-8 bg-center bg-cover bg-absolute rounded"
         style={{ backgroundImage: `url(${project['img-lg'] ?? project.img})` }}
       >
         {/* Half-screen blur overlay */}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const pageVariants = {
   initial: { opacity: 0, x: -20 },
@@ -16,8 +16,22 @@ const pageTransition = {
 
 export default function PageWrapper({ children }) {
   const location = useLocation();
+  const navigate = useNavigate();
   // Match /portfolio/:collection/:projectKey exactly
   const isDetailPage = /^\/portfolio\/[^\\/]+\/[^\\/]+$/.test(location.pathname);
+
+  const shouldScroll = location.state?.scrollToDetails;
+
+  useEffect(() => {
+    if (!shouldScroll) return;
+
+    const target = document.getElementById('Page_Content_Details');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+      // Reset state so this only runs once
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [ shouldScroll, navigate, location.pathname ]);
 
   // Scroll behavior: on ProjectDetail routes, scroll to top; otherwise retain
   useEffect(() => {

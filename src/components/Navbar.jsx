@@ -12,7 +12,7 @@ export default function Navbar() {
   const isDetail = /^\/portfolio\/[^\\/]+\/[^\\/]+$/.test(location.pathname);
 
   const onMobile = useRef(window.matchMedia('(pointer: coarse)').matches);
-  const [ showMiniAvatar, setShowMiniAvatar ] = useState(onMobile.current || false);
+  const [ showMiniAvatar, setShowMiniAvatar ] = useState(onMobile.current ?? false);
   const [ hamburgerOpen, setHamburgerOpen ] = useState(false);
 
   useEffect(() => {
