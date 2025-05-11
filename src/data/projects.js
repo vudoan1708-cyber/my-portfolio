@@ -14,6 +14,7 @@ const GITHUB_GALLERY_TURTLE_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/turtlerace`;
 // Utilities
 const GITHUB_GALLERY_VOLYFEQUICKDEV_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/volyfequickdev`;
 const GITHUB_GALLERY_I2T_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/i2t`;
+const GITHUB_GALLERY_VOLYFEAUTODEPLOY_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/voly-fe-auto-deploy`;
 // AI
 const GITHUB_GALLERY_VLOTH_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/vloth`;
 const GITHUB_GALLERY_DROWSINESS_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/drowsinessdetection`;
@@ -606,6 +607,62 @@ export const projects = {
         { alt: 'Register the addon in main.js', img: `${GITHUB_GALLERY_I2T_BASE_URL}/i2t_register_addon.webp` },
         { alt: 'Map user interactions to Jest', img: `${GITHUB_GALLERY_I2T_BASE_URL}/i2t_track_and_map_user_interactions.webp` },
       ],
+    },
+    {
+      id: 3,
+      key: 'voly-fe-auto-deploy',
+      title: 'voly-fe-auto-deploy',
+      img: `${GITHUB_GALLERY_VOLYFEAUTODEPLOY_BASE_URL}/logo.svg`,
+      // 'img-lg': `${GITHUB_GALLERY_VOLYFEAUTODEPLOY_BASE_URL}/logo.svg`,
+      link: '/portfolio/utilities/voly-fe-auto-deploy',
+      startDate: 'May 10, 2025',
+      endDate: 'Present',
+      role: 'Lead Engineer',
+      projectType: 'Bitbucket addon app',
+      projectCode: {
+        title: 'Project code',
+        label: 'Github URL',
+        link: 'https://github.com/vudoan1708-cyber/bitbucket-voly-fe-auto-deploy/',
+      },
+      projectLog: {
+        title: 'Project log',
+        label: 'Confluence',
+        link: 'https://vudoan.atlassian.net/wiki/spaces/~627f7edc6ba8640069d0b960/pages/7110665/Voly+FE+Auto+Deploy+-+Bitbucket+addon+app',
+      },
+      // projectURL: {
+      //   title: 'Bitbucket Marketplace',
+      //   label: 'https://www.npmjs.com/package/interaction-2-test',
+      //   link: 'https://www.npmjs.com/package/interaction-2-test',
+      // },
+      report: null,
+      videos: [
+        {
+          title: 'Proof-of-concept demo video',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=WV3i3h4KhIw',
+        },
+      ],
+      design: null,
+      technologies: [
+        { id: 'typescript', name: 'Typescript', link: 'https://www.typescriptlang.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/typescript.webp` },
+        { id: 'forge', name: 'Forge', link: 'https://developer.atlassian.com/platform/forge/manifest-reference/modules/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/forge.webp` },
+        { id: 'bitbucket', name: 'Bitbucket', link: 'https://bitbucket.org/product/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/bitbucket.svg` },
+      ],
+      apis: [],
+      description: [
+        'Another quick <a target="_blank" rel="noopener noreferrer" href="https://www.volygroup.com/">Voly</a>-relevant side project to boost the frontend team productivity at the company.',
+        '<br />',
+        'There is something really nice about <a target="_blank" rel="noopener noreferrer" href="https://vercel.com/">Vercel</a> that everytime we do a <code>git push</code>, it automatically runs the <mark>CI/CD deployment pipeline</mark>.',
+        'And whilst we do have a deployment pipeline script set in <code>bitbucket-pipeline.yml</code>, it\'s pretty much hands-on and manual process, the only automatic one will be the <mark>PR pipeline</mark>, which, by default, is run automatically when a pull request is raised.',
+        'Hence, I created this addon for an auto-deployment process, which is part of the <mark>Validators and Triggerers environment</mark> that essentially does not serve any UI, but acts as a hook that can listen to changes to a workspace, a repository or a branch, and then fire pipeline deployments automatically when a branch  receives a new commit / push.',
+        '<br />',
+        'This is a very quick project, and if you could think of a better and easier way to do this without creating a <mark>Forge app</mark>, you might be right, but I still learned a lot and that\'s what matters most to me.',
+        'What I\'ve learned from this project is:',
+        '<li>How flexible Atlassian can become with its <mark>extensibility</mark></li>',
+        '<li>How to create an <mark>automatic CI / CD deployment</mark> using anything but a <mark>yaml</mark> file alone.</li>',
+        '<li>And how to keep losing sleeps over these side projects 😆.</li>',
+      ],
+      gallery: [],
     },
   ],
   'ai-projects': [

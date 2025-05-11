@@ -1,8 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
+import { motion } from 'framer-motion';
+
 import ProjectImageGallery from './ProjectImageGallery';
 import VideoDisplay from './VideoDisplay';
+
 import { projects } from '../data/projects';
 
 export default function ProjectDetail() {
@@ -95,9 +98,16 @@ export default function ProjectDetail() {
       return (
         <div className="flex flex-row flex-wrap items-center gap-12">
           {project.technologies.map((tech) => (
-            <a key={tech.id} className="w-12 hover:scale-105" target="_blank" href={tech.link} rel="noreferrer">
+            <motion.a
+              key={tech.id}
+              className="w-12"
+              target="_blank"
+              href={tech.link}
+              rel="noreferrer"
+              whileHover={{ scale: 1.05, opacity: .9 }}
+              transition={{ type: 'spring', stiffness: 300 }}>
               <img id={tech.id} src={tech.img} alt={tech.name} />
-            </a>
+            </motion.a>
           ))}
         </div>
       );
