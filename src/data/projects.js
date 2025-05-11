@@ -641,6 +641,11 @@ export const projects = {
           source: 'youtube',
           link: 'https://www.youtube.com/watch?v=WV3i3h4KhIw',
         },
+        {
+          title: 'Tested with git pushes on a local text editor',
+          source: 'youtube',
+          link: 'https://www.youtube.com/watch?v=ouAUQ7-S9Pg',
+        },
       ],
       design: null,
       technologies: [
