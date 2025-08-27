@@ -148,7 +148,7 @@ export const projects = {
       projectURL: {
         title: 'Project URL',
         label: 'Muserfly',
-        link: 'https://muserfly.glitch.me/#/',
+        link: 'https://muserfly.vercel.app/#/',
       },
       report: {
         title: 'Report',
@@ -229,7 +229,7 @@ export const projects = {
       projectURL: {
         title: 'Project URL',
         label: 'Air Quality (Unmaintained)',
-        link: 'https://airpollutants.glitch.me/',
+        link: 'https://airpollutants.vercel.app/',
       },
       report: {
         title: 'Report',
@@ -616,9 +616,9 @@ export const projects = {
       // 'img-lg': `${GITHUB_GALLERY_VOLYFEAUTODEPLOY_BASE_URL}/logo.svg`,
       link: '/portfolio/utilities/voly-fe-auto-deploy',
       startDate: 'May 10, 2025',
-      endDate: 'Present',
+      endDate: 'Early hours of May 11, 2025',
       role: 'Lead Engineer',
-      projectType: 'Bitbucket addon app',
+      projectType: 'Bitbucket Forge app',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
