@@ -228,7 +228,7 @@ export const projects = {
       projectLog: null,
       projectURL: {
         title: 'Project URL',
-        label: 'Air Quality (Unmaintained)',
+        label: 'Air Quality',
         link: 'https://airpollutants.vercel.app/',
       },
       report: {
@@ -242,6 +242,7 @@ export const projects = {
         { id: 'p5js', name: 'p5.js', link: 'https://p5js.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/p5.webp` },
         { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
         { id: 'mappajs', name: 'Mappa.js', link: 'https://mappa.js.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/mappa.webp` },
+        { id: 'mongodb', name: 'MongoDB Atlas', link: 'https://www.mongodb.com/products/platform/atlas-database', img: `${GITHUB_PROJECTS_BASE_URL}/techs/mongodb.webp` },
       ],
       apis: [
         { id: 'openaq', name: 'OpenAQ API', link: 'https://docs.openaq.org/', img: `${GITHUB_PROJECTS_BASE_URL}/apis/openaq_api.webp` },
@@ -387,7 +388,7 @@ export const projects = {
       projectURL: {
         title: 'Project URL',
         label: 'Birdie Jump',
-        link: 'https://birdiejump.glitch.me/',
+        link: 'https://birdiejump.vercel.app/',
       },
       report: null,
       videos: [],
@@ -395,6 +396,7 @@ export const projects = {
       technologies: [
         { id: 'p5js', name: 'p5.js', link: 'https://p5js.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/p5.webp` },
         { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
+        { id: 'mongodb', name: 'MongoDB Atlas', link: 'https://www.mongodb.com/products/platform/atlas-database', img: `${GITHUB_PROJECTS_BASE_URL}/techs/mongodb.webp` },
       ],
       apis: [],
       description: [
