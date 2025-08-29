@@ -252,7 +252,7 @@ export const projects = {
         '<br />',
         'What I learned from this project is:',
         '<li>How, for the first time ever developing a web app in my life, to create a <mark>user interface that is engaging and immersive</mark>.</li>',
-        '<li>How to use a lightweight <mark>database</mark> to store data for the first time.</li>',
+        '<li>How to use a lightweight database: <mark>NeDB</mark> to store data by writing to the disk storage for the first time (this project is now no longer using such database since the original hosting platform (Glitch) is down and a free disk-storage hosting service has become rarer to find).</li>',
         '<li>And experience the pain of writing a report 🥲.</li>',
       ],
       gallery: [
@@ -335,7 +335,7 @@ export const projects = {
       projectURL: {
         title: 'Project URL',
         label: 'PET Police',
-        link: 'https://p-e-tpolice.glitch.me/',
+        link: 'https://petpolice.vercel.app/',
       },
       report: null,
       videos: [
@@ -351,6 +351,7 @@ export const projects = {
         { id: 'p5js', name: 'p5.js', link: 'https://p5js.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/p5.webp` },
         { id: 'sass', name: 'Scss', link: 'https://sass-lang.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/scss.webp` },
         { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
+        { id: 'mongodb', name: 'MongoDB Atlas', link: 'https://www.mongodb.com/products/platform/atlas-database', img: `${GITHUB_PROJECTS_BASE_URL}/techs/mongodb.webp` },
       ],
       apis: [
         { id: 'openaq', name: 'face-api.js', link: 'https://justadudewhohacks.github.io/face-api.js/docs/index.html', img: `${GITHUB_PROJECTS_BASE_URL}/techs/no_logo.webp`, tailwindCssClass: 'bg-white' },
@@ -434,7 +435,7 @@ export const projects = {
       projectURL: {
         title: 'Project URL',
         label: 'Turtle Race',
-        link: 'https://turtlerace.glitch.me/',
+        link: 'https://turtlerace.vercel.app/',
       },
       report: null,
       videos: [],
@@ -442,6 +443,7 @@ export const projects = {
       technologies: [
         { id: 'p5js', name: 'p5.js', link: 'https://p5js.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/p5.webp` },
         { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
+        { id: 'mongodb', name: 'MongoDB Atlas', link: 'https://www.mongodb.com/products/platform/atlas-database', img: `${GITHUB_PROJECTS_BASE_URL}/techs/mongodb.webp` },
       ],
       apis: [],
       description: [
