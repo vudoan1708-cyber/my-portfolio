@@ -3,10 +3,13 @@ import { useParams } from 'react-router-dom';
 
 import { motion } from 'framer-motion';
 
+import { Tooltip } from 'react-tooltip';
+
 import ProjectImageGallery from './ProjectImageGallery';
 import VideoDisplay from './VideoDisplay';
 
 import { projects } from '../data/projects';
+import './ProjectDetail.css';
 
 export default function ProjectDetail() {
   const { collection, projectKey } = useParams();
@@ -98,16 +101,21 @@ export default function ProjectDetail() {
       return (
         <div className="flex flex-row flex-wrap items-center gap-12">
           {project.technologies.map((tech) => (
-            <motion.a
-              key={tech.id}
-              className="w-12"
-              target="_blank"
-              href={tech.link}
-              rel="noreferrer"
-              whileHover={{ scale: 1.05, opacity: .9 }}
-              transition={{ type: 'spring', stiffness: 300 }}>
-              <img id={tech.id} src={tech.img} alt={tech.name} />
-            </motion.a>
+            <>
+              <motion.a
+                key={tech.id}
+                className="w-12"
+                target="_blank"
+                href={tech.link}
+                rel="noreferrer"
+                data-tooltip-id={tech.id}
+                data-tooltip-content={tech.name}
+                whileHover={{ scale: 1.05, opacity: .9 }}
+                transition={{ type: 'spring', stiffness: 300 }}>
+                <img id={tech.id} src={tech.img} alt={tech.name} />
+              </motion.a>
+              <Tooltip id={tech.id} />
+            </>
           ))}
         </div>
       );
@@ -119,9 +127,21 @@ export default function ProjectDetail() {
       return (
         <div className="flex flex-row flex-wrap items-center gap-12">
           {project.apis.map((api) => (
-            <a key={api.id} className={`w-12 hover:scale-105 ${api.tailwindCssClass ?? ''}`} target="_blank" href={api.link} rel="noreferrer">
-              <img id={api.id} src={api.img} alt={api.name} />
-            </a>
+            <>
+              <motion.a
+                key={api.id}
+                className={`w-12 ${api.tailwindCssClass ?? ''}`}
+                target="_blank"
+                href={api.link}
+                rel="noreferrer"
+                data-tooltip-id={api.id}
+                data-tooltip-content={api.name}
+                whileHover={{ scale: 1.05, opacity: .9 }}
+                transition={{ type: 'spring', stiffness: 300 }}>
+                <img id={api.id} src={api.img} alt={api.name} />
+              </motion.a>
+              <Tooltip id={api.id} />
+            </>
           ))}
         </div>
       );

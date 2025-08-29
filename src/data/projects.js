@@ -2,6 +2,7 @@ const GITHUB_IMG_BASE_URL = 'https://vudoan1708-cyber.github.io/logos/portfolio'
 const GITHUB_PROJECTS_BASE_URL = `${GITHUB_IMG_BASE_URL}/projects`;
 const GITHUB_COLLECTIONS_BASE_URL = `${GITHUB_IMG_BASE_URL}/collections`;
 // Web apps
+const GITHUB_GALLERY_ACCOUNTANTBUDDY_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/accountantbuddy`;
 const GITHUB_GALLERY_PUNCHLINER_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/punchliner`;
 const GITHUB_GALLERY_CERBERUS_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/cerberus`;
 const GITHUB_GALLERY_MUSERFLY_BASE_URL = `${GITHUB_PROJECTS_BASE_URL}/muserfly`;
@@ -25,6 +26,57 @@ export const projects = {
   'web-apps': [
     {
       id: 1,
+      key: 'accountantbuddy',
+      title: 'My Accountant Buddy',
+      img: `${GITHUB_GALLERY_ACCOUNTANTBUDDY_BASE_URL}/rates.webp`,
+      link: '/portfolio/web-apps/accountantbuddy',
+      startDate: 'Jul 28, 2023',
+      endDate: 'Aug 29, 2025',
+      role: 'Frontend Developer',
+      projectType: 'Website for personal financial tool',
+      projectCode: {
+        title: 'Project code',
+        label: 'Github URL',
+        link: 'https://github.com/vudoan1708-cyber/My_Accountant_Buddy',
+      },
+      projectLog: null,
+      projectURL: {
+        title: 'Project URL',
+        label: 'My Accountant Buddy',
+        link: 'https://my-accountant-buddy.vercel.app/',
+      },
+      report: null,
+      videos: [],
+      design: null,
+      technologies: [
+        { id: 'svelte', name: 'SvelteKit', link: 'https://svelte.dev/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/svelte.webp` },
+        { id: 'vite', name: 'Vite', link: 'https://vite.dev/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/vite.webp` },
+      ],
+      apis: [],
+      description: [
+        'As a software engineer at <a target="_blank" rel="noopener noreferrer" href="https://www.volygroup.com/">Voly</a> (a UK fintech company), I always find it hard to understand financial terminology and calculation.',
+        '<br />',
+        'And YES, I\'m pretty sure this can be easily found on the internet.',
+        'And YES, this can also be easily asked for from ChatGPT nowadays.',
+        '<br />',
+        'But my idea is that I associate things that I love with things that I don\'t, so that <mark>I can fall in love with my weaknesses.</mark>',
+        '<br />',
+        'What I learned from this project is less about technology and more about finance, particularly:',
+        '<li>How to calculate <mark>compounding returns from an interest rate</mark>.</li>',
+        '<li>And how DCF (Discounted Cash Flow) really messes with my head in why do we need to know <mark>the present value of an investment</mark>.</li>',
+      ],
+      gallery: [
+        { alt: 'Effective vs. Nominal rates', img: `${GITHUB_GALLERY_ACCOUNTANTBUDDY_BASE_URL}/rates.webp` },
+        { alt: 'Compounding interest', img: `${GITHUB_GALLERY_ACCOUNTANTBUDDY_BASE_URL}/compounding_interest.webp` },
+        { alt: 'Calculated view of compounding interest', img: `${GITHUB_GALLERY_ACCOUNTANTBUDDY_BASE_URL}/compounding_interest_calculated.webp` },
+        { alt: 'Same payment DCF', img: `${GITHUB_GALLERY_ACCOUNTANTBUDDY_BASE_URL}/dcf_same.webp` },
+        { alt: 'Different payment DCF', img: `${GITHUB_GALLERY_ACCOUNTANTBUDDY_BASE_URL}/dcf_diff.webp` },
+        { alt: 'Calculator view', img: `${GITHUB_GALLERY_ACCOUNTANTBUDDY_BASE_URL}/calculator.webp` },
+        { alt: 'Calculator mobile view', img: `${GITHUB_GALLERY_ACCOUNTANTBUDDY_BASE_URL}/calculator_mobile.webp` },
+      ],
+    },
+    {
+      id: 2,
       key: 'punchliner',
       title: 'Punchliner',
       img: `${GITHUB_GALLERY_PUNCHLINER_BASE_URL}/punchliner_thumbnail.webp`,
@@ -48,7 +100,7 @@ export const projects = {
         { id: 'typescript', name: 'Typescript', link: 'https://www.typescriptlang.org/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/typescript.webp` },
         { id: 'nodejs', name: 'Node.js', link: 'https://nodejs.org/en/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/node.webp` },
         { id: 'sass', name: 'Scss', link: 'https://sass-lang.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/scss.webp` },
-        { id: 'supabase', name: 'Supabase', link: 'https://supabase.com//', img: `${GITHUB_PROJECTS_BASE_URL}/techs/supabase.webp` },
+        { id: 'supabase', name: 'Supabase', link: 'https://supabase.com/', img: `${GITHUB_PROJECTS_BASE_URL}/techs/supabase.webp` },
       ],
       apis: [],
       description: [
@@ -75,7 +127,7 @@ export const projects = {
       ],
     },
     {
-      id: 2,
+      id: 3,
       key: 'cerberus',
       title: 'Cerberus A&E Wristbands',
       img: `${GITHUB_GALLERY_CERBERUS_BASE_URL}/cerberus_thumbnail.webp`,
@@ -126,7 +178,7 @@ export const projects = {
       ],
     },
     {
-      id: 3,
+      id: 4,
       key: 'muserfly',
       title: 'Muserfly',
       img: `${GITHUB_GALLERY_MUSERFLY_BASE_URL}/muserfly_main_screen.webp`,
@@ -212,7 +264,7 @@ export const projects = {
       ],
     },
     {
-      id: 4,
+      id: 5,
       key: 'aq',
       title: 'Air Quality',
       img: `${GITHUB_GALLERY_AQ_BASE_URL}/aq_main_screen.webp`,
@@ -266,7 +318,7 @@ export const projects = {
       ],
     },
     {
-      id: 5,
+      id: 6,
       key: 'echoarchitect',
       title: 'Echo Architect',
       img: `${GITHUB_GALLERY_ECHO_BASE_URL}/echo_architect_main_screen.webp`,
@@ -318,7 +370,7 @@ export const projects = {
       gallery: [],
     },
     {
-      id: 6,
+      id: 7,
       key: 'petpolice',
       title: 'PET Police',
       img: `${GITHUB_GALLERY_PET_BASE_URL}/pet_main_screen.webp`,
