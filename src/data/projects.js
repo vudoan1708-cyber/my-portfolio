@@ -129,6 +129,7 @@ export const projects = {
     {
       id: 3,
       key: 'cerberus',
+      starred: true,
       title: 'Cerberus A&E Wristbands',
       img: `${GITHUB_GALLERY_CERBERUS_BASE_URL}/cerberus_thumbnail.webp`,
       link: '/portfolio/web-apps/cerberus',
@@ -520,6 +521,7 @@ export const projects = {
     {
       id: 1,
       key: 'volyfequickdev',
+      starred: true,
       title: 'volyfequickdev',
       img: `${GITHUB_GALLERY_VOLYFEQUICKDEV_BASE_URL}/Voly_Group.webp`,
       'img-lg': `${GITHUB_GALLERY_VOLYFEQUICKDEV_BASE_URL}/Voly_Group_1.webp`,

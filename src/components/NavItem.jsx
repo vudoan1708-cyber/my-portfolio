@@ -1,23 +1,22 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+'use client';
 
-export default function NavItem({ to, label, hasDropdown, children }) {
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+export default function NavItem({ to, label }) {
+  const pathname = usePathname();
+  const isActive = pathname === to || pathname.startsWith(`${to}/`);
+
   return (
-    <li className="relative group">
-      <NavLink
-        to={to}
-        className={({ isActive }) =>
-          `${isActive ? 'text-red-300' : 'text-white'} hover:text-red-200 transition-colors font-semibold`
-        }
-        state={{ scrollToDetails: true }}
+    <li>
+      <Link
+        href={to}
+        className={`${
+          isActive ? 'text-rose-300' : 'text-white/90'
+        } hover:text-rose-200 transition-colors font-medium tracking-wide`}
       >
         {label}
-      </NavLink>
-      {hasDropdown && (
-        <ul className="absolute left-0 mt-2 bg-white bg-opacity-90 backdrop-blur-md shadow-xl rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-          {children}
-        </ul>
-      )}
+      </Link>
     </li>
   );
 }

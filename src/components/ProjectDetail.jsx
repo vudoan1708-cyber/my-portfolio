@@ -1,209 +1,259 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+'use client';
 
 import { motion } from 'framer-motion';
-
 import { Tooltip } from 'react-tooltip';
 
 import ProjectImageGallery from './ProjectImageGallery';
 import VideoDisplay from './VideoDisplay';
 
-import { projects } from '../data/projects';
-import './ProjectDetail.css';
+export default function ProjectDetail({ project }) {
+  if (!project) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-gray-300">
+        <p>Project not found.</p>
+      </div>
+    );
+  }
 
-export default function ProjectDetail() {
-  const { collection, projectKey } = useParams();
-
-  const project = (projects[collection] || []).find((p) => p.key === projectKey);
-  if (!project) return <p className="p-8 text-gray-300">Project not found.</p>;
-
-  const createProjectDate = () => {
+  const renderDate = () => {
     if (project.startDate && project.endDate) {
       return (
-        <div>
-          <h2 className="font-bold">Date</h2>
-          <p>{project.startDate} - {project.endDate}</p>
-        </div>
+        <Field label="Date">
+          <p>
+            {project.startDate} — {project.endDate}
+          </p>
+        </Field>
       );
     }
-
     if (project.startDate) {
       return (
-        <div>
-          <h2 className="font-bold">Start date</h2>
+        <Field label="Start date">
           <p>{project.startDate}</p>
-        </div>
+        </Field>
       );
     }
     return null;
   };
-  const createRole = () => {
-    if (project.role) {
-      return (
-        <div>
-          <h2 className="font-bold">Role</h2>
-          <p className="w-fit break-words">{project.role}</p>
-        </div>
-      );
-    }
-    return null;
+
+  const renderRole = () =>
+    project.role ? (
+      <Field label="Role">
+        <p className="break-words">{project.role}</p>
+      </Field>
+    ) : null;
+
+  const renderType = () =>
+    project.projectType ? (
+      <Field label="Project type">
+        <p className="break-words">{project.projectType}</p>
+      </Field>
+    ) : null;
+
+  const renderLinks = (target) => {
+    if (!project[target]) return null;
+    const block = project[target];
+    return (
+      <Field label={block.title}>
+        {block.links?.length > 0 ? (
+          <p>
+            {block.links.map((item, idx) => (
+              <span key={item.link}>
+                <a target="_blank" href={item.link} rel="noreferrer">
+                  {item.label}
+                </a>
+                {idx === block.links.length - 1 ? '' : ' + '}
+              </span>
+            ))}
+          </p>
+        ) : (
+          <a target="_blank" href={block.link} rel="noreferrer">
+            {block.label}
+          </a>
+        )}
+      </Field>
+    );
   };
-  const createProjectType = () => {
-    if (project.projectType) {
-      return (
-        <div>
-          <h2 className="font-bold">Project type</h2>
-          <p className="w-fit break-words">{project.projectType}</p>
-        </div>
-      );
-    }
-    return null;
-  };
-  const createProjectDetailBlockWithLinks = ({ target = 'projectCode' }) => {
-    if (project[target]) {
-      return (
-        <div>
-          <h2 className="font-bold">{project[target].title}</h2>
-          {
-            project[target].links?.length > 0
-              ? (
-                  project[target].links.map((item, idx) => (
-                    <>
-                      <a target="_blank" href={item.link} rel="noreferrer">{item.label}</a>
-                      <span>{idx === project[target].links.length - 1 ? '' : ' + '}</span>
-                    </>
-                  ))
-                )
-              : <a target="_blank" href={project[target].link} rel="noreferrer">{project[target].label}</a>
-          }
-        </div>
-      );
-    }
-    return null;
-  };
-  const createProjectShowcaseVideo = () => {
-    if (project.videos.length > 0) {
-      return (
-        <div className="flex flex-row flex-wrap gap-12">
-          {project.videos.map((video, idx) => (
-            <div key={idx}>
-              <h2 className="font-bold">{video.title}</h2>
-              <VideoDisplay video={video} />
-            </div>
-          ))}
-        </div>
-      );
-    }
-    return null;
-  };
-  const createProjectTechnologies = () => {
-    if (project.technologies.length > 0) {
-      return (
-        <div className="flex flex-row flex-wrap items-center gap-12">
+
+  const renderVideos = () =>
+    project.videos?.length > 0 ? (
+      <div className="flex flex-row flex-wrap gap-12">
+        {project.videos.map((video, idx) => (
+          <div key={idx}>
+            <h2 className="font-semibold text-rose-200/90 text-sm uppercase tracking-wider mb-2">
+              {video.title}
+            </h2>
+            <VideoDisplay video={video} />
+          </div>
+        ))}
+      </div>
+    ) : null;
+
+  const renderTechs = () =>
+    project.technologies?.length > 0 ? (
+      <div>
+        <h2 className="text-sm uppercase tracking-[0.2em] text-rose-300/70 mb-4">
+          Built with
+        </h2>
+        <div className="flex flex-row flex-wrap items-center gap-8">
           {project.technologies.map((tech) => (
-            <>
+            <div key={tech.id}>
               <motion.a
-                key={tech.id}
-                className="w-12"
+                className="block w-12"
                 target="_blank"
                 href={tech.link}
                 rel="noreferrer"
                 data-tooltip-id={tech.id}
                 data-tooltip-content={tech.name}
-                whileHover={{ scale: 1.05, opacity: .9 }}
-                transition={{ type: 'spring', stiffness: 300 }}>
+                whileHover={{ scale: 1.1, opacity: 0.9 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
                 <img id={tech.id} src={tech.img} alt={tech.name} />
               </motion.a>
               <Tooltip id={tech.id} />
-            </>
+            </div>
           ))}
         </div>
-      );
-    }
-    return null;
-  };
-  const createProjectApiIntegrations = () => {
-    if (project.apis.length > 0) {
-      return (
-        <div className="flex flex-row flex-wrap items-center gap-12">
+      </div>
+    ) : null;
+
+  const renderApis = () =>
+    project.apis?.length > 0 ? (
+      <div>
+        <h2 className="text-sm uppercase tracking-[0.2em] text-rose-300/70 mb-4">
+          APIs
+        </h2>
+        <div className="flex flex-row flex-wrap items-center gap-8">
           {project.apis.map((api) => (
-            <>
+            <div key={api.id}>
               <motion.a
-                key={api.id}
-                className={`w-12 ${api.tailwindCssClass ?? ''}`}
+                className={`block w-12 ${api.tailwindCssClass ?? ''}`}
                 target="_blank"
                 href={api.link}
                 rel="noreferrer"
                 data-tooltip-id={api.id}
                 data-tooltip-content={api.name}
-                whileHover={{ scale: 1.05, opacity: .9 }}
-                transition={{ type: 'spring', stiffness: 300 }}>
+                whileHover={{ scale: 1.1, opacity: 0.9 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
                 <img id={api.id} src={api.img} alt={api.name} />
               </motion.a>
               <Tooltip id={api.id} />
-            </>
+            </div>
           ))}
         </div>
-      );
+      </div>
+    ) : null;
+
+  const renderDescription = () => {
+    if (!(project.description?.length > 0)) return null;
+
+    const groups = [];
+    for (const desc of project.description) {
+      const trimmed = desc.trim();
+      const isListItem =
+        trimmed.startsWith('<li>') && trimmed.endsWith('</li>');
+      const last = groups[groups.length - 1];
+      if (isListItem && last?.type === 'ul') {
+        last.items.push(desc);
+      } else if (isListItem) {
+        groups.push({ type: 'ul', items: [desc] });
+      } else {
+        groups.push({ type: 'p', html: desc });
+      }
     }
-    return null;
+
+    return (
+      <div className="space-y-3 leading-relaxed">
+        {groups.map((g, idx) =>
+          g.type === 'ul' ? (
+            <ul
+              key={idx}
+              className="list-disc pl-6 space-y-2"
+              dangerouslySetInnerHTML={{ __html: g.items.join('') }}
+            />
+          ) : (
+            <p key={idx} dangerouslySetInnerHTML={{ __html: g.html }} />
+          )
+        )}
+      </div>
+    );
   };
-  const createProjectDescription = () => {
-    if (project.description.length > 0) {
-      return (
-        <div>
-          {project.description.map((desc, idx) => (
-            <p key={idx} dangerouslySetInnerHTML={{__html: desc}}></p>
-          ))}
-        </div>
-      );
-    }
-    return null;
-  };
-  const createImageGallery = () => {
-    if (project.gallery.length > 0) {
-      return <ProjectImageGallery gallery={project.gallery} />;
-    }
-    return null;
-  };
+
+  const renderGallery = () =>
+    project.gallery?.length > 0 ? (
+      <ProjectImageGallery gallery={project.gallery} />
+    ) : null;
 
   return (
-    <div className="relative min-h-svh bg-black text-gray-300">
-      {/* Project header with blurred bottom overlay and title */}
+    <article className="relative min-h-svh bg-black text-gray-200">
+      {/* Hero */}
       <div
-        className="relative w-full h-[calc(100svh-4rem)] top-8 bg-center bg-cover bg-absolute rounded"
+        className="relative w-full h-svh bg-center bg-cover"
         style={{ backgroundImage: `url(${project['img-lg'] ?? project.img})` }}
       >
-        {/* Half-screen blur overlay */}
-        <div className="absolute bottom-0 left-0 w-full h-1/6 bg-gradient-to-t from-black/40 to-transparent backdrop-blur-xs" />
-        {/* Title overlay */}
-        <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/75 to-transparent backdrop-blur-md px-4 py-2 rounded">
-          <h1 className="text-5xl font-bold text-gray-300">{project.title}</h1>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30" />
+        <div className="absolute bottom-0 left-0 right-0 px-6 sm:px-12 pb-10">
+          <div className="max-w-6xl mx-auto">
+            <p className="text-xs uppercase tracking-[0.3em] text-rose-300/80 mb-3">
+              {project.projectType ?? 'Project'}
+            </p>
+            <h1 className="text-4xl sm:text-6xl font-bold text-white drop-shadow-2xl tracking-tight">
+              {project.title}
+            </h1>
+          </div>
         </div>
       </div>
 
-      <div id="project_detail_body" className="mt-12">
-        <div className="flex flex-row flex-wrap gap-12 prose prose-invert max-w-screen py-12 px-6 text-gray-300">
-          {createProjectDate()}
-          {createRole()}
-          {createProjectType()}
-          {createProjectDetailBlockWithLinks({ target: 'projectCode' })}
-          {createProjectDetailBlockWithLinks({ target: 'projectLog' })}
-          {createProjectDetailBlockWithLinks({ target: 'projectURL' })}
-          {createProjectDetailBlockWithLinks({ target: 'report' })}
-          {createProjectShowcaseVideo()}
+      <div id="project_detail_body" className="max-w-6xl mx-auto px-6 sm:px-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 py-12 border-b border-white/5">
+          {renderDate()}
+          {renderRole()}
+          {renderType()}
+          {renderLinks('projectCode')}
+          {renderLinks('projectLog')}
+          {renderLinks('projectURL')}
+          {renderLinks('report')}
         </div>
-        <div className="flex flex-row flex-wrap gap-12 prose prose-invert max-w-3xl py-12 px-6 text-gray-300">
-          {createProjectTechnologies()}
-          {createProjectApiIntegrations()}
-        </div>
-        <div className="prose prose-invert max-w-3xl py-12 px-6 text-gray-300">
-          {createProjectDescription()}
-        </div>
+
+        {project.videos?.length > 0 && (
+          <div className="py-12 border-b border-white/5">{renderVideos()}</div>
+        )}
+
+        {(project.technologies?.length > 0 || project.apis?.length > 0) && (
+          <div className="py-12 space-y-8 border-b border-white/5">
+            {renderTechs()}
+            {renderApis()}
+          </div>
+        )}
+
+        {project.description?.length > 0 && (
+          <div className="py-12 max-w-3xl prose prose-invert">
+            {renderDescription()}
+          </div>
+        )}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 py-12 px-6">
-        {createImageGallery()}
-      </div>
+
+      {project.gallery?.length > 0 && (
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 pb-20">
+          <h2 className="text-sm uppercase tracking-[0.2em] text-rose-300/70 mb-6">
+            Gallery
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {renderGallery()}
+          </div>
+        </div>
+      )}
+    </article>
+  );
+}
+
+function Field({ label, children }) {
+  return (
+    <div>
+      <h2 className="text-xs uppercase tracking-[0.2em] text-rose-300/70 mb-2">
+        {label}
+      </h2>
+      <div className="text-white/85 text-sm">{children}</div>
     </div>
   );
 }

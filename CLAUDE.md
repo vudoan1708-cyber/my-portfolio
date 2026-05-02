@@ -1,0 +1,1 @@
+- Read SKILL.md file before any session.

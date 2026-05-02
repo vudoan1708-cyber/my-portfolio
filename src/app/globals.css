@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #000;
+  color: #f5f5f5;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(244, 114, 182, 0.4);
+  color: #fff;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}
+
+mark {
+  @apply bg-white/20 text-white rounded px-1;
+}
+
+li {
+  @apply leading-7;
+}
+
+code {
+  @apply italic;
+}
+
+#project_detail_body a,
+a.anchor_highlight {
+  @apply underline underline-offset-8 hover:text-rose-300 transition-colors;
+}
+#music_detail_body a {
+  @apply underline underline-offset-4 hover:text-rose-300 transition-colors;
+}
+
+.full-screen-center {
+  @apply flex items-center justify-center w-full h-full;
+}
+
+.image-gallery-thumbnail {
+  vertical-align: top;
+}
+
+/* Subtle noise texture for depth */
+.bg-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Lightweight CSS-driven blobs (GPU-accelerated, no JS animation loop) */
+@keyframes blob-drift-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(40px, -25px, 0) scale(1.08); }
+}
+@keyframes blob-drift-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(-30px, 35px, 0) scale(1.1); }
+}
+@keyframes blob-drift-3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(25px, 25px, 0) scale(1.06); }
+}
+.blob {
+  will-change: transform;
+}
+.blob-1 { animation: blob-drift-1 14s ease-in-out infinite; }
+.blob-2 { animation: blob-drift-2 18s ease-in-out infinite; }
+.blob-3 { animation: blob-drift-3 16s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-1, .blob-2, .blob-3 { animation: none; }
+}
