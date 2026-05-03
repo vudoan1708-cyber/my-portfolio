@@ -648,7 +648,7 @@ export const projects = {
       description: [
         'Another <a target="_blank" rel="noopener noreferrer" href="https://www.volygroup.com/">Voly</a>-relevant side project to boost my productivity whilst working there was a <a target="_blank" rel="noopener noreferrer" href="https://storybook.js.org/">Storybook</a> addon that can map all the user interactions happen in the Storybook UI to Jest test code.',
         '<br />',
-        'I learned tonnes from this project, particularly after working in Svelte for a long time professionally, I could finally get my hands on some React project and reminisce.',
+        'The project also broadened my frontend toolkit, giving me hands-on experience with React and MUI alongside the rest of my stack.',
         '<br />',
         'Please bare in mind this is still a working hi-fi prototype that can be used to generate Jest tests but the accuracy rate is not very high.',
         '<br />',

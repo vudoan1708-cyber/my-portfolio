@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import AnimatedHeader from '@/components/AnimatedHeader';
 import PortfolioCollections from '../../PortfolioCollections';
 import { projects } from '@/data/projects';
+import { experiences } from '@/data/experiences';
 
 function getTechIndex() {
   const map = new Map();
@@ -10,6 +11,11 @@ function getTechIndex() {
       for (const t of p.technologies || []) {
         if (!map.has(t.id)) map.set(t.id, t.name);
       }
+    }
+  }
+  for (const exp of experiences) {
+    for (const t of exp.technologies || []) {
+      if (!map.has(t.id)) map.set(t.id, t.name);
     }
   }
   return map;

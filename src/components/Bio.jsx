@@ -14,7 +14,16 @@ export default function Bio() {
     <div className="space-y-5">
       <div>
         <p className="text-xs uppercase tracking-[0.25em] text-rose-300/80 mb-2">
-          Software Engineer · Leeds, UK
+          Software Engineer{' '}
+          <a
+            href="https://www.volygroup.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-rose-300/40 underline-offset-4 hover:text-rose-200 hover:decoration-rose-300 transition-colors"
+          >
+            @ Voly
+          </a>
+          {' '}· Leeds, UK
         </p>
         <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
           Hello, I’m Vu.

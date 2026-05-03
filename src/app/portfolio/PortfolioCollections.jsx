@@ -7,6 +7,8 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { projectCollections, projects } from '@/data/projects';
+import { experiences } from '@/data/experiences';
+import ExperienceStrip from '@/components/ExperienceStrip';
 
 function buildAllProjects() {
   return Object.entries(projects).flatMap(([collectionKey, list]) =>
@@ -16,21 +18,29 @@ function buildAllProjects() {
 
 function buildTechIndex(allProjects) {
   const byId = new Map();
+  const upsert = (tech, collectionKey) => {
+    const existing = byId.get(tech.id);
+    if (existing) {
+      existing.count += 1;
+      existing.collections.add(collectionKey);
+    } else {
+      byId.set(tech.id, {
+        id: tech.id,
+        name: tech.name,
+        img: tech.img,
+        count: 1,
+        collections: new Set([collectionKey]),
+      });
+    }
+  };
   for (const project of allProjects) {
     for (const tech of project.technologies || []) {
-      const existing = byId.get(tech.id);
-      if (existing) {
-        existing.count += 1;
-        existing.collections.add(project.collectionKey);
-      } else {
-        byId.set(tech.id, {
-          id: tech.id,
-          name: tech.name,
-          img: tech.img,
-          count: 1,
-          collections: new Set([project.collectionKey]),
-        });
-      }
+      upsert(tech, project.collectionKey);
+    }
+  }
+  for (const exp of experiences) {
+    for (const tech of exp.technologies || []) {
+      upsert(tech, 'experience');
     }
   }
   const items = Array.from(byId.values()).map((t) => ({
@@ -66,6 +76,15 @@ export default function PortfolioCollections() {
   const sectionRef = useRef(null);
   const allProjects = useMemo(buildAllProjects, []);
   const techList = useMemo(() => buildTechIndex(allProjects), [allProjects]);
+  const enrichedExperiences = useMemo(() => {
+    const byKey = new Map(allProjects.map((p) => [p.key, p]));
+    return experiences.map((exp) => ({
+      ...exp,
+      relatedProjects: (exp.relatedProjectKeys || [])
+        .map((k) => byKey.get(k))
+        .filter(Boolean),
+    }));
+  }, [allProjects]);
   const validIds = useMemo(
     () => new Set(techList.map((t) => t.id)),
     [techList]
@@ -182,6 +201,11 @@ export default function PortfolioCollections() {
           })}
         </div>
       </div>
+
+      <ExperienceStrip
+        experiences={enrichedExperiences}
+        selected={selected}
+      />
 
       <AnimatePresence mode="wait">
         {filtering ? (
