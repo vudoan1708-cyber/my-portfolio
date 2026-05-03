@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { verifyTotpAction } from '../actions';
 
@@ -19,8 +19,20 @@ function SubmitButton() {
 
 export default function TwoFactorForm() {
   const [state, formAction] = useActionState(verifyTotpAction, { error: null });
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) {
+    return (
+      <div className="space-y-4" aria-hidden="true">
+        <div className="h-[60px] rounded-lg bg-white/5 ring-1 ring-white/10" />
+        <div className="h-[44px] rounded-lg bg-white/5" />
+      </div>
+    );
+  }
+
   return (
-    <form action={formAction} className="space-y-4" suppressHydrationWarning>
+    <form action={formAction} className="space-y-4">
       <label className="block">
         <span className="block text-xs uppercase tracking-[0.2em] text-white/50 mb-1.5">
           6-digit code

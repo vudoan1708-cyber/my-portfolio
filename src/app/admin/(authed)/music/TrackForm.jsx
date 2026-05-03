@@ -23,9 +23,10 @@ const EMPTY_TRACK = {
 export default function TrackForm({ initial, originalKey }) {
   const [state, formAction] = useActionState(saveTrackAction, {
     error: null,
-    success: false,
+    fieldErrors: null,
   });
   const [track, setTrack] = useState(() => ({ ...EMPTY_TRACK, ...(initial ?? {}) }));
+  const errAt = (path) => state.fieldErrors?.[path];
   const set = (field) => (value) => setTrack((p) => ({ ...p, [field]: value }));
 
   return (
@@ -41,14 +42,16 @@ export default function TrackForm({ initial, originalKey }) {
               type="number"
               value={track.id}
               onChange={(v) => set('id')(v === '' ? '' : Number(v) || v)}
+              error={errAt('id')}
               required
             />
-            <TextField label="Key (slug)" value={track.key} onChange={set('key')} required />
-            <TextField label="Title" value={track.title} onChange={set('title')} required />
+            <TextField label="Key (slug)" value={track.key} onChange={set('key')} error={errAt('key')} required />
+            <TextField label="Title" value={track.title} onChange={set('title')} error={errAt('title')} required />
             <TextField
               label="Date modified"
               value={track.dateModified ?? ''}
               onChange={(v) => set('dateModified')(v === '' ? null : v)}
+              error={errAt('dateModified')}
               placeholder="Apr 02, 2025"
             />
           </div>
@@ -59,6 +62,7 @@ export default function TrackForm({ initial, originalKey }) {
             label="Cover image path"
             value={track.img}
             onChange={set('img')}
+            error={errAt('img')}
             placeholder="/music/your-track/cover.webp"
             required
           />
@@ -66,6 +70,7 @@ export default function TrackForm({ initial, originalKey }) {
             label="Audio source path"
             value={track.src}
             onChange={set('src')}
+            error={errAt('src')}
             placeholder="/music/your-track/track.mp3"
             required
           />
@@ -77,11 +82,12 @@ export default function TrackForm({ initial, originalKey }) {
             onChange={set('description')}
             newItem={() => ''}
             itemLabel="Paragraph"
-            renderItem={(text, update) => (
+            renderItem={(text, update, idx) => (
               <TextareaField
                 label="HTML allowed (subset). Forbidden: <script>, on*= attrs, javascript: URLs."
                 value={text}
                 onChange={update}
+                error={errAt(`description.${idx}`)}
                 rows={3}
               />
             )}
@@ -89,7 +95,7 @@ export default function TrackForm({ initial, originalKey }) {
         </FieldGroup>
       </div>
 
-      <SaveBar error={state.error} success={state.success} />
+      <SaveBar error={state.error} />
     </form>
   );
 }

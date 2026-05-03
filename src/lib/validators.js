@@ -58,21 +58,40 @@ const techRef = z.object({
   img: relativeOrAbsoluteUrl.optional().or(z.literal('').transform(() => undefined)),
 });
 
-const linkBlock = z.object({
-  title: z.string().min(1),
-  label: z.string().min(1),
-  link: url,
-});
+const linkBlock = z
+  .object({
+    title: z.string().min(1),
+    label: z.string().optional(),
+    link: url.optional(),
+    links: z
+      .array(
+        z.object({
+          label: z.string().min(1),
+          link: url,
+        }),
+      )
+      .optional(),
+  })
+  .refine((v) => Boolean(v.link) || (v.links && v.links.length > 0), {
+    message: 'linkBlock must have either link or a non-empty links array.',
+  });
 
 const galleryItem = z.object({
   alt: z.string().min(1).max(200),
   img: relativeOrAbsoluteUrl,
 });
 
-const videoItem = z.object({
-  title: z.string().optional(),
-  src: relativeOrAbsoluteUrl,
-});
+const videoItem = z
+  .object({
+    title: z.string().optional(),
+    source: z.string().optional(),
+    link: relativeOrAbsoluteUrl.optional(),
+    src: relativeOrAbsoluteUrl.optional(),
+    poster: relativeOrAbsoluteUrl.optional(),
+  })
+  .refine((v) => Boolean(v.link || v.src), {
+    message: 'video must have a link or src.',
+  });
 
 export const projectSchema = z.object({
   id: z.union([z.number().int(), z.string().min(1)]),
