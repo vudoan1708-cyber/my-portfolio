@@ -3,10 +3,10 @@
 import { motion } from 'framer-motion';
 
 const blocks = [
-  'A competitive but receptive, innovative and curious individual with a productive and positive mindset.',
-  'I believe curiosity decides our knowledge — and I’m eager to be part of teams that value curious, enthusiastic minds.',
-  'In small groups I motivate teammates, lift the mood, and influence the room with positivity.',
-  'Outside work I play guitar, sing, and produce music. I train every day — it keeps me focused and helps me solve problems away from the screen.',
+  'A driven and inquisitive software engineer with a collaborative, solutions-oriented mindset.',
+  'I believe curiosity is the foundation of growth, and I gravitate towards teams that value rigorous thinking, continuous learning, and shared ownership.',
+  'I take pride in supporting my colleagues, fostering a positive team culture, and helping move the work forward with clarity and momentum.',
+  'Outside of work, I play guitar, sing, and produce music. I train daily — it keeps me focused and often surfaces ideas I would not have reached at the keyboard.',
 ];
 
 export default function Bio() {
@@ -17,7 +17,7 @@ export default function Bio() {
           Software Engineer · Leeds, UK
         </p>
         <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
-          Hi, I’m Vu.
+          Hello, I’m Vu.
         </h1>
       </div>
       {blocks.map((block, idx) => (

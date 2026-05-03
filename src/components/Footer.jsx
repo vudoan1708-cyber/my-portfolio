@@ -41,7 +41,7 @@ export default function Footer() {
 
   useEffect(() => {
     if (state.succeeded) {
-      toast.success('Your message has been sent! 🎉');
+      toast.success('Your message has been sent. Thank you for reaching out.');
       setEmail('');
       setMessage('');
     }
@@ -54,7 +54,7 @@ export default function Footer() {
           <div>
             <h3 className="text-2xl font-semibold mb-2">Get in touch</h3>
             <p className="text-white/60 mb-6 text-sm">
-              Have an idea or just want to say hi? Drop me a line.
+              Whether you have a project in mind or simply want to connect, I would be glad to hear from you.
             </p>
             <form
               action="https://formspree.io/f/xqaqbqjj"
@@ -66,7 +66,7 @@ export default function Footer() {
                 type="email"
                 name="email"
                 required
-                placeholder="Your email"
+                placeholder="Your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-white/40 focus:outline-none focus:border-rose-300/60 focus:bg-white/10 transition"
@@ -101,7 +101,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4 md:justify-self-end">
-            <h3 className="text-2xl font-semibold">Contact info</h3>
+            <h3 className="text-2xl font-semibold">Contact details</h3>
             <ul className="space-y-2 text-white/80">
               <li>📞 +44 7877 854 757</li>
               <li>✉️ vutd1708@gmail.com</li>

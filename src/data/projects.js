@@ -33,7 +33,7 @@ export const projects = {
       startDate: 'Jul 28, 2023',
       endDate: 'Aug 29, 2025',
       role: 'Frontend Developer',
-      projectType: 'Website for personal financial tool',
+      projectType: 'Personal finance web application',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -84,7 +84,7 @@ export const projects = {
       startDate: 'May 31, 2022',
       endDate: 'July 03, 2022',
       role: 'Frontend Developer',
-      projectType: 'Responsive web for a Fiverr client',
+      projectType: 'Responsive web application · Freelance commission',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -134,8 +134,8 @@ export const projects = {
       img: `${GITHUB_GALLERY_CERBERUS_BASE_URL}/cerberus_thumbnail.webp`,
       link: '/portfolio/web-apps/cerberus',
       startDate: 'Apr 25, 2021',
-      role: 'Backend Engineer (no database)',
-      projectType: 'Screen-based app (can be used as a web app on laptops, and hospital monitors)',
+      role: 'Backend Engineer',
+      projectType: 'Screen-based application for clinical environments',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -187,7 +187,7 @@ export const projects = {
       startDate: 'Oct 25, 2020',
       endDate: 'May 30, 2021',
       role: 'Full-stack Developer',
-      projectType: 'Responsive web app',
+      projectType: 'Responsive web application',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -272,7 +272,7 @@ export const projects = {
       link: '/portfolio/web-apps/aq',
       startDate: '2020',
       role: 'Lead Developer',
-      projectType: 'Responsive web app',
+      projectType: 'Responsive web application',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -326,8 +326,8 @@ export const projects = {
       link: '/portfolio/web-apps/echoarchitect',
       startDate: 'Dec 9, 2019',
       endDate: 'Apr 25, 2020',
-      role: '3D designer (Maya, Rhino3D) and Backend Engineer (Node.js and socket.io)',
-      projectType: 'Web app + 3D prototyping + Arduino',
+      role: 'Backend Engineer (Node.js, Socket.io) · 3D Designer (Maya, Rhino3D)',
+      projectType: 'Web application with 3D prototyping and Arduino integration',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -378,7 +378,7 @@ export const projects = {
       link: '/portfolio/web-apps/petpolice',
       startDate: '2020',
       role: 'Lead Developer',
-      projectType: 'Web app',
+      projectType: 'Web application',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -432,7 +432,7 @@ export const projects = {
       link: '/portfolio/games/birdiejump',
       startDate: '2020',
       role: 'Lead Developer',
-      projectType: 'Web game',
+      projectType: 'Browser-based game',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -478,7 +478,7 @@ export const projects = {
       link: '/portfolio/games/turtlerace',
       startDate: '2020',
       role: 'Lead Developer',
-      projectType: 'Web game',
+      projectType: 'Browser-based game',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -529,7 +529,7 @@ export const projects = {
       startDate: 'Oct 8, 2023',
       endDate: 'Apr 10, 2025',
       role: 'Lead Engineer',
-      projectType: 'VSCode extension',
+      projectType: 'Visual Studio Code extension',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -601,7 +601,7 @@ export const projects = {
       startDate: 'Apr 13, 2025',
       endDate: 'Apr 28, 2025',
       role: 'Lead Engineer',
-      projectType: 'Storybook addon',
+      projectType: 'Storybook add-on',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -676,7 +676,7 @@ export const projects = {
       startDate: 'May 10, 2025',
       endDate: 'Early hours of May 11, 2025',
       role: 'Lead Engineer',
-      projectType: 'Bitbucket Forge app',
+      projectType: 'Bitbucket Forge application',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -737,7 +737,7 @@ export const projects = {
       link: '/portfolio/ai-projects/vloth',
       startDate: '2021',
       role: 'Lead Engineer',
-      projectType: 'GAN (StyleGAN)',
+      projectType: 'Generative Adversarial Network (StyleGAN2-ADA)',
       projectCode: {
         title: 'Project code',
         label: 'Github URL',
@@ -804,7 +804,7 @@ export const projects = {
       link: '/portfolio/ai-projects/drowsinessdetection',
       startDate: '2021',
       role: 'Lead Engineer',
-      projectType: 'CNN (Classification)',
+      projectType: 'Convolutional Neural Network · Image classification',
       projectCode: {
         title: 'Project code',
         links: [
@@ -874,7 +874,7 @@ export const projects = {
       startDate: 'Jun 02, 2019',
       endDate: 'Sep 12, 2019',
       role: '3D modeller and animator',
-      projectType: 'Hobby (used to)',
+      projectType: '3D modelling and animation portfolio',
       projectCode: null,
       projectLog: null,
       projectURL: {
@@ -915,7 +915,7 @@ export const projects = {
       link: '/portfolio/designs/3dprinting',
       startDate: 'Mar 22, 2020',
       role: '3D modeller',
-      projectType: 'Internet of everything prototyping',
+      projectType: 'Internet of Things prototyping',
       projectCode: null,
       projectLog: null,
       projectURL: {
@@ -956,7 +956,7 @@ export const projects = {
       startDate: 'Jan 11, 2021',
       endDate: 'May 6th, 2021',
       role: 'Lead Designer',
-      projectType: 'Interaction Design',
+      projectType: 'Interaction design prototype',
       projectCode: null,
       projectLog: null,
       projectURL: null,
@@ -1000,9 +1000,9 @@ export const projects = {
 };
 
 export const projectCollections = [
-  { key: 'web-apps', label: 'Web Apps', img: `${GITHUB_COLLECTIONS_BASE_URL}/muserfly_mobile_map_zoom3.webp`, description: 'Projects involve with creating a user interface for web applications ranging from non-commercial to semi-commercial and fully commercial (or in other words, working in a company).' },
-  { key: 'utilities', label: 'Utilities', img: `${GITHUB_COLLECTIONS_BASE_URL}/i2t-logo.webp`, description: 'Projects involve with creating extensions / plugins / addons (however you like to call it) across diffferent platforms or ecosystems.' },
-  { key: 'games', label: 'Games', img: `${GITHUB_COLLECTIONS_BASE_URL}/turtle_race_boss_fight.webp`, description: 'Projects involve with the hobby game making (primarily web-based games with little to no consideration in performance).' },
-  { key: 'ai-projects', label: 'AI Projects', img: `${GITHUB_COLLECTIONS_BASE_URL}/ai-logo.webp`, description: 'Projects involve with creating AI models with or without pre-trained models.' },
-  { key: 'designs', label: 'Designs', img: `${GITHUB_COLLECTIONS_BASE_URL}/3d_printing.webp`, description: 'Projects involve with designs ranging from poster design to 3D visualisation and prototyping.' },
+  { key: 'web-apps', label: 'Web Apps', img: `${GITHUB_COLLECTIONS_BASE_URL}/muserfly_mobile_map_zoom3.webp`, description: 'User interfaces and full-stack web applications, spanning personal explorations, freelance commissions, and production work delivered in a commercial setting.' },
+  { key: 'utilities', label: 'Utilities', img: `${GITHUB_COLLECTIONS_BASE_URL}/i2t-logo.webp`, description: 'Developer tooling — extensions, plugins, and add-ons built across a range of platforms and ecosystems to streamline day-to-day engineering work.' },
+  { key: 'games', label: 'Games', img: `${GITHUB_COLLECTIONS_BASE_URL}/turtle_race_boss_fight.webp`, description: 'Web-based games created as side projects, focused on gameplay ideas and creative experimentation rather than performance optimisation.' },
+  { key: 'ai-projects', label: 'AI Projects', img: `${GITHUB_COLLECTIONS_BASE_URL}/ai-logo.webp`, description: 'Machine learning experiments, including custom-trained models and projects built on top of pre-trained architectures.' },
+  { key: 'designs', label: 'Designs', img: `${GITHUB_COLLECTIONS_BASE_URL}/3d_printing.webp`, description: 'A selection of design work spanning poster design, 3D visualisation, modelling, and physical prototyping.' },
 ];

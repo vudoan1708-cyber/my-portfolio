@@ -101,7 +101,7 @@ export default function PortfolioCollections() {
     const timer = window.setTimeout(() => {
       if (window.scrollY > 50) return;
       sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 1000);
+    }, 750);
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -128,14 +128,14 @@ export default function PortfolioCollections() {
           Selected work
         </p>
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-2">
-          {filtering ? 'Filtered projects' : 'Browse by collection'}
+          {filtering ? 'Filtered results' : 'Browse by collection'}
         </h2>
       </div>
 
       <div className="mb-10">
         <div className="flex items-center justify-between gap-4 mb-3">
           <p className="text-xs uppercase tracking-[0.25em] text-white/50">
-            Filter by tech
+            Filter by technology
           </p>
           {filtering && (
             <button
@@ -194,7 +194,7 @@ export default function PortfolioCollections() {
           >
             {filteredProjects.length === 0 ? (
               <p className="text-white/60">
-                No projects match the selected filters.
+                No projects match the selected criteria.
               </p>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

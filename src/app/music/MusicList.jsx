@@ -16,11 +16,12 @@ export default function MusicList() {
           Original work
         </p>
         <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight mt-2">
-          My music production
+          Music production
         </h1>
         <p className="text-white/60 mt-4 max-w-xl mx-auto">
-          Cinematic, moody pieces written between sprints — each one tries to
-          capture a feeling or a moment.
+          A collection of original, cinematic compositions written alongside my
+          engineering work — each piece intended to capture a particular feeling
+          or moment.
         </p>
       </div>
 
