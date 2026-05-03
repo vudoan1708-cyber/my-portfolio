@@ -20,7 +20,7 @@ function SubmitButton() {
 export default function LoginForm() {
   const [state, formAction] = useActionState(loginAction, { error: null });
   return (
-    <form action={formAction} className="space-y-4">
+    <form action={formAction} className="space-y-4" suppressHydrationWarning>
       <label className="block">
         <span className="block text-xs uppercase tracking-[0.2em] text-white/50 mb-1.5">
           Username

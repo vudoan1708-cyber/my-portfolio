@@ -1,6 +1,6 @@
 import 'server-only';
 import { unstable_cache, revalidateTag } from 'next/cache';
-import { get as edgeConfigGet } from '@vercel/edge-config';
+import { Redis } from '@upstash/redis';
 
 import { resolveAssetsDeep } from './assets';
 
@@ -22,23 +22,33 @@ const TAGS = {
   music: 'cms:music',
 };
 
-function edgeConfigConfigured() {
-  return Boolean(process.env.EDGE_CONFIG);
+function getRedisCredentials() {
+  const url =
+    process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+  const token =
+    process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+  return { url, token };
 }
 
-function vercelApiConfigured() {
-  return Boolean(
-    process.env.VERCEL_API_TOKEN && process.env.VERCEL_EDGE_CONFIG_ID,
-  );
+function redisConfigured() {
+  const { url, token } = getRedisCredentials();
+  return Boolean(url && token);
+}
+
+function getRedis() {
+  const { url, token } = getRedisCredentials();
+  if (!url || !token) return null;
+  return new Redis({ url, token });
 }
 
 async function readRaw(key) {
-  if (edgeConfigConfigured()) {
+  if (redisConfigured()) {
     try {
-      const value = await edgeConfigGet(key);
+      const redis = getRedis();
+      const value = await redis.get(key);
       if (value !== undefined && value !== null) return value;
     } catch (error) {
-      console.error(`[cms] Edge Config read failed for "${key}"`, error);
+      console.error(`[cms] Redis read failed for "${key}"`, error);
     }
   }
   return SNAPSHOTS[key];
@@ -90,65 +100,27 @@ export async function getTracks(options) {
 
 export async function getCollectionForAdmin(key) {
   ensureKey(key);
-  if (vercelApiConfigured()) {
+  if (redisConfigured()) {
     try {
-      const direct = await fetchEdgeConfigItem(key);
+      const redis = getRedis();
+      const direct = await redis.get(key);
       if (direct !== undefined && direct !== null) return direct;
     } catch (error) {
-      console.error(`[cms] Vercel API read failed for "${key}"`, error);
+      console.error(`[cms] Redis admin read failed for "${key}"`, error);
     }
   }
-  return readRaw(key);
-}
-
-async function fetchEdgeConfigItem(key) {
-  const id = process.env.VERCEL_EDGE_CONFIG_ID;
-  const token = process.env.VERCEL_API_TOKEN;
-  const teamId = process.env.VERCEL_TEAM_ID;
-  const qs = teamId ? `?teamId=${encodeURIComponent(teamId)}` : '';
-  const url = `https://api.vercel.com/v1/edge-config/${id}/item/${encodeURIComponent(key)}${qs}`;
-  const res = await fetch(url, {
-    headers: { Authorization: `Bearer ${token}` },
-    cache: 'no-store',
-  });
-  if (res.status === 404) return null;
-  if (!res.ok) {
-    const body = await res.text().catch(() => '');
-    throw new Error(`Vercel API ${res.status}: ${body}`);
-  }
-  const json = await res.json();
-  return json?.value ?? null;
+  return SNAPSHOTS[key];
 }
 
 export async function setCollection(key, value) {
   ensureKey(key);
-  if (!vercelApiConfigured()) {
+  if (!redisConfigured()) {
     throw new Error(
-      '[cms] Cannot write: VERCEL_API_TOKEN and VERCEL_EDGE_CONFIG_ID must be set.',
+      '[cms] Cannot write: UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN must be set.',
     );
   }
-  const id = process.env.VERCEL_EDGE_CONFIG_ID;
-  const token = process.env.VERCEL_API_TOKEN;
-  const teamId = process.env.VERCEL_TEAM_ID;
-  const qs = teamId ? `?teamId=${encodeURIComponent(teamId)}` : '';
-  const url = `https://api.vercel.com/v1/edge-config/${id}/items${qs}`;
-
-  const res = await fetch(url, {
-    method: 'PATCH',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      items: [{ operation: 'upsert', key, value }],
-    }),
-  });
-
-  if (!res.ok) {
-    const body = await res.text().catch(() => '');
-    throw new Error(`[cms] Edge Config write failed (${res.status}): ${body}`);
-  }
-
+  const redis = getRedis();
+  await redis.set(key, value);
   revalidateTag('cms');
   revalidateTag(TAGS[key]);
   return true;

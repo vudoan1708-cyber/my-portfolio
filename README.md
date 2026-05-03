@@ -1,6 +1,6 @@
 # Portfolio
 
-Next.js 15 portfolio with a built-in CMS (single-admin, password + 2FA) backed by Vercel Edge Config.
+Next.js 15 portfolio with a built-in CMS (single-admin, password + 2FA) backed by Upstash Redis.
 
 ## Scripts
 
@@ -14,11 +14,11 @@ npm run lint   # next lint
 
 ## CMS architecture
 
-- **Source of truth**: Vercel Edge Config — three keys (`projects`, `experiences`, `music`), each holding one JSON document.
-- **Reads**: `src/lib/cms.js` reads via `@vercel/edge-config` SDK (sub-ms at the edge), wrapped in `unstable_cache` with tag-based revalidation. Writes invalidate cached pages automatically.
-- **Writes**: `setCollection()` PATCHes the Vercel REST API. Authed admins only.
+- **Source of truth**: Upstash Redis (provisioned via Vercel Marketplace) — three keys (`projects`, `experiences`, `music`), each holding one JSON document. Free tier handles a portfolio's data trivially (256 MB, 500K commands/month, no per-key size limit that matters at this scale).
+- **Reads**: `src/lib/cms.js` reads via `@upstash/redis` SDK (REST-based, ~5–15ms), wrapped in `unstable_cache` with tag-based revalidation. Writes invalidate cached pages automatically.
+- **Writes**: `setCollection()` calls `redis.set(key, value)`. Authed admins only.
 - **Asset URLs**: stored as relative paths (e.g. `/projects/foo/cover.webp`); resolved at render time via `ASSETS_BASE_URL` env var. Cleanly swappable if assets move.
-- **Local fallback**: bundled snapshots at `src/data/{projects,experiences,music}.json` are used when Edge Config isn't configured (e.g. local dev without env, or initial deploy before seeding). Snapshots are read-only — they're seed data, not the source of truth in prod.
+- **Local fallback**: bundled snapshots at `src/data/{projects,experiences,music}.json` are used when Redis isn't configured (e.g. local dev without env, or initial deploy before seeding). Snapshots are read-only — they're seed data, not the source of truth in prod.
 
 ## Required env vars
 
@@ -30,19 +30,16 @@ Add via Vercel dashboard → Settings → Environment Variables. Tick **Sensitiv
 |---|---|
 | `ASSETS_BASE_URL` | Base URL for image/audio assets, e.g. `https://vudoan1708-cyber.github.io/logos/portfolio` |
 
-### CMS reads
+### CMS reads + writes
 
-| Var | Purpose |
-|---|---|
-| `EDGE_CONFIG` | Connection string for the Edge Config (auto-populated when you connect the store to the project in Vercel) |
-
-### CMS writes (server-only, never bundled)
+Auto-injected when you connect Upstash Redis to your project via Vercel Marketplace. You don't typically set these by hand on Vercel.
 
 | Var | Purpose | Sensitive |
 |---|---|---|
-| `VERCEL_API_TOKEN` | Token for writing to Edge Config via REST API | ✅ |
-| `VERCEL_EDGE_CONFIG_ID` | The `ecfg_…` ID of your Edge Config | |
-| `VERCEL_TEAM_ID` | Only if your Vercel account is on a team | |
+| `UPSTASH_REDIS_REST_URL` | Upstash Redis REST endpoint URL | |
+| `UPSTASH_REDIS_REST_TOKEN` | Upstash Redis REST API token (read + write) | ✅ |
+
+The adapter also accepts the legacy Vercel KV names (`KV_REST_API_URL` / `KV_REST_API_TOKEN`) as fallbacks if your project was created with the older Vercel KV integration.
 
 ### Admin auth
 
@@ -55,37 +52,36 @@ Add via Vercel dashboard → Settings → Environment Variables. Tick **Sensitiv
 
 ## First-time setup
 
-1. **Create the Edge Config** in Vercel: Storage → Create → Edge Config → connect to project. This populates `EDGE_CONFIG` automatically. Note the `ecfg_…` ID.
+1. **Provision Upstash Redis** in Vercel: Storage tab → Browse Marketplace → **Upstash for Redis** → connect to project. This auto-injects `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` across all environments.
 
-2. **Generate a Vercel API token** (Account → Tokens). Copy it into `VERCEL_API_TOKEN`.
+2. **Set `ASSETS_BASE_URL`** to wherever your assets live (e.g. the GitHub Pages URL).
 
-3. **Set asset base URL** — `ASSETS_BASE_URL` to wherever your assets live.
-
-4. **Generate admin credentials locally**:
+3. **Generate admin credentials locally**:
 
    ```bash
-   node scripts/hash-password.mjs   # outputs ADMIN_PASSWORD_HASH=…
+   node scripts/hash-password.mjs   # outputs ADMIN_PASSWORD_HASH=… (escaped for .env.local + raw for Vercel)
    node scripts/setup-2fa.mjs       # prints QR code + ADMIN_TOTP_SECRET=…
    ```
 
-   Choose a username, hash a password (12+ chars), scan the QR with your authenticator app. Paste the resulting env vars into Vercel (mark Sensitive).
+   Choose a username, hash a password (12+ chars), scan the QR with your authenticator app. Paste the raw hash into Vercel (mark Sensitive); paste the escaped hash into `.env.local`.
 
-5. **Generate a session secret**:
+4. **Generate a session secret**:
 
    ```bash
    node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
    ```
 
-   Paste into `SESSION_SECRET` (Sensitive).
+   Paste into both Vercel (`SESSION_SECRET`, Sensitive) and `.env.local`.
 
-6. **Seed Edge Config with the existing data**:
+5. **Seed Redis with the existing data**. Add the Upstash credentials to your local `.env.local` (Vercel-managed values can't be pulled if Sensitive — copy `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from the Vercel Storage page or paste them in by hand), then:
 
    ```bash
-   vercel env pull .env.local       # pulls EDGE_CONFIG, VERCEL_API_TOKEN, VERCEL_EDGE_CONFIG_ID
-   node --env-file=.env.local scripts/seed-edge-config.mjs
+   node --env-file=.env.local scripts/seed-cms.mjs
    ```
 
-7. **Deploy**. Visit `/admin/login`. Enter username + password → 6-digit code → you're in.
+   You should see `Seeding 3 key(s) into Upstash Redis…` followed by three `✓` lines.
+
+6. **Deploy** (push a commit, or redeploy from the dashboard). Visit `/admin/login`. Enter username + password → 6-digit code → you're in.
 
 ## Security model
 
@@ -98,14 +94,14 @@ Add via Vercel dashboard → Settings → Environment Variables. Tick **Sensitiv
 
 ### Rotating secrets
 
-Change any secret env var in Vercel → trigger a redeploy → old sessions are invalidated when `SESSION_SECRET` changes. Lost your TOTP device? Re-run `setup-2fa.mjs`, replace `ADMIN_TOTP_SECRET`, redeploy.
+Change any secret env var in Vercel → trigger a redeploy → old sessions are invalidated when `SESSION_SECRET` changes. Lost your TOTP device? Re-run `setup-2fa.mjs`, replace `ADMIN_TOTP_SECRET`, redeploy. Compromised Upstash token? Rotate it in the Upstash console and Vercel will pick up the new value on next deploy.
 
 ## Adding a new collection field
 
 1. Update `src/lib/validators.js` (the relevant schema).
 2. Update the form component (`ProjectForm.jsx` / `ExperienceForm.jsx` / `TrackForm.jsx`).
 3. Update the consumer pages that render the new field.
-4. Existing data in Edge Config will pass validation as long as the field is optional, otherwise re-seed or migrate manually via `setCollection()`.
+4. Existing data in Redis will pass validation as long as the field is optional, otherwise re-seed or migrate manually via `setCollection()`.
 
 ## Tests
 
@@ -114,5 +110,5 @@ Change any secret env var in Vercel → trigger a redeploy → old sessions are 
 ## Deployment notes
 
 - The Vercel GitHub integration auto-rebuilds on push.
-- After a CMS save, Edge Config write propagation is ~30s globally. The admin UI reads through the Vercel REST API (bypassing edge cache) so the editor always sees fresh data.
+- Redis writes are strongly consistent — after a CMS save, the next public-page request that misses the `unstable_cache` window will see the new data. The admin UI reads from Redis directly (bypassing the cache) so the editor always sees fresh data.
 - `next.config.js` has a `/` → `/portfolio` redirect (`permanent: false`).
