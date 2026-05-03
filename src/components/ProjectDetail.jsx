@@ -169,7 +169,7 @@ export default function ProjectDetail({ project }) {
     }
 
     return (
-      <div className="space-y-3 leading-relaxed">
+      <div className="space-y-3 leading-relaxed break-words">
         {groups.map((g, idx) =>
           g.type === 'ul' ? (
             <ul
@@ -259,11 +259,11 @@ export default function ProjectDetail({ project }) {
 
 function Field({ label, children }) {
   return (
-    <div>
+    <div className="min-w-0">
       <h2 className="text-xs uppercase tracking-[0.2em] text-rose-300/70 mb-2">
         {label}
       </h2>
-      <div className="text-white/85 text-sm">{children}</div>
+      <div className="text-white/85 text-sm break-all">{children}</div>
     </div>
   );
 }
