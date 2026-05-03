@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
+import StarField from '@/components/StarField';
 
 const SITE_URL = 'https://vudoan.vercel.app';
 const SITE_NAME = 'Vu Doan — Software Engineer';
@@ -111,6 +112,7 @@ export default function RootLayout({ children }) {
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
+        <StarField />
         <Navbar />
         <PageWrapper>{children}</PageWrapper>
         <Footer />

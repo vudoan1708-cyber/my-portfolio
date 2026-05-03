@@ -19,14 +19,8 @@ export default function AnimatedHeader() {
   }, []);
 
   return (
-    <header className="relative w-full min-h-svh bg-black overflow-hidden flex items-center justify-center bg-noise">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="blob blob-1 absolute top-[18%] left-[12%] w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-rose-500 to-pink-400 opacity-40 blur-3xl" />
-        <div className="blob blob-2 absolute top-[35%] right-[10%] w-80 h-80 sm:w-[28rem] sm:h-[28rem] rounded-full bg-gradient-to-br from-fuchsia-600 to-rose-300 opacity-30 blur-3xl" />
-        <div className="blob blob-3 absolute bottom-[15%] left-[28%] w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-bl from-pink-500 to-red-400 opacity-30 blur-2xl" />
-      </div>
-
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.7)_80%)]" />
+    <header className="relative z-10 w-full min-h-svh overflow-hidden flex items-center justify-center bg-noise">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.55)_85%)]" />
 
       <div className="relative flex flex-col md:flex-row items-center gap-8 md:gap-12 z-10 mt-16 w-full max-w-5xl px-6 md:px-10 justify-center">
         <AnimatePresence mode="popLayout">

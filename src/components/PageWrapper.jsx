@@ -37,7 +37,7 @@ export default function PageWrapper({ children }) {
       exit="out"
       variants={pageVariants}
       transition={pageTransition}
-      className={`${isDetailPage ? 'py-0' : 'p-0'} bg-neutral-950 min-h-screen`}
+      className={`${isDetailPage ? 'py-0' : 'p-0'} relative z-10 min-h-screen`}
       id="Page_Content_Details"
     >
       {children}

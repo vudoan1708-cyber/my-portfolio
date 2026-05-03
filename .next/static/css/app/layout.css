@@ -580,6 +580,9 @@ video {
 .z-50 {
   z-index: 50;
 }
+.z-0 {
+  z-index: 0;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -981,6 +984,9 @@ video {
 }
 .bg-\[radial-gradient\(circle_at_70\%_85\%\2c rgba\(136\2c 19\2c 55\2c 0\.4\)\2c transparent_50\%\)\] {
   background-image: radial-gradient(circle at 70% 85%,rgba(136,19,55,0.4),transparent 50%);
+}
+.bg-\[radial-gradient\(ellipse_at_center\2c transparent_0\%\2c rgba\(0\2c 0\2c 0\2c 0\.55\)_85\%\)\] {
+  background-image: radial-gradient(ellipse at center,transparent 0%,rgba(0,0,0,0.55) 85%);
 }
 .from-black {
   --tw-gradient-from: #000 var(--tw-gradient-from-position);

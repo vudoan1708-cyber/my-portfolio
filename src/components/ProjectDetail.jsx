@@ -191,7 +191,7 @@ export default function ProjectDetail({ project }) {
     ) : null;
 
   return (
-    <article className="relative min-h-svh bg-black text-gray-200">
+    <article className="relative min-h-svh text-gray-200">
       {/* Hero */}
       <div
         className="relative w-full h-svh bg-center bg-cover"

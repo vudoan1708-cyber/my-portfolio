@@ -49,7 +49,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-black border-t border-white/5 text-white py-16 px-4 sm:px-8">
+      <footer className="relative z-10 bg-black border-t border-white/5 text-white py-16 px-4 sm:px-8">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 justify-between">
           <div>
             <h3 className="text-2xl font-semibold mb-2">Get in touch</h3>
