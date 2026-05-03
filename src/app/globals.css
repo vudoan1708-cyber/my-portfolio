@@ -40,7 +40,7 @@ code {
   @apply italic;
 }
 
-#project_detail_body a,
+.project_detail_body a,
 a.anchor_highlight {
   @apply underline underline-offset-8 hover:text-rose-300 transition-colors;
 }

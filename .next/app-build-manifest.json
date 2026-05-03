@@ -11,15 +11,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/portfolio/page.js"
     ],
-    "/portfolio/[collection]/page": [
+    "/portfolio/skills/[slugs]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/portfolio/[collection]/page.js"
+      "static/chunks/app/portfolio/skills/[slugs]/page.js"
     ],
     "/portfolio/[collection]/[projectKey]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/portfolio/[collection]/[projectKey]/page.js"
+    ],
+    "/portfolio/[collection]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/portfolio/[collection]/page.js"
     ],
     "/music/page": [
       "static/chunks/webpack.js",

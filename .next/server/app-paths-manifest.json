@@ -1,7 +1,7 @@
 {
-  "/portfolio/page": "app/portfolio/page.js",
-  "/portfolio/[collection]/[projectKey]/page": "app/portfolio/[collection]/[projectKey]/page.js",
-  "/portfolio/[collection]/page": "app/portfolio/[collection]/page.js",
+  "/portfolio/skills/[slugs]/page": "app/portfolio/skills/[slugs]/page.js",
   "/music/page": "app/music/page.js",
-  "/resume/page": "app/resume/page.js"
+  "/portfolio/[collection]/page": "app/portfolio/[collection]/page.js",
+  "/resume/page": "app/resume/page.js",
+  "/portfolio/page": "app/portfolio/page.js"
 }

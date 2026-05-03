@@ -1,8 +1,9 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { projectCollections, projects } from '@/data/projects';
@@ -20,31 +21,89 @@ function buildTechIndex(allProjects) {
       const existing = byId.get(tech.id);
       if (existing) {
         existing.count += 1;
+        existing.collections.add(project.collectionKey);
       } else {
-        byId.set(tech.id, { id: tech.id, name: tech.name, img: tech.img, count: 1 });
+        byId.set(tech.id, {
+          id: tech.id,
+          name: tech.name,
+          img: tech.img,
+          count: 1,
+          collections: new Set([project.collectionKey]),
+        });
       }
     }
   }
-  return Array.from(byId.values()).sort((a, b) => {
+  const items = Array.from(byId.values()).map((t) => ({
+    ...t,
+    category:
+      t.collections.size === 1 && t.collections.has('designs')
+        ? 'design'
+        : 'tech',
+  }));
+  return items.sort((a, b) => {
+    if (a.category !== b.category) return a.category === 'tech' ? -1 : 1;
     if (b.count !== a.count) return b.count - a.count;
     return a.name.localeCompare(b.name);
   });
 }
 
+function parsePathSlugs(pathname) {
+  const match = pathname.match(/^\/portfolio\/skills\/([^/?#]+)/);
+  if (!match) return [];
+  return decodeURIComponent(match[1])
+    .split(',')
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+function buildSkillsUrl(ids) {
+  if (ids.length === 0) return '/portfolio';
+  return `/portfolio/skills/${ids.join(',')}`;
+}
+
 export default function PortfolioCollections() {
+  const pathname = usePathname();
+  const sectionRef = useRef(null);
   const allProjects = useMemo(buildAllProjects, []);
   const techList = useMemo(() => buildTechIndex(allProjects), [allProjects]);
-  const [selected, setSelected] = useState(() => new Set());
+  const validIds = useMemo(
+    () => new Set(techList.map((t) => t.id)),
+    [techList]
+  );
+
+  const selected = useMemo(() => {
+    const ids = parsePathSlugs(pathname).filter((id) => validIds.has(id));
+    return new Set(ids);
+  }, [pathname, validIds]);
+
+  const navigateForSelection = (nextSet) => {
+    if (typeof window === 'undefined') return;
+    const ids = techList.map((t) => t.id).filter((id) => nextSet.has(id));
+    const url = buildSkillsUrl(ids);
+    if (window.location.pathname === url) return;
+    window.history.pushState({}, '', url);
+  };
 
   const toggle = (id) => {
-    setSelected((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
+    const next = new Set(selected);
+    if (next.has(id)) next.delete(id);
+    else next.add(id);
+    navigateForSelection(next);
   };
-  const clear = () => setSelected(new Set());
+  const clear = () => {
+    navigateForSelection(new Set());
+  };
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const ids = parsePathSlugs(window.location.pathname);
+    if (ids.length === 0) return undefined;
+    const timer = window.setTimeout(() => {
+      if (window.scrollY > 50) return;
+      sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 1000);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   const filteredProjects = useMemo(() => {
     if (selected.size === 0) return [];
@@ -63,7 +122,7 @@ export default function PortfolioCollections() {
   const filtering = selected.size > 0;
 
   return (
-    <section className="max-w-6xl mx-auto px-4 sm:px-8 py-20">
+    <section ref={sectionRef} className="max-w-6xl mx-auto px-4 sm:px-8 py-20">
       <div className="mb-8">
         <p className="text-xs uppercase tracking-[0.3em] text-rose-300/70">
           Selected work

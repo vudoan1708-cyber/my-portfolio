@@ -18,7 +18,10 @@ const pageTransition = {
 
 export default function PageWrapper({ children }) {
   const pathname = usePathname();
-  const isDetailPage = /^\/portfolio\/[^/]+\/[^/]+$/.test(pathname);
+  const isSkillsFilter = pathname.startsWith('/portfolio/skills/');
+  const isDetailPage =
+    !isSkillsFilter && /^\/portfolio\/[^/]+\/[^/]+$/.test(pathname);
+  const stableKey = isSkillsFilter ? '/portfolio' : pathname;
 
   useEffect(() => {
     if (isDetailPage) {
@@ -28,7 +31,7 @@ export default function PageWrapper({ children }) {
 
   return (
     <motion.div
-      key={pathname}
+      key={stableKey}
       initial="initial"
       animate="in"
       exit="out"

@@ -76,9 +76,15 @@ export default function ProjectDetail({ project }) {
 
   const renderVideos = () =>
     project.videos?.length > 0 ? (
-      <div className="flex flex-row flex-wrap gap-12">
+      <div
+        className={`grid gap-8 ${
+          project.videos.length > 1
+            ? 'lg:grid-cols-2'
+            : 'grid-cols-1 max-w-3xl mx-auto'
+        }`}
+      >
         {project.videos.map((video, idx) => (
-          <div key={idx}>
+          <div key={idx} className="w-full">
             <h2 className="font-semibold text-rose-200/90 text-sm uppercase tracking-wider mb-2">
               {video.title}
             </h2>
@@ -204,7 +210,7 @@ export default function ProjectDetail({ project }) {
         </div>
       </div>
 
-      <div id="project_detail_body" className="max-w-6xl mx-auto px-6 sm:px-12">
+      <div className="project_detail_body max-w-6xl mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 py-12 border-b border-white/5">
           {renderDate()}
           {renderRole()}
@@ -214,11 +220,15 @@ export default function ProjectDetail({ project }) {
           {renderLinks('projectURL')}
           {renderLinks('report')}
         </div>
+      </div>
 
-        {project.videos?.length > 0 && (
+      {project.videos?.length > 0 && (
+        <div className="max-w-7xl mx-auto px-6 sm:px-12">
           <div className="py-12 border-b border-white/5">{renderVideos()}</div>
-        )}
+        </div>
+      )}
 
+      <div className="project_detail_body max-w-6xl mx-auto px-6 sm:px-12">
         {(project.technologies?.length > 0 || project.apis?.length > 0) && (
           <div className="py-12 space-y-8 border-b border-white/5">
             {renderTechs()}

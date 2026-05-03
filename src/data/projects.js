@@ -1001,8 +1001,8 @@ export const projects = {
 
 export const projectCollections = [
   { key: 'web-apps', label: 'Web Apps', img: `${GITHUB_COLLECTIONS_BASE_URL}/muserfly_mobile_map_zoom3.webp`, description: 'Projects involve with creating a user interface for web applications ranging from non-commercial to semi-commercial and fully commercial (or in other words, working in a company).' },
-  { key: 'games', label: 'Games', img: `${GITHUB_COLLECTIONS_BASE_URL}/turtle_race_boss_fight.webp`, description: 'Projects involve with the hobby game making (primarily web-based games with little to no consideration in performance).' },
   { key: 'utilities', label: 'Utilities', img: `${GITHUB_COLLECTIONS_BASE_URL}/i2t-logo.webp`, description: 'Projects involve with creating extensions / plugins / addons (however you like to call it) across diffferent platforms or ecosystems.' },
+  { key: 'games', label: 'Games', img: `${GITHUB_COLLECTIONS_BASE_URL}/turtle_race_boss_fight.webp`, description: 'Projects involve with the hobby game making (primarily web-based games with little to no consideration in performance).' },
   { key: 'ai-projects', label: 'AI Projects', img: `${GITHUB_COLLECTIONS_BASE_URL}/ai-logo.webp`, description: 'Projects involve with creating AI models with or without pre-trained models.' },
   { key: 'designs', label: 'Designs', img: `${GITHUB_COLLECTIONS_BASE_URL}/3d_printing.webp`, description: 'Projects involve with designs ranging from poster design to 3D visualisation and prototyping.' },
 ];
