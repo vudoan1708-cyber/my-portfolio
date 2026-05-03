@@ -1,8 +1,8 @@
-// File: /Users/vudoan/Vu/Projects/my-portfolio/src/app/portfolio/page.jsx
-import * as entry from '../../../../src/app/portfolio/page.js'
+// File: /Users/vudoan/Vu/Projects/my-portfolio/src/app/portfolio/skills/[slugs]/page.jsx
+import * as entry from '../../../../../../src/app/portfolio/skills/[slugs]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../src/app/portfolio/page.js')
+type TEntry = typeof import('../../../../../../src/app/portfolio/skills/[slugs]/page.js')
 
 type SegmentParams<T extends Object = any> = T extends Record<string, any>
   ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }

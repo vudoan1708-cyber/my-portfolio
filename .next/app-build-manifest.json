@@ -6,15 +6,15 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/portfolio/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/portfolio/page.js"
-    ],
     "/portfolio/[collection]/[projectKey]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/portfolio/[collection]/[projectKey]/page.js"
+    ],
+    "/portfolio/skills/[slugs]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/portfolio/skills/[slugs]/page.js"
     ]
   }
 }

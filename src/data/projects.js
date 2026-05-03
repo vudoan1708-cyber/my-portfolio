@@ -542,7 +542,7 @@ export const projects = {
       },
       projectURL: {
         title: 'Visual Studio Marketplace',
-        label: 'https://marketplace.visualstudio.com/items/?itemName=VolyLtd.volyfequickdev',
+        label: 'VolyLtd.volyfequickdev',
         link: 'https://marketplace.visualstudio.com/items/?itemName=VolyLtd.volyfequickdev',
       },
       report: null,
@@ -614,7 +614,7 @@ export const projects = {
       },
       projectURL: {
         title: 'NPM open-source library',
-        label: 'https://www.npmjs.com/package/interaction-2-test',
+        label: 'interaction-2-test',
         link: 'https://www.npmjs.com/package/interaction-2-test',
       },
       report: null,

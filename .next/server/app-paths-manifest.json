@@ -1,4 +1,4 @@
 {
-  "/portfolio/page": "app/portfolio/page.js",
-  "/portfolio/[collection]/[projectKey]/page": "app/portfolio/[collection]/[projectKey]/page.js"
+  "/portfolio/[collection]/[projectKey]/page": "app/portfolio/[collection]/[projectKey]/page.js",
+  "/portfolio/skills/[slugs]/page": "app/portfolio/skills/[slugs]/page.js"
 }
