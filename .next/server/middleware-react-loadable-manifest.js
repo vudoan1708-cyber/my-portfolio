@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST="{\"components/StarField.jsx -> ./StarFieldCanvas\":{\"id\":\"components/StarField.jsx -> ./StarFieldCanvas\",\"files\":[\"static/chunks/_app-pages-browser_src_components_StarFieldCanvas_jsx.js\"]}}"
