@@ -1,8 +1,9 @@
-import { projectCollections, projects } from '@/data/projects';
+import { getProjects } from '@/lib/cms';
 
 const SITE_URL = 'https://vudoan.vercel.app';
 
-export default function sitemap() {
+export default async function sitemap() {
+  const { projects, projectCollections } = await getProjects({ resolveAssets: false });
   const now = new Date();
 
   const staticRoutes = [

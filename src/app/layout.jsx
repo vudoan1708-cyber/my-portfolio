@@ -2,14 +2,6 @@ import './globals.css';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Suspense } from 'react';
-
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import PageWrapper from '@/components/PageWrapper';
-import StarField from '@/components/StarField';
-import NavigationLoader from '@/components/NavigationLoader';
-
 const SITE_URL = 'https://vudoan.vercel.app';
 const SITE_NAME = 'Vu Doan — Software Engineer';
 const SITE_DESCRIPTION =
@@ -115,13 +107,7 @@ export default function RootLayout({ children }) {
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        <Suspense fallback={null}>
-          <NavigationLoader />
-        </Suspense>
-        <StarField />
-        <Navbar />
-        <PageWrapper>{children}</PageWrapper>
-        <Footer />
+        {children}
       </body>
     </html>
   );

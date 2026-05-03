@@ -1,0 +1,55 @@
+{
+  "experiences": [
+    {
+      "id": "voly",
+      "key": "voly",
+      "company": "Voly",
+      "companyURL": "https://www.volygroup.com/",
+      "role": "Software Engineer",
+      "location": "Cheadle Hulme, UK",
+      "employmentType": "Full-time",
+      "startDate": "Aug, 2021",
+      "endDate": null,
+      "current": true,
+      "logo": "/projects/volyfequickdev/Voly_Group.webp",
+      "summary": "UK fintech building financial management software for the superyacht industry. My day-to-day production frontend experience comprises of component library work, internal tooling development, bugfixes, and shipping features against a real codebase under real deadlines.",
+      "technologies": [
+        {
+          "id": "react",
+          "name": "React.js",
+          "link": "https://react.dev/",
+          "img": "/projects/techs/react.svg"
+        },
+        {
+          "id": "svelte",
+          "name": "Svelte",
+          "link": "https://svelte.dev/",
+          "img": "/projects/techs/svelte.webp"
+        },
+        {
+          "id": "typescript",
+          "name": "Typescript",
+          "link": "https://www.typescriptlang.org/",
+          "img": "/projects/techs/typescript.webp"
+        },
+        {
+          "id": "storybook",
+          "name": "Storybook",
+          "link": "https://storybook.js.org/",
+          "img": "/projects/techs/storybook.svg"
+        },
+        {
+          "id": "vite",
+          "name": "Vite",
+          "link": "https://vite.dev/",
+          "img": "/projects/techs/vite.webp"
+        }
+      ],
+      "relatedProjectKeys": [
+        "volyfequickdev",
+        "i2t",
+        "voly-fe-auto-deploy"
+      ]
+    }
+  ]
+}

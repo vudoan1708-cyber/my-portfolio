@@ -4,16 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-import { projectCollections, projects } from '@/data/projects';
-
-export default function ProjectGrid({ collection }) {
-  const list = (projects[collection] || []).slice().sort((a, b) => {
+export default function ProjectGrid({ collection, items, meta }) {
+  const list = (items || []).slice().sort((a, b) => {
     if (!!b.starred !== !!a.starred) return b.starred ? 1 : -1;
     if (b.startDate !== a.startDate)
       return new Date(b.startDate) - new Date(a.startDate);
     return a.title.localeCompare(b.title);
   });
-  const meta = projectCollections.find((c) => c.key === collection);
   const collectionDescription = meta?.description;
   const collectionLabel = meta?.label || collection.replace('-', ' ').toUpperCase();
 
