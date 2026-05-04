@@ -38,15 +38,23 @@ export default function NavigationLoader() {
   const safetyTimerRef = useRef(null);
 
   useEffect(() => {
-    const handleClick = (event) => {
-      if (isInternalNavigation(event)) {
-        setLoading(true);
-        if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current);
-        safetyTimerRef.current = setTimeout(() => setLoading(false), 8000);
-      }
+    const startLoading = () => {
+      setLoading(true);
+      if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current);
+      safetyTimerRef.current = setTimeout(() => setLoading(false), 8000);
     };
+
+    const handleClick = (event) => {
+      if (isInternalNavigation(event)) startLoading();
+    };
+
     document.addEventListener('click', handleClick, true);
-    return () => document.removeEventListener('click', handleClick, true);
+    window.addEventListener('popstate', startLoading);
+
+    return () => {
+      document.removeEventListener('click', handleClick, true);
+      window.removeEventListener('popstate', startLoading);
+    };
   }, []);
 
   useEffect(() => {
