@@ -370,7 +370,27 @@ At build time (or in a CI step), the following must be validated. If the framewo
 
 ---
 
-## 5. Performance Budget (Hard Limits)
+## 5. Resume / CV ↔ Portfolio Sync
+
+The resume page at `src/app/(public)/resume/ResumeContent.jsx` is a hand-curated mirror of the portfolio. It is **not yet auto-generated** from `src/data/experiences.json` or `src/data/projects.json`, so portfolio changes do not propagate automatically. Whenever portfolio content is added, edited, or removed, the resume must be updated in the same change.
+
+**Sync rules — apply on every portfolio content change:**
+
+- A new project is added that belongs under an existing role → append it to that experience's `relatedProjects` array in `EXPERIENCES`.
+- A project's `link`, `title`, or collection slug changes in `projects.json` → mirror the change in every `relatedProjects` entry that references it.
+- A project is removed from `projects.json` → remove it from any `relatedProjects` array (a 404 link on a CV is 🔴).
+- A new experience is added to `experiences.json` → mirror it in `EXPERIENCES` with bullets, a summary, technologies, and related projects.
+- An experience's `role`, `company`, `companyURL`, dates, or `location` changes in the CMS → mirror the change in the resume entry of the same `key`.
+- A technology is added to an experience or project → consider whether it belongs in the resume's `EXPERIENCES[].technologies` and the `SKILLS` taxonomy.
+- Education or `LANGUAGES` entries change in real life → update directly in the resume page (these are not CMS-backed).
+
+**Flag as 🔴** if a portfolio change ships without the matching resume update — recruiters cross-reference the CV against the portfolio site, and a stale CV signals neglect.
+
+**Future migration** (tracked separately): move CV data into the CMS via a `resume: { include, bullets }` sidecar on experiences and projects, with editable fields in the admin UI. Until that lands, treat the resume as a hand-curated artefact.
+
+---
+
+## 6. Performance Budget (Hard Limits)
 
 These are non-negotiable. Exceed them and the site fails, period.
 
@@ -386,7 +406,7 @@ These are non-negotiable. Exceed them and the site fails, period.
 
 ---
 
-## 6. Review Report Template
+## 7. Review Report Template
 
 When producing a review, structure it exactly as follows:
 
@@ -424,7 +444,7 @@ When producing a review, structure it exactly as follows:
 
 ---
 
-## 7. Tone & Philosophy
+## 8. Tone & Philosophy
 
 - **Be specific, not vague.** "The spacing feels off" is useless. "`margin-bottom: 37px` on `.project-card` breaks the 8px grid — change to `2rem` (32px) to align with the spacing scale" is useful.
 - **Be critical, not cruel.** The goal is to make the user's site better, not to make them feel bad. Deliver harsh truths with clear paths to fix them.

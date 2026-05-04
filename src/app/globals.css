@@ -90,3 +90,90 @@ a.anchor_highlight {
 @media (prefers-reduced-motion: reduce) {
   .blob-1, .blob-2, .blob-3 { animation: none; }
 }
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  nav,
+  footer,
+  .print-hide,
+  body > div[aria-hidden='true'],
+  .Toastify,
+  .Toastify__toast-container {
+    display: none !important;
+  }
+
+  #Page_Content_Details {
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .resume-print-root {
+    padding: 8mm !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    color: #111 !important;
+  }
+
+  .resume-print-root * {
+    color: #111 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border-color: #e5e7eb !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .resume-print-root .resume-card {
+    background: #fff !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+  }
+
+  .resume-print-root h1,
+  .resume-print-root h2,
+  .resume-print-root h3 {
+    color: #111 !important;
+  }
+
+  .resume-print-root .resume-accent,
+  .resume-print-root .resume-accent * {
+    color: #be123c !important;
+  }
+
+  .resume-print-root a {
+    color: #be123c !important;
+    text-decoration: none;
+  }
+
+  .resume-print-root .resume-chip {
+    background: #f3f4f6 !important;
+    border: 1px solid #e5e7eb !important;
+    color: #111 !important;
+  }
+
+  .resume-print-root .resume-meta {
+    color: #6b7280 !important;
+  }
+
+  .resume-print-root .resume-entry {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
