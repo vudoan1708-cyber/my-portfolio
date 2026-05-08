@@ -55,6 +55,42 @@ export async function saveTechAction(_prevState, formData) {
   redirect('/admin/tech-registry?saved=1');
 }
 
+/**
+ * Inline-create variant: upserts a tech registry entry and returns it without
+ * redirecting. Used by the TechCombobox "Create new" flow inside other forms.
+ */
+export async function createTechInlineAction(_prevState, formData) {
+  if (!(await isFullyAuthed())) {
+    return { ok: false, error: 'Not authorised.', fieldErrors: null, item: null };
+  }
+  const payloadRaw = formData.get('payload');
+  if (typeof payloadRaw !== 'string') {
+    return { ok: false, error: 'Missing payload.', fieldErrors: null, item: null };
+  }
+  let parsedJson;
+  try {
+    parsedJson = JSON.parse(payloadRaw);
+  } catch {
+    return { ok: false, error: 'Invalid JSON payload.', fieldErrors: null, item: null };
+  }
+  const stripped = stripAssetsDeep(parsedJson);
+  const result = techRegistryItemSchema.safeParse(stripped);
+  if (!result.success) {
+    return {
+      ok: false,
+      error: 'Please fix the highlighted fields.',
+      fieldErrors: zodIssuesToFieldErrors(result.error.issues),
+      item: null,
+    };
+  }
+  const doc = await loadDoc();
+  const filtered = doc.items.filter((it) => it.id !== result.data.id);
+  filtered.push(result.data);
+  filtered.sort((a, b) => a.id.localeCompare(b.id));
+  await setCollection('tech-registry', { items: filtered });
+  return { ok: true, error: null, fieldErrors: null, item: result.data };
+}
+
 export async function deleteTechAction(_prevState, formData) {
   if (!(await isFullyAuthed())) redirect('/admin/login');
   const id = formData.get('id');

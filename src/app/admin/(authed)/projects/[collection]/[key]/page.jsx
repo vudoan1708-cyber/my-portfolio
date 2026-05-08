@@ -13,9 +13,13 @@ export const metadata = {
 
 export default async function EditProjectPage({ params }) {
   const { collection, key } = await params;
-  const doc = await getCollectionForAdmin('projects');
+  const [doc, registryDoc] = await Promise.all([
+    getCollectionForAdmin('projects'),
+    getCollectionForAdmin('tech-registry'),
+  ]);
   const projects = doc?.projects ?? {};
   const collections = doc?.projectCollections ?? [];
+  const techRegistry = registryDoc?.items ?? [];
   const project = (projects[collection] ?? []).find((p) => p.key === key);
   if (!project) notFound();
 
@@ -33,6 +37,7 @@ export default async function EditProjectPage({ params }) {
       <ProjectForm
         initial={project}
         collections={collections}
+        techRegistry={techRegistry}
         originalCollection={collection}
         originalKey={key}
       />

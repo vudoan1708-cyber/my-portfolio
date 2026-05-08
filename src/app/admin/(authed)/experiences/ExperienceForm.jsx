@@ -12,6 +12,7 @@ import ImageUrlField from '../_components/ImageUrlField';
 import UrlField from '../_components/UrlField';
 import Repeater from '../_components/Repeater';
 import SaveBar from '../_components/SaveBar';
+import TechMultiSelect from '../_components/TechMultiSelect';
 
 const EMPTY_EXP = {
   id: '',
@@ -30,11 +31,7 @@ const EMPTY_EXP = {
   relatedProjectKeys: [],
 };
 
-function newTech() {
-  return { id: '', name: '', link: '', img: '' };
-}
-
-export default function ExperienceForm({ initial, originalKey }) {
+export default function ExperienceForm({ initial, originalKey, techRegistry = [] }) {
   const [state, formAction] = useActionState(saveExperienceAction, {
     error: null,
     fieldErrors: null,
@@ -156,19 +153,12 @@ export default function ExperienceForm({ initial, originalKey }) {
         </FieldGroup>
 
         <FieldGroup title="Technologies">
-          <Repeater
+          <TechMultiSelect
+            label="Pick from registry — type to filter, or create a new entry inline"
             items={exp.technologies}
             onChange={set('technologies')}
-            newItem={newTech}
-            itemLabel="Tech"
-            renderItem={(t, update, idx) => (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <TextField label="ID (slug)" value={t.id} onChange={(v) => update({ ...t, id: v })} error={errAt(`technologies.${idx}.id`)} />
-                <TextField label="Display name" value={t.name} onChange={(v) => update({ ...t, name: v })} error={errAt(`technologies.${idx}.name`)} />
-                <TextField label="Link" value={t.link ?? ''} onChange={(v) => update({ ...t, link: v })} error={errAt(`technologies.${idx}.link`)} />
-                <TextField label="Image path" value={t.img ?? ''} onChange={(v) => update({ ...t, img: v })} error={errAt(`technologies.${idx}.img`)} />
-              </div>
-            )}
+            registry={techRegistry}
+            type="tech"
           />
         </FieldGroup>
 

@@ -11,8 +11,12 @@ export const metadata = {
 };
 
 export default async function NewProjectPage() {
-  const doc = await getCollectionForAdmin('projects');
+  const [doc, registryDoc] = await Promise.all([
+    getCollectionForAdmin('projects'),
+    getCollectionForAdmin('tech-registry'),
+  ]);
   const collections = doc?.projectCollections ?? [];
+  const techRegistry = registryDoc?.items ?? [];
   const firstCollection = collections[0]?.key ?? 'web-apps';
   const initial = {
     id: Date.now(),
@@ -32,7 +36,11 @@ export default async function NewProjectPage() {
         <ChevronLeft className="w-4 h-4" /> Back to projects
       </Link>
       <h1 className="text-2xl font-semibold tracking-tight mb-6">New project</h1>
-      <ProjectForm initial={initial} collections={collections} />
+      <ProjectForm
+        initial={initial}
+        collections={collections}
+        techRegistry={techRegistry}
+      />
     </div>
   );
 }

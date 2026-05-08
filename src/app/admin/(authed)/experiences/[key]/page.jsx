@@ -13,9 +13,13 @@ export const metadata = {
 
 export default async function EditExperiencePage({ params }) {
   const { key } = await params;
-  const doc = await getCollectionForAdmin('experiences');
+  const [doc, registryDoc] = await Promise.all([
+    getCollectionForAdmin('experiences'),
+    getCollectionForAdmin('tech-registry'),
+  ]);
   const exp = (doc?.experiences ?? []).find((e) => e.key === key);
   if (!exp) notFound();
+  const techRegistry = registryDoc?.items ?? [];
   return (
     <div>
       <Link
@@ -27,7 +31,7 @@ export default async function EditExperiencePage({ params }) {
       <h1 className="text-2xl font-semibold tracking-tight mb-6">
         Edit · {exp.role} at {exp.company}
       </h1>
-      <ExperienceForm initial={exp} originalKey={key} />
+      <ExperienceForm initial={exp} originalKey={key} techRegistry={techRegistry} />
     </div>
   );
 }
