@@ -13,6 +13,8 @@ import UrlField from '../_components/UrlField';
 import Repeater from '../_components/Repeater';
 import SaveBar from '../_components/SaveBar';
 import TechMultiSelect from '../_components/TechMultiSelect';
+import LivePreview from '../_components/LivePreview';
+import PreviewLayout from '../_components/PreviewLayout';
 
 const EMPTY_EXP = {
   id: '',
@@ -106,74 +108,76 @@ export default function ExperienceForm({ initial, originalKey, techRegistry = []
       <input type="hidden" name="originalKey" value={originalKey ?? ''} />
       <input type="hidden" name="payload" value={JSON.stringify(exp)} />
 
-      <div className="space-y-6">
-        <FieldGroup title="Identity">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <TextField label="ID" value={exp.id} onChange={set('id')} error={errAt('id')} required />
-            <TextField label="Key (slug)" value={exp.key} onChange={set('key')} error={errAt('key')} required />
-            <TextField label="Company" value={exp.company} onChange={set('company')} error={errAt('company')} required />
-            <UrlField
-              label="Company URL"
-              value={exp.companyURL ?? ''}
-              onChange={(v) => set('companyURL')(v === '' ? null : v)}
-              error={errAt('companyURL')}
-              validityKey="companyURL"
+      <PreviewLayout preview={<LivePreview kind="experience" data={exp} />}>
+        <div className="space-y-6">
+          <FieldGroup title="Identity">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <TextField label="ID" value={exp.id} onChange={set('id')} error={errAt('id')} required />
+              <TextField label="Key (slug)" value={exp.key} onChange={set('key')} error={errAt('key')} required />
+              <TextField label="Company" value={exp.company} onChange={set('company')} error={errAt('company')} required />
+              <UrlField
+                label="Company URL"
+                value={exp.companyURL ?? ''}
+                onChange={(v) => set('companyURL')(v === '' ? null : v)}
+                error={errAt('companyURL')}
+                validityKey="companyURL"
+                onValidityChange={onFieldValidity}
+              />
+              <TextField label="Role" value={exp.role} onChange={set('role')} error={errAt('role')} required />
+              <TextField label="Location" value={exp.location ?? ''} onChange={(v) => set('location')(v === '' ? null : v)} error={errAt('location')} />
+              <TextField label="Employment type" value={exp.employmentType ?? ''} onChange={(v) => set('employmentType')(v === '' ? null : v)} error={errAt('employmentType')} />
+            </div>
+            <ImageUrlField
+              label="Logo path"
+              value={exp.logo ?? ''}
+              onChange={(v) => set('logo')(v === '' ? null : v)}
+              error={errAt('logo')}
+              validityKey="logo"
               onValidityChange={onFieldValidity}
             />
-            <TextField label="Role" value={exp.role} onChange={set('role')} error={errAt('role')} required />
-            <TextField label="Location" value={exp.location ?? ''} onChange={(v) => set('location')(v === '' ? null : v)} error={errAt('location')} />
-            <TextField label="Employment type" value={exp.employmentType ?? ''} onChange={(v) => set('employmentType')(v === '' ? null : v)} error={errAt('employmentType')} />
-          </div>
-          <ImageUrlField
-            label="Logo path"
-            value={exp.logo ?? ''}
-            onChange={(v) => set('logo')(v === '' ? null : v)}
-            error={errAt('logo')}
-            validityKey="logo"
-            onValidityChange={onFieldValidity}
-          />
-        </FieldGroup>
+          </FieldGroup>
 
-        <FieldGroup title="Dates">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <TextField label="Start date" value={exp.startDate} onChange={set('startDate')} error={errAt('startDate')} required />
-            <TextField label="End date (blank if current)" value={exp.endDate ?? ''} onChange={(v) => set('endDate')(v === '' ? null : v)} error={errAt('endDate')} />
-          </div>
-          <CheckboxField label="Current role" value={exp.current} onChange={set('current')} />
-        </FieldGroup>
+          <FieldGroup title="Dates">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <TextField label="Start date" value={exp.startDate} onChange={set('startDate')} error={errAt('startDate')} required />
+              <TextField label="End date (blank if current)" value={exp.endDate ?? ''} onChange={(v) => set('endDate')(v === '' ? null : v)} error={errAt('endDate')} />
+            </div>
+            <CheckboxField label="Current role" value={exp.current} onChange={set('current')} />
+          </FieldGroup>
 
-        <FieldGroup title="Summary">
-          <TextareaField
-            label="HTML allowed (subset). Forbidden: <script>, on*= attrs, javascript: URLs."
-            value={exp.summary ?? ''}
-            onChange={(v) => set('summary')(v === '' ? null : v)}
-            error={errAt('summary')}
-            rows={5}
-          />
-        </FieldGroup>
+          <FieldGroup title="Summary">
+            <TextareaField
+              label="HTML allowed (subset). Forbidden: <script>, on*= attrs, javascript: URLs."
+              value={exp.summary ?? ''}
+              onChange={(v) => set('summary')(v === '' ? null : v)}
+              error={errAt('summary')}
+              rows={5}
+            />
+          </FieldGroup>
 
-        <FieldGroup title="Technologies">
-          <TechMultiSelect
-            label="Pick from registry — type to filter, or create a new entry inline"
-            items={exp.technologies}
-            onChange={set('technologies')}
-            registry={techRegistry}
-            type="tech"
-          />
-        </FieldGroup>
+          <FieldGroup title="Technologies">
+            <TechMultiSelect
+              label="Pick from registry — type to filter, or create a new entry inline"
+              items={exp.technologies}
+              onChange={set('technologies')}
+              registry={techRegistry}
+              type="tech"
+            />
+          </FieldGroup>
 
-        <FieldGroup title="Related project keys">
-          <Repeater
-            items={exp.relatedProjectKeys}
-            onChange={set('relatedProjectKeys')}
-            newItem={() => ''}
-            itemLabel="Key"
-            renderItem={(slug, update, idx) => (
-              <TextField label="Project key (slug)" value={slug} onChange={update} error={errAt(`relatedProjectKeys.${idx}`)} />
-            )}
-          />
-        </FieldGroup>
-      </div>
+          <FieldGroup title="Related project keys">
+            <Repeater
+              items={exp.relatedProjectKeys}
+              onChange={set('relatedProjectKeys')}
+              newItem={() => ''}
+              itemLabel="Key"
+              renderItem={(slug, update, idx) => (
+                <TextField label="Project key (slug)" value={slug} onChange={update} error={errAt(`relatedProjectKeys.${idx}`)} />
+              )}
+            />
+          </FieldGroup>
+        </div>
+      </PreviewLayout>
 
       <SaveBar error={state.error} />
     </form>
