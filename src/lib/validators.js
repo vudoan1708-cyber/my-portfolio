@@ -160,6 +160,19 @@ export const experiencesDocSchema = z.object({
   experiences: z.array(experienceSchema),
 });
 
+export const techRegistryItemSchema = z.object({
+  id: slug,
+  name: z.string().min(1).max(80),
+  link: url,
+  img: safeImagePath,
+  type: z.enum(['tech', 'api']),
+  tailwindCssClass: z.string().max(120).optional().nullable(),
+});
+
+export const techRegistryDocSchema = z.object({
+  items: z.array(techRegistryItemSchema).default([]),
+});
+
 export const trackSchema = z.object({
   id: z.union([z.number().int(), z.string().min(1)]),
   key: slug,

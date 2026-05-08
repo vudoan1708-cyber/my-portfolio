@@ -31,6 +31,7 @@ const items = [
   { key: 'projects', value: await readJson('projects.json') },
   { key: 'experiences', value: await readJson('experiences.json') },
   { key: 'music', value: await readJson('music.json') },
+  { key: 'tech-registry', value: await readJson('tech-registry.json') },
 ];
 
 const redis = new Redis({ url, token });

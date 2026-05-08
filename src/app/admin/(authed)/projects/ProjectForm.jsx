@@ -10,6 +10,7 @@ import {
   TextareaField,
 } from '../_components/Field';
 import ImageUrlField from '../_components/ImageUrlField';
+import UrlField from '../_components/UrlField';
 import Repeater from '../_components/Repeater';
 import SaveBar from '../_components/SaveBar';
 
@@ -83,9 +84,9 @@ export default function ProjectForm({
   const editedSinceError =
     errorSnapshot !== null && errorSnapshot !== JSON.stringify(project);
 
-  const [invalidImages, setInvalidImages] = useState({});
-  const onImageValidity = useCallback((key, isValid) => {
-    setInvalidImages((prev) => {
+  const [invalidFields, setInvalidFields] = useState({});
+  const onFieldValidity = useCallback((key, isValid) => {
+    setInvalidFields((prev) => {
       if (isValid) {
         if (!(key in prev)) return prev;
         const next = { ...prev };
@@ -96,10 +97,10 @@ export default function ProjectForm({
       return { ...prev, [key]: true };
     });
   }, []);
-  const invalidImageCount = Object.keys(invalidImages).length;
+  const invalidFieldCount = Object.keys(invalidFields).length;
 
   const hasFieldErrors = fieldErrorCount > 0 && !editedSinceError;
-  const saveDisabled = hasFieldErrors || invalidImageCount > 0;
+  const saveDisabled = hasFieldErrors || invalidFieldCount > 0;
 
   const scrollFirstInvalidIntoView = (root) => {
     const target = (root ?? document).querySelector('[aria-invalid="true"]');
@@ -209,7 +210,7 @@ export default function ProjectForm({
             placeholder="/projects/foo/cover.webp"
             required
             validityKey="img"
-            onValidityChange={onImageValidity}
+            onValidityChange={onFieldValidity}
           />
           <ImageUrlField
             label="Larger preview image (optional)"
@@ -217,7 +218,7 @@ export default function ProjectForm({
             onChange={set('img-lg')}
             error={errAt('img-lg')}
             validityKey="img-lg"
-            onValidityChange={onImageValidity}
+            onValidityChange={onFieldValidity}
           />
         </FieldGroup>
 
@@ -254,11 +255,11 @@ export default function ProjectForm({
         </FieldGroup>
 
         <FieldGroup title="Links">
-          <LinkBlockField label="Project URL" path="projectURL" value={project.projectURL} onChange={set('projectURL')} empty={emptyLinkBlock} errAt={errAt} />
-          <LinkBlockField label="Project code" path="projectCode" value={project.projectCode} onChange={set('projectCode')} empty={emptyLinkBlock} errAt={errAt} />
-          <LinkBlockField label="Project log" path="projectLog" value={project.projectLog} onChange={set('projectLog')} empty={emptyLinkBlock} errAt={errAt} />
-          <LinkBlockField label="Report" path="report" value={project.report} onChange={set('report')} empty={emptyLinkBlock} errAt={errAt} />
-          <LinkBlockField label="Design" path="design" value={project.design} onChange={set('design')} empty={emptyLinkBlock} errAt={errAt} />
+          <LinkBlockField label="Project URL" path="projectURL" value={project.projectURL} onChange={set('projectURL')} empty={emptyLinkBlock} errAt={errAt} onFieldValidity={onFieldValidity} />
+          <LinkBlockField label="Project code" path="projectCode" value={project.projectCode} onChange={set('projectCode')} empty={emptyLinkBlock} errAt={errAt} onFieldValidity={onFieldValidity} />
+          <LinkBlockField label="Project log" path="projectLog" value={project.projectLog} onChange={set('projectLog')} empty={emptyLinkBlock} errAt={errAt} onFieldValidity={onFieldValidity} />
+          <LinkBlockField label="Report" path="report" value={project.report} onChange={set('report')} empty={emptyLinkBlock} errAt={errAt} onFieldValidity={onFieldValidity} />
+          <LinkBlockField label="Design" path="design" value={project.design} onChange={set('design')} empty={emptyLinkBlock} errAt={errAt} onFieldValidity={onFieldValidity} />
         </FieldGroup>
 
         <FieldGroup title="Technologies">
@@ -322,7 +323,7 @@ export default function ProjectForm({
             renderItem={(g, update, idx) => (
               <div className="space-y-3">
                 <TextField label="Alt text" value={g.alt} onChange={(v) => update({ ...g, alt: v })} error={errAt(`gallery.${idx}.alt`)} />
-                <ImageUrlField label="Image path" value={g.img} onChange={(v) => update({ ...g, img: v })} error={errAt(`gallery.${idx}.img`)} validityKey={`gallery.${idx}.img`} onValidityChange={onImageValidity} />
+                <ImageUrlField label="Image path" value={g.img} onChange={(v) => update({ ...g, img: v })} error={errAt(`gallery.${idx}.img`)} validityKey={`gallery.${idx}.img`} onValidityChange={onFieldValidity} />
               </div>
             )}
           />
@@ -338,7 +339,14 @@ export default function ProjectForm({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <TextField label="Title (optional)" value={v.title ?? ''} onChange={(val) => update({ ...v, title: val })} error={errAt(`videos.${idx}.title`)} />
                 <TextField label="Source / platform (e.g. youtube)" value={v.source ?? ''} onChange={(val) => update({ ...v, source: val })} error={errAt(`videos.${idx}.source`)} />
-                <TextField label="Link (URL)" value={v.link ?? ''} onChange={(val) => update({ ...v, link: val })} error={errAt(`videos.${idx}.link`)} />
+                <UrlField
+                  label="Link (URL)"
+                  value={v.link ?? ''}
+                  onChange={(val) => update({ ...v, link: val })}
+                  error={errAt(`videos.${idx}.link`)}
+                  validityKey={`videos.${idx}.link`}
+                  onValidityChange={onFieldValidity}
+                />
                 <TextField label="Source path (alternative to Link)" value={v.src ?? ''} onChange={(val) => update({ ...v, src: val })} error={errAt(`videos.${idx}.src`)} />
               </div>
             )}
@@ -351,7 +359,7 @@ export default function ProjectForm({
   );
 }
 
-function LinkBlockField({ label, path, value, onChange, empty, errAt }) {
+function LinkBlockField({ label, path, value, onChange, empty, errAt, onFieldValidity }) {
   const enabled = value !== null && value !== undefined;
   const update = (next) => onChange(next);
   return (
@@ -365,10 +373,19 @@ function LinkBlockField({ label, path, value, onChange, empty, errAt }) {
         />
       </div>
       {enabled ? (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <TextField label="Title" value={value.title} onChange={(v) => update({ ...value, title: v })} error={errAt(`${path}.title`)} />
           <TextField label="Label" value={value.label ?? ''} onChange={(v) => update({ ...value, label: v })} error={errAt(`${path}.label`)} />
-          <TextField label="Link" value={value.link ?? ''} onChange={(v) => update({ ...value, link: v })} error={errAt(`${path}.link`)} />
+          <div className="sm:col-span-2">
+            <UrlField
+              label="Link"
+              value={value.link ?? ''}
+              onChange={(v) => update({ ...value, link: v })}
+              error={errAt(`${path}.link`)}
+              validityKey={`${path}.link`}
+              onValidityChange={onFieldValidity}
+            />
+          </div>
         </div>
       ) : null}
     </div>

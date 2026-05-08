@@ -1,0 +1,285 @@
+{
+  "items": [
+    {
+      "id": "aftereffects",
+      "name": "Adobe After Effects 2020",
+      "link": "https://www.adobe.com/uk/products/aftereffects.html",
+      "img": "/projects/techs/after_effects.webp",
+      "type": "tech"
+    },
+    {
+      "id": "babel",
+      "name": "Babel",
+      "link": "https://babeljs.io/",
+      "img": "/projects/techs/babel.webp",
+      "type": "tech"
+    },
+    {
+      "id": "bitbucket",
+      "name": "Bitbucket",
+      "link": "https://bitbucket.org/product/",
+      "img": "/projects/techs/bitbucket.svg",
+      "type": "tech"
+    },
+    {
+      "id": "d3",
+      "name": "D3",
+      "link": "https://d3js.org/",
+      "img": "/projects/techs/d3.webp",
+      "type": "tech"
+    },
+    {
+      "id": "forge",
+      "name": "Forge",
+      "link": "https://developer.atlassian.com/platform/forge/manifest-reference/modules/",
+      "img": "/projects/techs/forge.webp",
+      "type": "tech"
+    },
+    {
+      "id": "go",
+      "name": "Golang",
+      "link": "https://go.dev/",
+      "img": "/projects/techs/golang.webp",
+      "type": "tech"
+    },
+    {
+      "id": "graphql",
+      "name": "GraphQL",
+      "link": "https://graphql.org/",
+      "img": "/projects/techs/graphql.webp",
+      "type": "tech"
+    },
+    {
+      "id": "illustrator",
+      "name": "Adobe Illustrator",
+      "link": "https://www.adobe.com/products/illustrator.html",
+      "img": "/projects/techs/illustrator.webp",
+      "type": "tech"
+    },
+    {
+      "id": "js",
+      "name": "Vanilla Javascript",
+      "link": "https://www.javascript.com/",
+      "img": "/projects/techs/js.webp",
+      "type": "tech"
+    },
+    {
+      "id": "koajs",
+      "name": "Koa.js",
+      "link": "https://koajs.com/",
+      "img": "/projects/techs/koa.webp",
+      "type": "tech"
+    },
+    {
+      "id": "localtunnel",
+      "name": "Localtunnel",
+      "link": "https://theboroer.github.io/localtunnel-www/",
+      "img": "/projects/techs/localtunnel.webp",
+      "type": "tech"
+    },
+    {
+      "id": "makerbot",
+      "name": "MakerBot",
+      "link": "https://www.makerbot.com/",
+      "img": "/projects/techs/makerbot.webp",
+      "type": "tech"
+    },
+    {
+      "id": "mappajs",
+      "name": "Mappa.js",
+      "link": "https://mappa.js.org/",
+      "img": "/projects/techs/mappa.webp",
+      "type": "tech"
+    },
+    {
+      "id": "maya",
+      "name": "Maya",
+      "link": "https://www.autodesk.com/products/maya/overview?term=1-YEAR",
+      "img": "/projects/techs/maya.webp",
+      "type": "tech"
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB Atlas",
+      "link": "https://www.mongodb.com/products/platform/atlas-database",
+      "img": "/projects/techs/mongodb.webp",
+      "type": "tech"
+    },
+    {
+      "id": "muireact",
+      "name": "MUI React",
+      "link": "https://mui.com/",
+      "img": "/projects/techs/muireact.svg",
+      "type": "tech"
+    },
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "link": "https://nodejs.org/en/",
+      "img": "/projects/techs/node.webp",
+      "type": "tech"
+    },
+    {
+      "id": "openaq",
+      "name": "OpenAQ API",
+      "link": "https://docs.openaq.org/",
+      "img": "/projects/apis/openaq_api.webp",
+      "type": "api",
+      "tailwindCssClass": "bg-white"
+    },
+    {
+      "id": "p5js",
+      "name": "p5.js",
+      "link": "https://p5js.org/",
+      "img": "/projects/techs/p5.webp",
+      "type": "tech"
+    },
+    {
+      "id": "premierepro",
+      "name": "Adobe Premiere Pro 2020",
+      "link": "https://www.adobe.com/uk/products/premiere.html",
+      "img": "/projects/techs/premiere_pro.webp",
+      "type": "tech"
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "link": "https://www.python.org/",
+      "img": "/projects/techs/python.webp",
+      "type": "tech"
+    },
+    {
+      "id": "react",
+      "name": "React.js",
+      "link": "https://react.dev/",
+      "img": "/projects/techs/react.svg",
+      "type": "tech"
+    },
+    {
+      "id": "rhino6",
+      "name": "Rhino 6",
+      "link": "https://www.rhino3d.com/",
+      "img": "/projects/techs/rhino.webp",
+      "type": "tech"
+    },
+    {
+      "id": "sass",
+      "name": "Scss",
+      "link": "https://sass-lang.com/",
+      "img": "/projects/techs/scss.webp",
+      "type": "tech"
+    },
+    {
+      "id": "serveo",
+      "name": "Serveo SSH",
+      "link": "https://serveo.net/",
+      "img": "/projects/techs/serveo.webp",
+      "type": "tech"
+    },
+    {
+      "id": "socketio",
+      "name": "Socket.io",
+      "link": "https://socket.io/",
+      "img": "/projects/techs/socketio.webp",
+      "type": "tech"
+    },
+    {
+      "id": "sp",
+      "name": "Substance Painter",
+      "link": "https://www.adobe.com/products/substance3d/apps/painter.html?sdid=JZBJVTGW&mv=search&mv2=paidsearch&gad_source=1&gad_campaignid=20396750522&gclid=Cj0KCQjw5ubABhDIARIsAHMighZ-pW1ooepdJOqUlhqaWKmSN8OMr_KDqBCSdS9oM7Uxz6C2YmRmQMwaAo8wEALw_wcB",
+      "img": "/projects/techs/sp.webp",
+      "type": "tech"
+    },
+    {
+      "id": "spotify",
+      "name": "Spotify API",
+      "link": "https://developer.spotify.com/documentation/web-api",
+      "img": "/projects/apis/spotify_api.webp",
+      "type": "api"
+    },
+    {
+      "id": "storybook",
+      "name": "Storybook",
+      "link": "https://storybook.js.org/",
+      "img": "/projects/techs/storybook.svg",
+      "type": "tech"
+    },
+    {
+      "id": "styledcomponents",
+      "name": "Styled components",
+      "link": "https://styled-components.com/",
+      "img": "/projects/techs/styled-components.webp",
+      "type": "tech"
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "link": "https://supabase.com/",
+      "img": "/projects/techs/supabase.webp",
+      "type": "tech"
+    },
+    {
+      "id": "svelte",
+      "name": "SvelteKit",
+      "link": "https://svelte.dev/",
+      "img": "/projects/techs/svelte.webp",
+      "type": "tech"
+    },
+    {
+      "id": "tensorflow",
+      "name": "Tensorflow",
+      "link": "https://www.tensorflow.org/",
+      "img": "/projects/techs/tensorflow.webp",
+      "type": "tech"
+    },
+    {
+      "id": "typescript",
+      "name": "Typescript",
+      "link": "https://www.typescriptlang.org/",
+      "img": "/projects/techs/typescript.webp",
+      "type": "tech"
+    },
+    {
+      "id": "visualstudiocode",
+      "name": "Visual Studio Code API",
+      "link": "https://code.visualstudio.com/api/references/vscode-api",
+      "img": "/projects/apis/visual-studio-code.svg",
+      "type": "api"
+    },
+    {
+      "id": "vite",
+      "name": "Vite",
+      "link": "https://vite.dev/",
+      "img": "/projects/techs/vite.webp",
+      "type": "tech"
+    },
+    {
+      "id": "vue3",
+      "name": "Vue 3",
+      "link": "https://vuejs.org/",
+      "img": "/projects/techs/vue.webp",
+      "type": "tech"
+    },
+    {
+      "id": "webpack5",
+      "name": "Webpack 5",
+      "link": "https://webpack.js.org/",
+      "img": "/projects/techs/webpack5.webp",
+      "type": "tech"
+    },
+    {
+      "id": "websocket",
+      "name": "Websocket",
+      "link": "https://www.npmjs.com/package/websocket",
+      "img": "/projects/techs/websocket.webp",
+      "type": "tech"
+    },
+    {
+      "id": "zbrush",
+      "name": "ZBrush",
+      "link": "https://www.maxon.net/en/zbrush",
+      "img": "/projects/techs/zbrush.webp",
+      "type": "tech"
+    }
+  ]
+}

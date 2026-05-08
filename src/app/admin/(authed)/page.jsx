@@ -9,10 +9,11 @@ export const metadata = {
 };
 
 async function counts() {
-  const [projectsDoc, expDoc, musicDoc] = await Promise.all([
+  const [projectsDoc, expDoc, musicDoc, techDoc] = await Promise.all([
     getCollectionForAdmin('projects'),
     getCollectionForAdmin('experiences'),
     getCollectionForAdmin('music'),
+    getCollectionForAdmin('tech-registry'),
   ]);
   const projectCount = Object.values(projectsDoc?.projects ?? {}).reduce(
     (sum, list) => sum + (Array.isArray(list) ? list.length : 0),
@@ -23,6 +24,7 @@ async function counts() {
     collections: projectsDoc?.projectCollections?.length ?? 0,
     experiences: expDoc?.experiences?.length ?? 0,
     tracks: musicDoc?.tracks?.length ?? 0,
+    techRegistry: techDoc?.items?.length ?? 0,
   };
 }
 
@@ -35,7 +37,7 @@ export default async function AdminHome() {
         Edit anything below. Changes write to Vercel Edge Config and propagate
         to public pages within ~30 seconds.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card
           href="/admin/projects"
           label="Projects"
@@ -45,6 +47,11 @@ export default async function AdminHome() {
           href="/admin/experiences"
           label="Experiences"
           value={`${c.experiences} entries`}
+        />
+        <Card
+          href="/admin/tech-registry"
+          label="Tech registry"
+          value={`${c.techRegistry} entries`}
         />
         <Card
           href="/admin/music"

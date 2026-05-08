@@ -7,19 +7,27 @@ import { resolveAssetsDeep } from './assets';
 import projectsSnapshot from '@/data/projects.json';
 import experiencesSnapshot from '@/data/experiences.json';
 import musicSnapshot from '@/data/music.json';
+import techRegistrySnapshot from '@/data/tech-registry.json';
 
-export const COLLECTION_KEYS = ['projects', 'experiences', 'music'];
+export const COLLECTION_KEYS = [
+  'projects',
+  'experiences',
+  'music',
+  'tech-registry',
+];
 
 const SNAPSHOTS = {
   projects: projectsSnapshot,
   experiences: experiencesSnapshot,
   music: musicSnapshot,
+  'tech-registry': techRegistrySnapshot,
 };
 
 const TAGS = {
   projects: 'cms:projects',
   experiences: 'cms:experiences',
   music: 'cms:music',
+  'tech-registry': 'cms:tech-registry',
 };
 
 function getRedisCredentials() {
@@ -70,6 +78,11 @@ const taggedReaders = {
     ['cms-read', 'music'],
     { tags: ['cms', TAGS.music], revalidate: 60 },
   ),
+  'tech-registry': unstable_cache(
+    async () => readRaw('tech-registry'),
+    ['cms-read', 'tech-registry'],
+    { tags: ['cms', TAGS['tech-registry']], revalidate: 60 },
+  ),
 };
 
 function ensureKey(key) {
@@ -96,6 +109,11 @@ export async function getExperiences(options) {
 export async function getTracks(options) {
   const data = await getCollection('music', options);
   return data?.tracks ?? [];
+}
+
+export async function getTechRegistry(options) {
+  const data = await getCollection('tech-registry', options);
+  return data?.items ?? [];
 }
 
 export async function getCollectionForAdmin(key) {

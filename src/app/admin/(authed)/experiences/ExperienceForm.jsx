@@ -9,6 +9,7 @@ import {
   TextareaField,
 } from '../_components/Field';
 import ImageUrlField from '../_components/ImageUrlField';
+import UrlField from '../_components/UrlField';
 import Repeater from '../_components/Repeater';
 import SaveBar from '../_components/SaveBar';
 
@@ -57,9 +58,9 @@ export default function ExperienceForm({ initial, originalKey }) {
   const editedSinceError =
     errorSnapshot !== null && errorSnapshot !== JSON.stringify(exp);
 
-  const [invalidImages, setInvalidImages] = useState({});
-  const onImageValidity = useCallback((key, isValid) => {
-    setInvalidImages((prev) => {
+  const [invalidFields, setInvalidFields] = useState({});
+  const onFieldValidity = useCallback((key, isValid) => {
+    setInvalidFields((prev) => {
       if (isValid) {
         if (!(key in prev)) return prev;
         const next = { ...prev };
@@ -70,10 +71,10 @@ export default function ExperienceForm({ initial, originalKey }) {
       return { ...prev, [key]: true };
     });
   }, []);
-  const invalidImageCount = Object.keys(invalidImages).length;
+  const invalidFieldCount = Object.keys(invalidFields).length;
 
   const hasFieldErrors = fieldErrorCount > 0 && !editedSinceError;
-  const saveDisabled = hasFieldErrors || invalidImageCount > 0;
+  const saveDisabled = hasFieldErrors || invalidFieldCount > 0;
 
   const scrollFirstInvalidIntoView = (root) => {
     const target =
@@ -114,7 +115,14 @@ export default function ExperienceForm({ initial, originalKey }) {
             <TextField label="ID" value={exp.id} onChange={set('id')} error={errAt('id')} required />
             <TextField label="Key (slug)" value={exp.key} onChange={set('key')} error={errAt('key')} required />
             <TextField label="Company" value={exp.company} onChange={set('company')} error={errAt('company')} required />
-            <TextField label="Company URL" value={exp.companyURL ?? ''} onChange={(v) => set('companyURL')(v === '' ? null : v)} error={errAt('companyURL')} />
+            <UrlField
+              label="Company URL"
+              value={exp.companyURL ?? ''}
+              onChange={(v) => set('companyURL')(v === '' ? null : v)}
+              error={errAt('companyURL')}
+              validityKey="companyURL"
+              onValidityChange={onFieldValidity}
+            />
             <TextField label="Role" value={exp.role} onChange={set('role')} error={errAt('role')} required />
             <TextField label="Location" value={exp.location ?? ''} onChange={(v) => set('location')(v === '' ? null : v)} error={errAt('location')} />
             <TextField label="Employment type" value={exp.employmentType ?? ''} onChange={(v) => set('employmentType')(v === '' ? null : v)} error={errAt('employmentType')} />
@@ -125,7 +133,7 @@ export default function ExperienceForm({ initial, originalKey }) {
             onChange={(v) => set('logo')(v === '' ? null : v)}
             error={errAt('logo')}
             validityKey="logo"
-            onValidityChange={onImageValidity}
+            onValidityChange={onFieldValidity}
           />
         </FieldGroup>
 
