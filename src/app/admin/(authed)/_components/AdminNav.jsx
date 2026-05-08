@@ -43,7 +43,7 @@ export default function AdminNav({ logoutAction }) {
 
   return (
     <>
-      <div className="hidden sm:flex items-center gap-2">
+      <div className="hidden md:flex items-center gap-2">
         <nav className="flex items-center gap-1">
           {NAV_ITEMS.map((item) => (
             <NavLink
@@ -65,7 +65,7 @@ export default function AdminNav({ logoutAction }) {
         </form>
       </div>
 
-      <div className="relative sm:hidden">
+      <div className="relative md:hidden">
         <button
           type="button"
           className="p-2 rounded-md hover:bg-white/10 text-white"
@@ -95,7 +95,7 @@ export default function AdminNav({ logoutAction }) {
         <AnimatePresence>
           {hamburgerOpen && (
             <motion.div
-              className="absolute top-full right-0 w-44 bg-black/95 text-white shadow-2xl backdrop-blur-md z-40 p-2 mt-1 rounded-xl border border-white/10 overflow-hidden"
+              className="absolute top-full right-0 w-44 bg-black/95 text-white shadow-2xl backdrop-blur-md z-40 p-3 mt-1 rounded-xl border border-white/10 overflow-hidden"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
