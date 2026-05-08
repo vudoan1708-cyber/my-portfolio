@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useState } from 'react';
+import { useActionState, useCallback, useEffect, useState } from 'react';
 import { saveExperienceAction } from './actions';
 import {
   CheckboxField,
@@ -8,6 +8,7 @@ import {
   TextField,
   TextareaField,
 } from '../_components/Field';
+import ImageUrlField from '../_components/ImageUrlField';
 import Repeater from '../_components/Repeater';
 import SaveBar from '../_components/SaveBar';
 
@@ -41,8 +42,69 @@ export default function ExperienceForm({ initial, originalKey }) {
   const errAt = (path) => state.fieldErrors?.[path];
   const set = (field) => (value) => setExp((p) => ({ ...p, [field]: value }));
 
+  const fieldErrorCount = state.fieldErrors
+    ? Object.keys(state.fieldErrors).length
+    : 0;
+  const [errorSnapshot, setErrorSnapshot] = useState(null);
+  useEffect(() => {
+    if (fieldErrorCount > 0) {
+      setErrorSnapshot(JSON.stringify(exp));
+    } else {
+      setErrorSnapshot(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
+  const editedSinceError =
+    errorSnapshot !== null && errorSnapshot !== JSON.stringify(exp);
+
+  const [invalidImages, setInvalidImages] = useState({});
+  const onImageValidity = useCallback((key, isValid) => {
+    setInvalidImages((prev) => {
+      if (isValid) {
+        if (!(key in prev)) return prev;
+        const next = { ...prev };
+        delete next[key];
+        return next;
+      }
+      if (prev[key]) return prev;
+      return { ...prev, [key]: true };
+    });
+  }, []);
+  const invalidImageCount = Object.keys(invalidImages).length;
+
+  const hasFieldErrors = fieldErrorCount > 0 && !editedSinceError;
+  const saveDisabled = hasFieldErrors || invalidImageCount > 0;
+
+  const scrollFirstInvalidIntoView = (root) => {
+    const target =
+      (root ?? document).querySelector('[aria-invalid="true"]') ??
+      (root ?? document).querySelector(
+        '[aria-invalid="true"], input:invalid, select:invalid, textarea:invalid',
+      );
+    if (target && typeof target.scrollIntoView === 'function') {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (typeof target.focus === 'function') {
+        target.focus({ preventScroll: true });
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (fieldErrorCount > 0) {
+      requestAnimationFrame(() => scrollFirstInvalidIntoView());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
+
+  const onSubmit = (e) => {
+    if (saveDisabled) {
+      e.preventDefault();
+      scrollFirstInvalidIntoView(e.currentTarget);
+    }
+  };
+
   return (
-    <form action={formAction}>
+    <form action={formAction} onSubmit={onSubmit}>
       <input type="hidden" name="originalKey" value={originalKey ?? ''} />
       <input type="hidden" name="payload" value={JSON.stringify(exp)} />
 
@@ -56,8 +118,15 @@ export default function ExperienceForm({ initial, originalKey }) {
             <TextField label="Role" value={exp.role} onChange={set('role')} error={errAt('role')} required />
             <TextField label="Location" value={exp.location ?? ''} onChange={(v) => set('location')(v === '' ? null : v)} error={errAt('location')} />
             <TextField label="Employment type" value={exp.employmentType ?? ''} onChange={(v) => set('employmentType')(v === '' ? null : v)} error={errAt('employmentType')} />
-            <TextField label="Logo path" value={exp.logo ?? ''} onChange={(v) => set('logo')(v === '' ? null : v)} error={errAt('logo')} />
           </div>
+          <ImageUrlField
+            label="Logo path"
+            value={exp.logo ?? ''}
+            onChange={(v) => set('logo')(v === '' ? null : v)}
+            error={errAt('logo')}
+            validityKey="logo"
+            onValidityChange={onImageValidity}
+          />
         </FieldGroup>
 
         <FieldGroup title="Dates">

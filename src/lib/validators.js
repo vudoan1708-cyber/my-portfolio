@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { isTrustedAssetPath } from './assets';
+
 const FORBIDDEN_HTML_PATTERNS = [
   /<script\b/i,
   /<iframe\b/i,
@@ -51,11 +53,19 @@ const relativeOrAbsoluteUrl = z
     { message: 'Must be an http(s) URL or a path starting with /.' },
   );
 
+const safeImagePath = z
+  .string()
+  .min(1)
+  .refine(isTrustedAssetPath, {
+    message:
+      'Image must be a path starting with / (not /admin, /api, /portfolio) or a URL on the trusted assets host.',
+  });
+
 const techRef = z.object({
   id: slug,
   name: z.string().min(1).max(80),
   link: url.optional().or(z.literal('').transform(() => undefined)),
-  img: relativeOrAbsoluteUrl.optional().or(z.literal('').transform(() => undefined)),
+  img: safeImagePath.optional().or(z.literal('').transform(() => undefined)),
 });
 
 const linkBlock = z
@@ -78,7 +88,7 @@ const linkBlock = z
 
 const galleryItem = z.object({
   alt: z.string().min(1).max(200),
-  img: relativeOrAbsoluteUrl,
+  img: safeImagePath,
 });
 
 const videoItem = z
@@ -87,7 +97,7 @@ const videoItem = z
     source: z.string().optional(),
     link: relativeOrAbsoluteUrl.optional(),
     src: relativeOrAbsoluteUrl.optional(),
-    poster: relativeOrAbsoluteUrl.optional(),
+    poster: safeImagePath.optional(),
   })
   .refine((v) => Boolean(v.link || v.src), {
     message: 'video must have a link or src.',
@@ -97,8 +107,8 @@ export const projectSchema = z.object({
   id: z.union([z.number().int(), z.string().min(1)]),
   key: slug,
   title: z.string().min(1).max(120),
-  img: relativeOrAbsoluteUrl,
-  'img-lg': relativeOrAbsoluteUrl.optional().nullable(),
+  img: safeImagePath,
+  'img-lg': safeImagePath.optional().nullable(),
   link: z.string().startsWith('/portfolio/'),
   startDate: z.string().min(1),
   endDate: z.string().nullable().optional(),
@@ -120,7 +130,7 @@ export const projectSchema = z.object({
 export const projectCollectionSchema = z.object({
   key: collectionKey,
   label: z.string().min(1).max(60),
-  img: relativeOrAbsoluteUrl,
+  img: safeImagePath,
   description: z.string().min(1).max(500),
 });
 
@@ -140,7 +150,7 @@ export const experienceSchema = z.object({
   startDate: z.string().min(1),
   endDate: z.string().nullable().optional(),
   current: z.boolean().optional(),
-  logo: relativeOrAbsoluteUrl.optional().nullable(),
+  logo: safeImagePath.optional().nullable(),
   summary: safeHtml.optional().nullable(),
   technologies: z.array(techRef).default([]),
   relatedProjectKeys: z.array(slug).default([]),
@@ -154,7 +164,7 @@ export const trackSchema = z.object({
   id: z.union([z.number().int(), z.string().min(1)]),
   key: slug,
   title: z.string().min(1).max(120),
-  img: relativeOrAbsoluteUrl,
+  img: safeImagePath,
   src: relativeOrAbsoluteUrl,
   dateModified: z.string().optional().nullable(),
   description: z.array(safeHtml).default([]),

@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useMemo, useState } from 'react';
+import { useActionState, useCallback, useEffect, useMemo, useState } from 'react';
 import { saveProjectAction } from './actions';
 import {
   CheckboxField,
@@ -9,6 +9,7 @@ import {
   TextField,
   TextareaField,
 } from '../_components/Field';
+import ImageUrlField from '../_components/ImageUrlField';
 import Repeater from '../_components/Repeater';
 import SaveBar from '../_components/SaveBar';
 
@@ -67,6 +68,56 @@ export default function ProjectForm({
   const set = (field) => (value) =>
     setProject((p) => ({ ...p, [field]: value }));
 
+  const fieldErrorCount = state.fieldErrors
+    ? Object.keys(state.fieldErrors).length
+    : 0;
+  const [errorSnapshot, setErrorSnapshot] = useState(null);
+  useEffect(() => {
+    if (fieldErrorCount > 0) {
+      setErrorSnapshot(JSON.stringify(project));
+    } else {
+      setErrorSnapshot(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
+  const editedSinceError =
+    errorSnapshot !== null && errorSnapshot !== JSON.stringify(project);
+
+  const [invalidImages, setInvalidImages] = useState({});
+  const onImageValidity = useCallback((key, isValid) => {
+    setInvalidImages((prev) => {
+      if (isValid) {
+        if (!(key in prev)) return prev;
+        const next = { ...prev };
+        delete next[key];
+        return next;
+      }
+      if (prev[key]) return prev;
+      return { ...prev, [key]: true };
+    });
+  }, []);
+  const invalidImageCount = Object.keys(invalidImages).length;
+
+  const hasFieldErrors = fieldErrorCount > 0 && !editedSinceError;
+  const saveDisabled = hasFieldErrors || invalidImageCount > 0;
+
+  const scrollFirstInvalidIntoView = (root) => {
+    const target = (root ?? document).querySelector('[aria-invalid="true"]');
+    if (target && typeof target.scrollIntoView === 'function') {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (typeof target.focus === 'function') {
+        target.focus({ preventScroll: true });
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (fieldErrorCount > 0) {
+      requestAnimationFrame(() => scrollFirstInvalidIntoView());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
+
   const collectionOptions = useMemo(
     () =>
       collections.map((c) => ({ value: c.key, label: `${c.label} (${c.key})` })),
@@ -86,8 +137,15 @@ export default function ProjectForm({
     }));
   };
 
+  const onSubmit = (e) => {
+    if (saveDisabled) {
+      e.preventDefault();
+      scrollFirstInvalidIntoView(e.currentTarget);
+    }
+  };
+
   return (
-    <form action={formAction}>
+    <form action={formAction} onSubmit={onSubmit}>
       <input type="hidden" name="originalCollection" value={originalCollection ?? ''} />
       <input type="hidden" name="originalKey" value={originalKey ?? ''} />
       <input type="hidden" name="payload" value={JSON.stringify(project)} />
@@ -143,19 +201,23 @@ export default function ProjectForm({
         </FieldGroup>
 
         <FieldGroup title="Cover image">
-          <TextField
-            label="Image path (relative to assets base or absolute)"
+          <ImageUrlField
+            label="Thumbnail image (cover)"
             value={project.img}
             onChange={set('img')}
             error={errAt('img')}
             placeholder="/projects/foo/cover.webp"
             required
+            validityKey="img"
+            onValidityChange={onImageValidity}
           />
-          <TextField
+          <ImageUrlField
             label="Larger preview image (optional)"
             value={project['img-lg'] ?? ''}
             onChange={set('img-lg')}
             error={errAt('img-lg')}
+            validityKey="img-lg"
+            onValidityChange={onImageValidity}
           />
         </FieldGroup>
 
@@ -258,9 +320,9 @@ export default function ProjectForm({
             newItem={newGallery}
             itemLabel="Image"
             renderItem={(g, update, idx) => (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="space-y-3">
                 <TextField label="Alt text" value={g.alt} onChange={(v) => update({ ...g, alt: v })} error={errAt(`gallery.${idx}.alt`)} />
-                <TextField label="Image path" value={g.img} onChange={(v) => update({ ...g, img: v })} error={errAt(`gallery.${idx}.img`)} />
+                <ImageUrlField label="Image path" value={g.img} onChange={(v) => update({ ...g, img: v })} error={errAt(`gallery.${idx}.img`)} validityKey={`gallery.${idx}.img`} onValidityChange={onImageValidity} />
               </div>
             )}
           />

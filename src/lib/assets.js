@@ -1,8 +1,21 @@
 const FALLBACK_BASE = 'https://vudoan1708-cyber.github.io/logos/portfolio';
+const RESERVED_PATH_PREFIXES = ['/admin', '/api', '/portfolio'];
 
 function getBase() {
   const base = process.env.ASSETS_BASE_URL || FALLBACK_BASE;
   return base.endsWith('/') ? base.slice(0, -1) : base;
+}
+
+export function isTrustedAssetPath(value) {
+  if (typeof value !== 'string' || value.length === 0) return false;
+  if (value.startsWith('data:')) return false;
+  if (value.startsWith('/')) {
+    return !RESERVED_PATH_PREFIXES.some(
+      (p) => value === p || value.startsWith(`${p}/`),
+    );
+  }
+  const base = getBase();
+  return value === base || value.startsWith(`${base}/`);
 }
 
 export function resolveAsset(value) {
