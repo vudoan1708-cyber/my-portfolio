@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import AnimatedHeader from '@/components/AnimatedHeader';
 import PortfolioCollections from '../../PortfolioCollections';
-import { getProjects, getExperiences } from '@/lib/cms';
+import { getProjects, getExperiences, getTechRegistry } from '@/lib/cms';
 
 function buildTechIndex(projects, experiences) {
   const map = new Map();
@@ -59,10 +59,8 @@ export async function generateMetadata({ params }) {
 export default async function SkillsPage({ params }) {
   const { slugs } = await params;
   const ids = parseSlugs(slugs);
-  const [{ projects, projectCollections }, experiences] = await Promise.all([
-    getProjects(),
-    getExperiences(),
-  ]);
+  const [{ projects, projectCollections }, experiences, techRegistry] =
+    await Promise.all([getProjects(), getExperiences(), getTechRegistry()]);
   const techIndex = buildTechIndex(projects, experiences);
   const validIds = ids.filter((id) => techIndex.has(id));
 
@@ -75,6 +73,7 @@ export default async function SkillsPage({ params }) {
         projects={projects}
         projectCollections={projectCollections}
         experiences={experiences}
+        techRegistry={techRegistry}
       />
     </>
   );

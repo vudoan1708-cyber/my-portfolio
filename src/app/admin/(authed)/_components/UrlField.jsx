@@ -5,23 +5,31 @@ import { useEffect, useState } from 'react';
 const HTTP_REGEX = /^https?:\/\/\S+$/i;
 const DEBOUNCE_MS = 300;
 
-function classify(raw) {
+function classify(raw, kind) {
   const value = (raw ?? '').trim();
   if (!value) return 'empty';
-  if (!HTTP_REGEX.test(value)) return 'invalid';
+  if (kind === 'pathOrHttp') {
+    if (value.startsWith('/')) return 'valid';
+    if (!HTTP_REGEX.test(value)) return 'invalid';
+  } else {
+    if (!HTTP_REGEX.test(value)) return 'invalid';
+  }
   try {
-    new URL(value);
+    new URL(value, 'http://placeholder.local');
     return 'valid';
   } catch {
     return 'invalid';
   }
 }
 
-function StatusLine({ status }) {
+function StatusLine({ status, kind }) {
   if (status === 'invalid') {
     return (
       <span className="block text-[11px] text-rose-300/80 mt-1.5">
-        ✗ Must be an http(s) URL.
+        ✗{' '}
+        {kind === 'pathOrHttp'
+          ? 'Must be an http(s) URL or a path starting with /.'
+          : 'Must be an http(s) URL.'}
       </span>
     );
   }
@@ -44,6 +52,7 @@ export default function UrlField({
   placeholder = 'https://example.com',
   validityKey,
   onValidityChange,
+  kind = 'http',
 }) {
   const [debounced, setDebounced] = useState((value ?? '').trim());
   const [status, setStatus] = useState('idle');
@@ -57,8 +66,8 @@ export default function UrlField({
   }, [value]);
 
   useEffect(() => {
-    setStatus(classify(debounced));
-  }, [debounced]);
+    setStatus(classify(debounced, kind));
+  }, [debounced, kind]);
 
   const isInvalid = status === 'invalid';
 
@@ -92,7 +101,7 @@ export default function UrlField({
             : 'ring-white/10 focus:ring-rose-400'
         }`}
       />
-      <StatusLine status={status} />
+      <StatusLine status={status} kind={kind} />
       {error ? (
         <span className="block text-xs text-rose-300 mt-1.5" role="alert">
           {error}

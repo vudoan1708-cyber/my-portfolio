@@ -58,7 +58,7 @@ export default function ProjectDetail({ project }) {
           <p>
             {block.links.map((item, idx) => (
               <span key={item.link}>
-                <a target="_blank" href={item.link} rel="noreferrer">
+                <a target="_blank" href={item.link} rel="noopener noreferrer">
                   {item.label}
                 </a>
                 {idx === block.links.length - 1 ? '' : ' + '}
@@ -66,7 +66,7 @@ export default function ProjectDetail({ project }) {
             ))}
           </p>
         ) : (
-          <a target="_blank" href={block.link} rel="noreferrer">
+          <a target="_blank" href={block.link} rel="noopener noreferrer">
             {block.label}
           </a>
         )}
@@ -107,7 +107,7 @@ export default function ProjectDetail({ project }) {
                 className="block w-12"
                 target="_blank"
                 href={tech.link}
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 data-tooltip-id={tech.id}
                 data-tooltip-content={tech.name}
                 whileHover={{ scale: 1.1, opacity: 0.9 }}
@@ -135,7 +135,7 @@ export default function ProjectDetail({ project }) {
                 className={`block w-12 ${api.tailwindCssClass ?? ''}`}
                 target="_blank"
                 href={api.link}
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 data-tooltip-id={api.id}
                 data-tooltip-content={api.name}
                 whileHover={{ scale: 1.1, opacity: 0.9 }}

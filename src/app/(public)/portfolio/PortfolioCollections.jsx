@@ -14,42 +14,43 @@ function buildAllProjects(projects) {
   );
 }
 
-function buildTechIndex(allProjects, experiences) {
+const CATEGORY_ORDER = ['fullstack', 'frontend', 'backend', 'tooling', 'design'];
+
+function categoryRank(category) {
+  const i = CATEGORY_ORDER.indexOf(category);
+  return i === -1 ? CATEGORY_ORDER.length : i;
+}
+
+function buildTechIndex(allProjects, experiences, techRegistry) {
+  const registryById = new Map((techRegistry ?? []).map((t) => [t.id, t]));
   const byId = new Map();
-  const upsert = (tech, collectionKey) => {
+  const upsert = (tech) => {
     const existing = byId.get(tech.id);
     if (existing) {
       existing.count += 1;
-      existing.collections.add(collectionKey);
-    } else {
-      byId.set(tech.id, {
-        id: tech.id,
-        name: tech.name,
-        img: tech.img,
-        count: 1,
-        collections: new Set([collectionKey]),
-      });
+      return;
     }
+    byId.set(tech.id, {
+      id: tech.id,
+      name: tech.name,
+      img: tech.img,
+      count: 1,
+      category: registryById.get(tech.id)?.category ?? 'tooling',
+    });
   };
   for (const project of allProjects) {
     for (const tech of project.technologies || []) {
-      upsert(tech, project.collectionKey);
+      upsert(tech);
     }
   }
   for (const exp of experiences) {
     for (const tech of exp.technologies || []) {
-      upsert(tech, 'experience');
+      upsert(tech);
     }
   }
-  const items = Array.from(byId.values()).map((t) => ({
-    ...t,
-    category:
-      t.collections.size === 1 && t.collections.has('designs')
-        ? 'design'
-        : 'tech',
-  }));
-  return items.sort((a, b) => {
-    if (a.category !== b.category) return a.category === 'tech' ? -1 : 1;
+  return Array.from(byId.values()).sort((a, b) => {
+    const rankDiff = categoryRank(a.category) - categoryRank(b.category);
+    if (rankDiff !== 0) return rankDiff;
     if (b.count !== a.count) return b.count - a.count;
     return a.name.localeCompare(b.name);
   });
@@ -73,13 +74,14 @@ export default function PortfolioCollections({
   projects,
   projectCollections,
   experiences,
+  techRegistry,
 }) {
   const pathname = usePathname();
   const sectionRef = useRef(null);
   const allProjects = useMemo(() => buildAllProjects(projects), [projects]);
   const techList = useMemo(
-    () => buildTechIndex(allProjects, experiences),
-    [allProjects, experiences],
+    () => buildTechIndex(allProjects, experiences, techRegistry),
+    [allProjects, experiences, techRegistry],
   );
   const enrichedExperiences = useMemo(() => {
     const byKey = new Map(allProjects.map((p) => [p.key, p]));

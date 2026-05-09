@@ -8,12 +8,14 @@ import projectsSnapshot from '@/data/projects.json';
 import experiencesSnapshot from '@/data/experiences.json';
 import musicSnapshot from '@/data/music.json';
 import techRegistrySnapshot from '@/data/tech-registry.json';
+import resumeSnapshot from '@/data/resume.json';
 
 export const COLLECTION_KEYS = [
   'projects',
   'experiences',
   'music',
   'tech-registry',
+  'resume',
 ];
 
 const SNAPSHOTS = {
@@ -21,6 +23,7 @@ const SNAPSHOTS = {
   experiences: experiencesSnapshot,
   music: musicSnapshot,
   'tech-registry': techRegistrySnapshot,
+  resume: resumeSnapshot,
 };
 
 const TAGS = {
@@ -28,6 +31,7 @@ const TAGS = {
   experiences: 'cms:experiences',
   music: 'cms:music',
   'tech-registry': 'cms:tech-registry',
+  resume: 'cms:resume',
 };
 
 function getRedisCredentials() {
@@ -83,6 +87,11 @@ const taggedReaders = {
     ['cms-read', 'tech-registry'],
     { tags: ['cms', TAGS['tech-registry']], revalidate: 60 },
   ),
+  resume: unstable_cache(
+    async () => readRaw('resume'),
+    ['cms-read', 'resume'],
+    { tags: ['cms', TAGS.resume], revalidate: 60 },
+  ),
 };
 
 function ensureKey(key) {
@@ -114,6 +123,10 @@ export async function getTracks(options) {
 export async function getTechRegistry(options) {
   const data = await getCollection('tech-registry', options);
   return data?.items ?? [];
+}
+
+export async function getResume(options) {
+  return getCollection('resume', options);
 }
 
 export async function getCollectionForAdmin(key) {

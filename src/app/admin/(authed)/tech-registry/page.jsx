@@ -80,6 +80,7 @@ export default async function TechRegistryListPage({ searchParams }) {
                 </Link>
                 <p className="text-xs text-white/45 truncate">
                   {it.id} · {it.type}
+                  {it.category ? ` · ${it.category}` : ''}
                 </p>
               </div>
               <DeleteTechButton techId={it.id} />

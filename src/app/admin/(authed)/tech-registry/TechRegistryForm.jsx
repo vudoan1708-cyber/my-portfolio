@@ -17,12 +17,21 @@ const EMPTY_ITEM = {
   link: '',
   img: '',
   type: 'tech',
+  category: 'frontend',
   tailwindCssClass: '',
 };
 
 const TYPE_OPTIONS = [
   { value: 'tech', label: 'Tech (technology / language / library)' },
   { value: 'api', label: 'API (third-party API or platform)' },
+];
+
+const CATEGORY_OPTIONS = [
+  { value: 'fullstack', label: 'Full-stack' },
+  { value: 'frontend', label: 'Frontend' },
+  { value: 'backend', label: 'Backend' },
+  { value: 'tooling', label: 'Tooling' },
+  { value: 'design', label: 'Design' },
 ];
 
 export default function TechRegistryForm({ initial, originalId }) {
@@ -100,6 +109,7 @@ export default function TechRegistryForm({ initial, originalId }) {
   const submitPayload = {
     ...item,
     tailwindCssClass: item.tailwindCssClass?.trim() || null,
+    ...(item.type === 'api' ? { category: undefined } : {}),
   };
 
   return (
@@ -131,6 +141,15 @@ export default function TechRegistryForm({ initial, originalId }) {
               onChange={set('type')}
               options={TYPE_OPTIONS}
             />
+            {item.type === 'tech' ? (
+              <SelectField
+                label="Category"
+                value={item.category ?? 'frontend'}
+                onChange={set('category')}
+                options={CATEGORY_OPTIONS}
+                error={errAt('category')}
+              />
+            ) : null}
             <TextField
               label="Tailwind class for icon background (optional)"
               value={item.tailwindCssClass ?? ''}

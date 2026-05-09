@@ -1,14 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+
+import NavLink from '@/components/NavLink';
 
 const NAV_ITEMS = [
   { href: '/admin', label: 'Overview' },
   { href: '/admin/projects', label: 'Projects' },
   { href: '/admin/experiences', label: 'Experiences' },
+  { href: '/admin/resume', label: 'Resume' },
   { href: '/admin/tech-registry', label: 'Tech registry' },
   { href: '/admin/music', label: 'Music' },
 ];
@@ -16,21 +18,6 @@ const NAV_ITEMS = [
 function isActive(pathname, href) {
   if (href === '/admin') return pathname === '/admin';
   return pathname === href || pathname.startsWith(`${href}/`);
-}
-
-function NavLink({ href, children, active }) {
-  return (
-    <Link
-      href={href}
-      className={`block px-3 py-1.5 rounded-md text-sm transition-colors ${
-        active
-          ? 'text-white bg-white/10'
-          : 'text-white/75 hover:text-white hover:bg-white/5'
-      }`}
-    >
-      {children}
-    </Link>
-  );
 }
 
 export default function AdminNav({ logoutAction }) {
@@ -50,6 +37,7 @@ export default function AdminNav({ logoutAction }) {
               key={item.href}
               href={item.href}
               active={isActive(pathname, item.href)}
+              compact
             >
               {item.label}
             </NavLink>
@@ -107,6 +95,7 @@ export default function AdminNav({ logoutAction }) {
                     <NavLink
                       href={item.href}
                       active={isActive(pathname, item.href)}
+                      compact
                     >
                       {item.label}
                     </NavLink>

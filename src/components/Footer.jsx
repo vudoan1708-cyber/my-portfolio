@@ -113,7 +113,7 @@ export default function Footer() {
                   key={s.label}
                   href={s.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
                   whileHover={{ scale: 1.08, opacity: 0.9 }}
                   transition={{ type: 'spring', stiffness: 300 }}

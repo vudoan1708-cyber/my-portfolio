@@ -160,14 +160,106 @@ export const experiencesDocSchema = z.object({
   experiences: z.array(experienceSchema),
 });
 
-export const techRegistryItemSchema = z.object({
-  id: slug,
-  name: z.string().min(1).max(80),
-  link: url,
-  img: safeImagePath,
-  type: z.enum(['tech', 'api']),
-  tailwindCssClass: z.string().max(120).optional().nullable(),
+const pathOrHttpUrl = z
+  .string()
+  .min(1)
+  .refine(
+    (s) => /^https?:\/\//i.test(s) || s.startsWith('/'),
+    { message: 'Must be an http(s) URL or a path starting with /.' },
+  );
+
+const linkLabel = z.object({
+  label: z.string().min(1).max(120),
+  url: url,
 });
+
+const profileSchema = z.object({
+  name: z.string().min(1).max(120),
+  role: z.string().min(1).max(120),
+  company: z.object({
+    name: z.string().min(1).max(120),
+    url: url,
+  }),
+  location: z.string().min(1).max(120),
+  email: z.email(),
+  phone: z.string().min(1).max(40),
+  github: linkLabel,
+  linkedin: linkLabel,
+  portfolio: linkLabel,
+});
+
+const resumeExperienceSchema = z.object({
+  key: slug,
+  role: z.string().min(1).max(120),
+  company: z.string().min(1).max(120),
+  companyURL: url.optional().nullable(),
+  location: z.string().max(120).optional().nullable(),
+  employmentType: z.string().max(80).optional().nullable(),
+  startDate: z.string().min(1),
+  endDate: z.string().nullable().optional(),
+  current: z.boolean().optional(),
+  summary: z.string().max(500).optional().nullable(),
+  bullets: z.array(z.string().min(1)).default([]),
+  technologies: z.array(z.string().min(1)).default([]),
+  relatedProjectsLabel: z.string().max(60).optional().nullable(),
+  relatedProjects: z
+    .array(
+      z.object({
+        title: z.string().min(1).max(120),
+        link: pathOrHttpUrl,
+      }),
+    )
+    .default([]),
+});
+
+const resumeEducationSchema = z.object({
+  degree: z.string().min(1).max(160),
+  institution: z.string().min(1).max(160),
+  startDate: z.string().min(1),
+  endDate: z.string().optional().nullable(),
+  notes: z.string().max(500).optional().nullable(),
+});
+
+const skillGroupSchema = z.object({
+  group: z.string().min(1).max(60),
+  items: z.array(z.string().min(1).max(60)).default([]),
+});
+
+export const resumeSchema = z.object({
+  profile: profileSchema,
+  experiences: z.array(resumeExperienceSchema).default([]),
+  education: z.array(resumeEducationSchema).default([]),
+  skills: z.array(skillGroupSchema).default([]),
+  languages: z.array(z.string().min(1).max(60)).default([]),
+});
+
+export const TECH_CATEGORIES = [
+  'fullstack',
+  'frontend',
+  'backend',
+  'tooling',
+  'design',
+];
+
+export const techRegistryItemSchema = z
+  .object({
+    id: slug,
+    name: z.string().min(1).max(80),
+    link: url,
+    img: safeImagePath,
+    type: z.enum(['tech', 'api']),
+    category: z.enum(TECH_CATEGORIES).optional(),
+    tailwindCssClass: z.string().max(120).optional().nullable(),
+  })
+  .superRefine((value, ctx) => {
+    if (value.type === 'tech' && !value.category) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['category'],
+        message: 'Category is required for tech entries.',
+      });
+    }
+  });
 
 export const techRegistryDocSchema = z.object({
   items: z.array(techRegistryItemSchema).default([]),

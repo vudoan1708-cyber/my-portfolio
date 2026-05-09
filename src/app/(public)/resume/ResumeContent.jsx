@@ -45,141 +45,6 @@ function absUrl(path) {
   return `${SITE_ORIGIN}${path.startsWith('/') ? '' : '/'}${path}`;
 }
 
-const PROFILE = {
-  name: 'Vu Doan',
-  role: 'Software Engineer',
-  company: { name: 'Voly', url: 'https://www.volygroup.com/' },
-  location: 'Leeds, UK',
-  email: 'vutd1708@gmail.com',
-  phone: '+44 7877 854 757',
-  github: {
-    label: 'github.com/vudoan1708-cyber',
-    url: 'https://github.com/vudoan1708-cyber',
-  },
-  linkedin: {
-    label: 'linkedin.com/in/vu-doan',
-    url: 'https://www.linkedin.com/in/vu-doan-812490154/',
-  },
-  portfolio: {
-    label: 'vudoan.vercel.app',
-    url: 'https://vudoan.vercel.app',
-  },
-};
-
-const EXPERIENCES = [
-  {
-    key: 'voly',
-    role: 'Software Engineer',
-    company: 'Voly',
-    companyURL: 'https://www.volygroup.com/',
-    location: 'Cheadle Hulme, UK',
-    employmentType: 'Full-time',
-    startDate: 'Aug 2021',
-    endDate: null,
-    current: true,
-    summary:
-      'UK fintech building financial management software for the superyacht industry.',
-    bullets: [
-      'Build and maintain the production frontend — component library, internal tooling, bug-fixes, and feature delivery against real deadlines.',
-      'Develop internal developer-experience tools used across the engineering team: a VSCode extension, a Storybook addon, and a Bitbucket Forge app.',
-      'Adopted Claude Code as an AI development agent to accelerate debugging and code generation across the codebase.',
-    ],
-    technologies: ['React', 'Svelte', 'TypeScript', 'Storybook', 'Vite', 'Jest'],
-    relatedProjectsLabel: 'Side projects',
-    relatedProjects: [
-      { title: 'volyfequickdev', link: '/portfolio/utilities/volyfequickdev' },
-      { title: 'interaction-2-test', link: '/portfolio/utilities/i2t' },
-      {
-        title: 'voly-fe-auto-deploy',
-        link: '/portfolio/utilities/voly-fe-auto-deploy',
-      },
-    ],
-  },
-  {
-    key: 'muserfly',
-    role: 'Full-stack Developer',
-    company: 'Muserfly · Final-year project',
-    location: 'Bristol, UK',
-    employmentType: 'University final project',
-    startDate: 'Oct 2020',
-    endDate: 'May 2021',
-    summary:
-      'A streaming app that prioritises mood as the primary discovery surface, using a map-based interaction pattern as a speculative alternative to list-based song selection.',
-    bullets: [
-      'Built the Vue 3 frontend and Node.js backend, integrating the Spotify API for search and audio streaming.',
-      'Designed and implemented the mood-driven map UI end-to-end.',
-    ],
-    technologies: ['Vue 3', 'Node.js', 'Spotify API'],
-    relatedProjectsLabel: 'Project',
-    relatedProjects: [
-      { title: 'Muserfly', link: '/portfolio/web-apps/muserfly' },
-    ],
-  },
-  {
-    key: 'cerberus',
-    role: 'Backend Developer · Internship',
-    company: 'Cerberus Security Laboratories',
-    location: 'UK',
-    employmentType: 'Internship',
-    startDate: 'Nov 2020',
-    endDate: 'Apr 2021',
-    summary:
-      'Group internship project: a screen-based interface for A&E wristbands managed by the Cerberus team.',
-    bullets: [
-      'Built server architecture and inter-service communication in Go and GraphQL.',
-      'Wrote a Python dummy-data generator to support API and smoke testing.',
-    ],
-    technologies: ['Go', 'GraphQL', 'Python'],
-    relatedProjectsLabel: 'Project',
-    relatedProjects: [
-      { title: 'Cerberus A&E Wristbands', link: '/portfolio/web-apps/cerberus' },
-    ],
-  },
-];
-
-const EDUCATION = [
-  {
-    degree: 'BSc Digital Media',
-    institution: 'University of the West of England, Bristol',
-    startDate: 'Oct 2018',
-    endDate: 'May 2021',
-    notes:
-      'Design (Adobe Creative Suite), 3D modelling and animation (Maya, Blender, ZBrush), creative coding (p5.js), and web development.',
-  },
-  {
-    degree: 'IT (Networking)',
-    institution: 'Ho Chi Minh City International University',
-    startDate: 'Sep 2016',
-    endDate: 'Apr 2018',
-    notes:
-      'UK connecting programme. Foundations in C, C++, Assembly, networking, and Arduino.',
-  },
-];
-
-const SKILLS = {
-  Frontend: [
-    'React',
-    'Svelte / SvelteKit',
-    'Next.js',
-    'TypeScript',
-    'Tailwind CSS',
-    'Framer Motion',
-  ],
-  Backend: ['Node.js', 'Go', 'GraphQL', 'Python', 'REST APIs'],
-  Tooling: [
-    'Storybook',
-    'Vite',
-    'Jest',
-    'Git',
-    'Bitbucket Forge',
-    'VSCode extensions',
-    'Claude Code',
-  ],
-  Design: ['Figma', 'Adobe Creative Suite', 'Blender'],
-};
-
-const LANGUAGES = ['English (fluent)', 'Vietnamese (native)'];
-
 function formatRange(start, end, current) {
   const tail = current ? 'Present' : end || 'Present';
   return start ? `${start} — ${tail}` : tail;
@@ -209,7 +74,7 @@ function RelatedProjects({ projects, label = 'Related work' }) {
         {label}
       </span>
       {projects.map((p, i) => (
-        <span key={p.link} className="inline-flex items-center gap-3">
+        <span key={`${p.link}-${i}`} className="inline-flex items-center gap-3">
           <Link
             href={absUrl(p.link)}
             className="text-rose-300 hover:text-rose-200 resume-accent underline-offset-4 hover:underline transition-colors"
@@ -260,47 +125,60 @@ function ContactItem({ icon: Icon, mark: Mark, href, external, children }) {
   );
 }
 
-function ContactList() {
+function ContactList({ profile }) {
   return (
     <section>
       <SectionLabel>Contact</SectionLabel>
       <ul className="space-y-1.5 text-[13px] text-white/80 leading-snug">
-        <ContactItem icon={MapPin}>{PROFILE.location}</ContactItem>
-        <ContactItem icon={Mail} href={`mailto:${PROFILE.email}`}>
-          {PROFILE.email}
-        </ContactItem>
-        <ContactItem
-          icon={Phone}
-          href={`tel:${PROFILE.phone.replace(/\s/g, '')}`}
-        >
-          {PROFILE.phone}
-        </ContactItem>
-        <ContactItem icon={Globe} href={PROFILE.portfolio.url} external>
-          {PROFILE.portfolio.label}
-        </ContactItem>
-        <ContactItem mark={GithubMark} href={PROFILE.github.url} external>
-          {PROFILE.github.label}
-        </ContactItem>
-        <ContactItem mark={LinkedinMark} href={PROFILE.linkedin.url} external>
-          {PROFILE.linkedin.label}
-        </ContactItem>
+        {profile.location ? (
+          <ContactItem icon={MapPin}>{profile.location}</ContactItem>
+        ) : null}
+        {profile.email ? (
+          <ContactItem icon={Mail} href={`mailto:${profile.email}`}>
+            {profile.email}
+          </ContactItem>
+        ) : null}
+        {profile.phone ? (
+          <ContactItem
+            icon={Phone}
+            href={`tel:${profile.phone.replace(/\s/g, '')}`}
+          >
+            {profile.phone}
+          </ContactItem>
+        ) : null}
+        {profile.portfolio?.url ? (
+          <ContactItem icon={Globe} href={profile.portfolio.url} external>
+            {profile.portfolio.label || profile.portfolio.url}
+          </ContactItem>
+        ) : null}
+        {profile.github?.url ? (
+          <ContactItem mark={GithubMark} href={profile.github.url} external>
+            {profile.github.label || profile.github.url}
+          </ContactItem>
+        ) : null}
+        {profile.linkedin?.url ? (
+          <ContactItem mark={LinkedinMark} href={profile.linkedin.url} external>
+            {profile.linkedin.label || profile.linkedin.url}
+          </ContactItem>
+        ) : null}
       </ul>
     </section>
   );
 }
 
-function SkillsBlock() {
+function SkillsBlock({ skills }) {
+  if (!skills || skills.length === 0) return null;
   return (
     <section>
       <SectionLabel>Skills</SectionLabel>
       <div className="space-y-2.5">
-        {Object.entries(SKILLS).map(([group, items]) => (
+        {skills.map(({ group, items }) => (
           <div key={group}>
             <p className="text-[10px] uppercase tracking-[0.2em] text-white/45 mb-1">
               {group}
             </p>
             <div className="flex flex-wrap gap-1">
-              {items.map((s) => (
+              {(items ?? []).map((s) => (
                 <Chip key={s}>{s}</Chip>
               ))}
             </div>
@@ -311,12 +189,13 @@ function SkillsBlock() {
   );
 }
 
-function LanguagesBlock() {
+function LanguagesBlock({ languages }) {
+  if (!languages || languages.length === 0) return null;
   return (
     <section>
       <SectionLabel>Languages</SectionLabel>
       <div className="flex flex-wrap gap-1">
-        {LANGUAGES.map((l) => (
+        {languages.map((l) => (
           <Chip key={l}>{l}</Chip>
         ))}
       </div>
@@ -407,32 +286,40 @@ function EducationEntry({ edu }) {
   );
 }
 
-export default function ResumeContent() {
+export default function ResumeContent({ data, hideHeader = false }) {
+  const profile = data?.profile ?? {};
+  const experiences = data?.experiences ?? [];
+  const education = data?.education ?? [];
+  const skills = data?.skills ?? [];
+  const languages = data?.languages ?? [];
+
   const handlePrint = () => window.print();
 
   return (
     <div className="resume-print-root max-w-5xl mx-auto px-4 sm:px-8 py-20">
-      <div className="print-hide flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-3">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-rose-300/70">CV</p>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-1">
-            Resume
-          </h1>
+      {hideHeader ? null : (
+        <div className="print-hide flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-3">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-rose-300/70">CV</p>
+            <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-1">
+              Resume
+            </h1>
+          </div>
+          <div className="flex flex-col items-end gap-1">
+            <button
+              type="button"
+              onClick={handlePrint}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-rose-500 hover:bg-rose-400 text-white font-medium transition"
+            >
+              <Printer className="w-4 h-4" aria-hidden="true" />
+              Print / Save as PDF
+            </button>
+            <p className="text-[11px] text-white/40">
+              Tip — uncheck “Headers and footers” in the print dialog for a clean PDF.
+            </p>
+          </div>
         </div>
-        <div className="flex flex-col items-end gap-1">
-          <button
-            type="button"
-            onClick={handlePrint}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-rose-500 hover:bg-rose-400 text-white font-medium transition"
-          >
-            <Printer className="w-4 h-4" aria-hidden="true" />
-            Print / Save as PDF
-          </button>
-          <p className="text-[11px] text-white/40">
-            Tip — uncheck “Headers and footers” in the print dialog for a clean PDF.
-          </p>
-        </div>
-      </div>
+      )}
 
       <motion.article
         initial={{ opacity: 0, y: 12 }}
@@ -442,19 +329,29 @@ export default function ResumeContent() {
       >
         <header className="mb-3 pb-3 border-b border-white/10 flex flex-wrap items-baseline gap-x-4 gap-y-1">
           <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            {PROFILE.name}
+            {profile.name}
           </h2>
           <p className="text-sm text-white/70">
-            {PROFILE.role}
-            <span className="text-white/40"> · </span>
-            <a
-              href={PROFILE.company.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-rose-300 hover:text-rose-200 resume-accent transition-colors"
-            >
-              {PROFILE.company.name}
-            </a>
+            {profile.role}
+            {profile.company?.name ? (
+              <>
+                <span className="text-white/40"> · </span>
+                {profile.company.url ? (
+                  <a
+                    href={profile.company.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-rose-300 hover:text-rose-200 resume-accent transition-colors"
+                  >
+                    {profile.company.name}
+                  </a>
+                ) : (
+                  <span className="text-rose-300 resume-accent">
+                    {profile.company.name}
+                  </span>
+                )}
+              </>
+            ) : null}
           </p>
         </header>
 
@@ -463,7 +360,7 @@ export default function ResumeContent() {
             <section>
               <SectionLabel>Experience</SectionLabel>
               <div className="space-y-4">
-                {EXPERIENCES.map((exp) => (
+                {experiences.map((exp) => (
                   <ExperienceEntry key={exp.key} exp={exp} />
                 ))}
               </div>
@@ -472,7 +369,7 @@ export default function ResumeContent() {
             <section>
               <SectionLabel>Education</SectionLabel>
               <div className="space-y-3">
-                {EDUCATION.map((edu, idx) => (
+                {education.map((edu, idx) => (
                   <EducationEntry key={idx} edu={edu} />
                 ))}
               </div>
@@ -480,9 +377,9 @@ export default function ResumeContent() {
           </main>
 
           <aside className="sm:col-start-1 sm:row-start-1 space-y-5 min-w-0">
-            <ContactList />
-            <SkillsBlock />
-            <LanguagesBlock />
+            <ContactList profile={profile} />
+            <SkillsBlock skills={skills} />
+            <LanguagesBlock languages={languages} />
           </aside>
         </div>
       </motion.article>

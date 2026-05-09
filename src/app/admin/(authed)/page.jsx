@@ -9,12 +9,15 @@ export const metadata = {
 };
 
 async function counts() {
-  const [projectsDoc, expDoc, musicDoc, techDoc] = await Promise.all([
-    getCollectionForAdmin('projects'),
-    getCollectionForAdmin('experiences'),
-    getCollectionForAdmin('music'),
-    getCollectionForAdmin('tech-registry'),
-  ]);
+  const [projectsDoc, expDoc, musicDoc, techDoc, resumeDoc] = await Promise.all(
+    [
+      getCollectionForAdmin('projects'),
+      getCollectionForAdmin('experiences'),
+      getCollectionForAdmin('music'),
+      getCollectionForAdmin('tech-registry'),
+      getCollectionForAdmin('resume'),
+    ],
+  );
   const projectCount = Object.values(projectsDoc?.projects ?? {}).reduce(
     (sum, list) => sum + (Array.isArray(list) ? list.length : 0),
     0,
@@ -25,6 +28,7 @@ async function counts() {
     experiences: expDoc?.experiences?.length ?? 0,
     tracks: musicDoc?.tracks?.length ?? 0,
     techRegistry: techDoc?.items?.length ?? 0,
+    resumeExperiences: resumeDoc?.experiences?.length ?? 0,
   };
 }
 
@@ -47,6 +51,11 @@ export default async function AdminHome() {
           href="/admin/experiences"
           label="Experiences"
           value={`${c.experiences} entries`}
+        />
+        <Card
+          href="/admin/resume"
+          label="Resume"
+          value={`${c.resumeExperiences} experiences`}
         />
         <Card
           href="/admin/tech-registry"

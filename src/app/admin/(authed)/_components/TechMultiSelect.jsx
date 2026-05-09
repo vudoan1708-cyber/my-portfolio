@@ -23,9 +23,17 @@ import {
 import { Plus, X, Search } from 'lucide-react';
 import { resolveAsset } from '@/lib/assets';
 import { createTechInlineAction } from '../tech-registry/actions';
-import { TextField } from './Field';
+import { SelectField, TextField } from './Field';
 import UrlField from './UrlField';
 import ImageUrlField from './ImageUrlField';
+
+const CATEGORY_OPTIONS = [
+  { value: 'fullstack', label: 'Full-stack' },
+  { value: 'frontend', label: 'Frontend' },
+  { value: 'backend', label: 'Backend' },
+  { value: 'tooling', label: 'Tooling' },
+  { value: 'design', label: 'Design' },
+];
 
 function TechIcon({ item, size: dimSize = 'md' }) {
   const dim = dimSize === 'sm' ? 'w-5 h-5' : 'w-7 h-7';
@@ -71,6 +79,7 @@ function emptyDraft(type) {
     link: '',
     img: '',
     type,
+    category: type === 'tech' ? 'frontend' : undefined,
     tailwindCssClass: '',
   };
 }
@@ -101,6 +110,7 @@ function CreateInline({ type, presetName, onCancel, onCreated }) {
     ...draft,
     type,
     tailwindCssClass: draft.tailwindCssClass?.trim() || null,
+    ...(type === 'api' ? { category: undefined } : {}),
   };
 
   return (
@@ -139,6 +149,15 @@ function CreateInline({ type, presetName, onCancel, onCreated }) {
         placeholder="/projects/techs/foo.svg"
         required
       />
+      {type === 'tech' ? (
+        <SelectField
+          label="Category"
+          value={draft.category ?? 'frontend'}
+          onChange={set('category')}
+          options={CATEGORY_OPTIONS}
+          error={errAt('category')}
+        />
+      ) : null}
       {type === 'api' ? (
         <TextField
           label="Tailwind class for icon background (optional)"

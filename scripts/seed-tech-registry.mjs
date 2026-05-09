@@ -22,6 +22,15 @@ async function readJson(name) {
   return JSON.parse(await fs.readFile(path.join(DATA_DIR, name), 'utf-8'));
 }
 
+async function readJsonIfExists(name) {
+  try {
+    return await readJson(name);
+  } catch (err) {
+    if (err.code === 'ENOENT') return null;
+    throw err;
+  }
+}
+
 function collectFromProjects(doc, byId) {
   const collections = doc?.projects ?? {};
   for (const list of Object.values(collections)) {
@@ -76,14 +85,26 @@ function addEntry(byId, raw, type) {
   byId.set(raw.id, merged);
 }
 
-const [projectsDoc, experiencesDoc] = await Promise.all([
+const [projectsDoc, experiencesDoc, existingDoc] = await Promise.all([
   readJson('projects.json'),
   readJson('experiences.json'),
+  readJsonIfExists('tech-registry.json'),
 ]);
+
+const existingById = new Map(
+  (existingDoc?.items ?? []).map((it) => [it.id, it]),
+);
 
 const byId = new Map();
 collectFromProjects(projectsDoc, byId);
 collectFromExperiences(experiencesDoc, byId);
+
+for (const [id, item] of byId) {
+  const prior = existingById.get(id);
+  if (prior?.category && item.type === 'tech') {
+    byId.set(id, { ...item, category: prior.category });
+  }
+}
 
 const items = Array.from(byId.values()).sort((a, b) =>
   a.id.localeCompare(b.id),

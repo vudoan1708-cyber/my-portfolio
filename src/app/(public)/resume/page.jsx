@@ -1,3 +1,4 @@
+import { getResume } from '@/lib/cms';
 import ResumeContent from './ResumeContent';
 
 export const metadata = {
@@ -7,6 +8,7 @@ export const metadata = {
   alternates: { canonical: '/resume' },
 };
 
-export default function ResumePage() {
-  return <ResumeContent />;
+export default async function ResumePage() {
+  const data = await getResume();
+  return <ResumeContent data={data} />;
 }

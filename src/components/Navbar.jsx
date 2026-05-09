@@ -101,10 +101,10 @@ export default function Navbar() {
               exit={{ height: 0, opacity: 0 }}
               transition={{ type: 'tween', duration: 0.25 }}
             >
-              <ul className="flex flex-col items-start gap-3 divide-y divide-white/10">
-                <NavItem to="/portfolio" label="Portfolio" />
-                <NavItem to="/music" label="Music" />
-                <NavItem to="/resume" label="Resume" />
+              <ul className="flex flex-col gap-1">
+                <NavItem to="/portfolio" label="Portfolio" compact />
+                <NavItem to="/music" label="Music" compact />
+                <NavItem to="/resume" label="Resume" compact />
               </ul>
             </motion.div>
           )}

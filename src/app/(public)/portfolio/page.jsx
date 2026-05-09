@@ -1,6 +1,6 @@
 import AnimatedHeader from '@/components/AnimatedHeader';
 import PortfolioCollections from './PortfolioCollections';
-import { getProjects, getExperiences } from '@/lib/cms';
+import { getProjects, getExperiences, getTechRegistry } from '@/lib/cms';
 
 export const metadata = {
   title: 'Portfolio',
@@ -10,10 +10,8 @@ export const metadata = {
 };
 
 export default async function PortfolioPage() {
-  const [{ projects, projectCollections }, experiences] = await Promise.all([
-    getProjects(),
-    getExperiences(),
-  ]);
+  const [{ projects, projectCollections }, experiences, techRegistry] =
+    await Promise.all([getProjects(), getExperiences(), getTechRegistry()]);
   return (
     <>
       <AnimatedHeader />
@@ -21,6 +19,7 @@ export default async function PortfolioPage() {
         projects={projects}
         projectCollections={projectCollections}
         experiences={experiences}
+        techRegistry={techRegistry}
       />
     </>
   );
