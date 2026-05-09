@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useCallback, useEffect, useState } from 'react';
+import { useActionState, useCallback, useEffect, useMemo, useState } from 'react';
 import { saveExperienceAction } from './actions';
 import {
   CheckboxField,
@@ -15,6 +15,8 @@ import SaveBar from '../_components/SaveBar';
 import TechMultiSelect from '../_components/TechMultiSelect';
 import LivePreview from '../_components/LivePreview';
 import PreviewLayout from '../_components/PreviewLayout';
+import useFormDraft from '../_components/useFormDraft';
+import DraftRestoreBanner from '../_components/DraftRestoreBanner';
 
 const EMPTY_EXP = {
   id: '',
@@ -38,7 +40,23 @@ export default function ExperienceForm({ initial, originalKey, techRegistry = []
     error: null,
     fieldErrors: null,
   });
-  const [exp, setExp] = useState(() => ({ ...EMPTY_EXP, ...(initial ?? {}) }));
+  const initialState = useMemo(
+    () => ({ ...EMPTY_EXP, ...(initial ?? {}) }),
+    [initial],
+  );
+  const [exp, setExp] = useState(initialState);
+  const [initialJson] = useState(() => JSON.stringify(initialState));
+  const draftKey = `experience:${originalKey ?? 'new'}`;
+  const { restoredAt, clear: clearDraft } = useFormDraft({
+    key: draftKey,
+    value: exp,
+    initialJson,
+    onRestore: setExp,
+  });
+  const discardDraft = () => {
+    setExp(initialState);
+    clearDraft();
+  };
   const errAt = (path) => state.fieldErrors?.[path];
   const set = (field) => (value) => setExp((p) => ({ ...p, [field]: value }));
 
@@ -100,13 +118,17 @@ export default function ExperienceForm({ initial, originalKey, techRegistry = []
     if (saveDisabled) {
       e.preventDefault();
       scrollFirstInvalidIntoView(e.currentTarget);
+      return;
     }
+    clearDraft();
   };
 
   return (
     <form action={formAction} onSubmit={onSubmit}>
       <input type="hidden" name="originalKey" value={originalKey ?? ''} />
       <input type="hidden" name="payload" value={JSON.stringify(exp)} />
+
+      <DraftRestoreBanner restoredAt={restoredAt} onDiscard={discardDraft} />
 
       <PreviewLayout preview={<LivePreview kind="experience" data={exp} />}>
         <div className="space-y-6">

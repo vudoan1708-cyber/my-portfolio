@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useCallback, useEffect, useState } from 'react';
+import { useActionState, useCallback, useEffect, useMemo, useState } from 'react';
 import { saveResumeAction } from './actions';
 import {
   CheckboxField,
@@ -13,6 +13,8 @@ import Repeater from '../_components/Repeater';
 import SaveBar from '../_components/SaveBar';
 import LivePreview from '../_components/LivePreview';
 import PreviewLayout from '../_components/PreviewLayout';
+import useFormDraft from '../_components/useFormDraft';
+import DraftRestoreBanner from '../_components/DraftRestoreBanner';
 
 const EMPTY_RESUME = {
   profile: {
@@ -71,7 +73,19 @@ export default function ResumeForm({ initial }) {
     error: null,
     fieldErrors: null,
   });
-  const [resume, setResume] = useState(() => mergeWithDefaults(initial));
+  const initialState = useMemo(() => mergeWithDefaults(initial), [initial]);
+  const [resume, setResume] = useState(initialState);
+  const [initialJson] = useState(() => JSON.stringify(initialState));
+  const { restoredAt, clear: clearDraft } = useFormDraft({
+    key: 'resume',
+    value: resume,
+    initialJson,
+    onRestore: setResume,
+  });
+  const discardDraft = () => {
+    setResume(initialState);
+    clearDraft();
+  };
 
   const errAt = (path) => state.fieldErrors?.[path];
 
@@ -146,12 +160,16 @@ export default function ResumeForm({ initial }) {
     if (saveDisabled) {
       e.preventDefault();
       scrollFirstInvalidIntoView(e.currentTarget);
+      return;
     }
+    clearDraft();
   };
 
   return (
     <form action={formAction} onSubmit={onSubmit}>
       <input type="hidden" name="payload" value={JSON.stringify(resume)} />
+
+      <DraftRestoreBanner restoredAt={restoredAt} onDiscard={discardDraft} />
 
       <PreviewLayout preview={<LivePreview kind="resume" data={resume} />}>
         <div className="space-y-6">

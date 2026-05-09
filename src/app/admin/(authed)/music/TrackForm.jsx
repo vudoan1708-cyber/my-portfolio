@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useCallback, useEffect, useState } from 'react';
+import { useActionState, useCallback, useEffect, useMemo, useState } from 'react';
 import { saveTrackAction } from './actions';
 import {
   FieldGroup,
@@ -10,6 +10,8 @@ import {
 import ImageUrlField from '../_components/ImageUrlField';
 import Repeater from '../_components/Repeater';
 import SaveBar from '../_components/SaveBar';
+import useFormDraft from '../_components/useFormDraft';
+import DraftRestoreBanner from '../_components/DraftRestoreBanner';
 
 const EMPTY_TRACK = {
   id: '',
@@ -26,7 +28,23 @@ export default function TrackForm({ initial, originalKey }) {
     error: null,
     fieldErrors: null,
   });
-  const [track, setTrack] = useState(() => ({ ...EMPTY_TRACK, ...(initial ?? {}) }));
+  const initialState = useMemo(
+    () => ({ ...EMPTY_TRACK, ...(initial ?? {}) }),
+    [initial],
+  );
+  const [track, setTrack] = useState(initialState);
+  const [initialJson] = useState(() => JSON.stringify(initialState));
+  const draftKey = `music:${originalKey ?? 'new'}`;
+  const { restoredAt, clear: clearDraft } = useFormDraft({
+    key: draftKey,
+    value: track,
+    initialJson,
+    onRestore: setTrack,
+  });
+  const discardDraft = () => {
+    setTrack(initialState);
+    clearDraft();
+  };
   const errAt = (path) => state.fieldErrors?.[path];
   const set = (field) => (value) => setTrack((p) => ({ ...p, [field]: value }));
 
@@ -84,13 +102,17 @@ export default function TrackForm({ initial, originalKey }) {
     if (saveDisabled) {
       e.preventDefault();
       scrollFirstInvalidIntoView(e.currentTarget);
+      return;
     }
+    clearDraft();
   };
 
   return (
     <form action={formAction} onSubmit={onSubmit}>
       <input type="hidden" name="originalKey" value={originalKey ?? ''} />
       <input type="hidden" name="payload" value={JSON.stringify(track)} />
+
+      <DraftRestoreBanner restoredAt={restoredAt} onDiscard={discardDraft} />
 
       <div className="space-y-6">
         <FieldGroup title="Identity">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useCallback, useEffect, useState } from 'react';
+import { useActionState, useCallback, useEffect, useMemo, useState } from 'react';
 import { saveTechAction } from './actions';
 import {
   FieldGroup,
@@ -10,6 +10,8 @@ import {
 import ImageUrlField from '../_components/ImageUrlField';
 import UrlField from '../_components/UrlField';
 import SaveBar from '../_components/SaveBar';
+import useFormDraft from '../_components/useFormDraft';
+import DraftRestoreBanner from '../_components/DraftRestoreBanner';
 
 const EMPTY_ITEM = {
   id: '',
@@ -39,11 +41,27 @@ export default function TechRegistryForm({ initial, originalId }) {
     error: null,
     fieldErrors: null,
   });
-  const [item, setItem] = useState(() => ({
-    ...EMPTY_ITEM,
-    ...(initial ?? {}),
-    tailwindCssClass: initial?.tailwindCssClass ?? '',
-  }));
+  const initialState = useMemo(
+    () => ({
+      ...EMPTY_ITEM,
+      ...(initial ?? {}),
+      tailwindCssClass: initial?.tailwindCssClass ?? '',
+    }),
+    [initial],
+  );
+  const [item, setItem] = useState(initialState);
+  const [initialJson] = useState(() => JSON.stringify(initialState));
+  const draftKey = `tech-registry:${originalId ?? 'new'}`;
+  const { restoredAt, clear: clearDraft } = useFormDraft({
+    key: draftKey,
+    value: item,
+    initialJson,
+    onRestore: setItem,
+  });
+  const discardDraft = () => {
+    setItem(initialState);
+    clearDraft();
+  };
 
   const errAt = (path) => state.fieldErrors?.[path];
   const set = (field) => (value) =>
@@ -103,7 +121,9 @@ export default function TechRegistryForm({ initial, originalId }) {
     if (saveDisabled) {
       e.preventDefault();
       scrollFirstInvalidIntoView(e.currentTarget);
+      return;
     }
+    clearDraft();
   };
 
   const submitPayload = {
@@ -116,6 +136,8 @@ export default function TechRegistryForm({ initial, originalId }) {
     <form action={formAction} onSubmit={onSubmit}>
       <input type="hidden" name="originalId" value={originalId ?? ''} />
       <input type="hidden" name="payload" value={JSON.stringify(submitPayload)} />
+
+      <DraftRestoreBanner restoredAt={restoredAt} onDiscard={discardDraft} />
 
       <div className="space-y-6">
         <FieldGroup title="Identity">

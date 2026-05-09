@@ -95,12 +95,18 @@ const videoItem = z
   .object({
     title: z.string().optional(),
     source: z.string().optional(),
-    link: relativeOrAbsoluteUrl.optional(),
-    src: relativeOrAbsoluteUrl.optional(),
-    poster: safeImagePath.optional(),
+    link: relativeOrAbsoluteUrl
+      .optional()
+      .or(z.literal('').transform(() => undefined)),
+    src: relativeOrAbsoluteUrl
+      .optional()
+      .or(z.literal('').transform(() => undefined)),
+    poster: safeImagePath
+      .optional()
+      .or(z.literal('').transform(() => undefined)),
   })
   .refine((v) => Boolean(v.link || v.src), {
-    message: 'video must have a link or src.',
+    message: 'Video must have a Link or Source path.',
   });
 
 export const projectSchema = z.object({
