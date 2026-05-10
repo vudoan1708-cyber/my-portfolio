@@ -17,6 +17,49 @@ function findProject(projects, collection, projectKey) {
   return (projects[collection] || []).find((p) => p.key === projectKey);
 }
 
+function buildRelatedProjects(projects, current, currentCollection, { limit = 8 } = {}) {
+  const currentIds = new Set();
+  for (const t of current.technologies || []) currentIds.add(t.id);
+  for (const a of current.apis || []) currentIds.add(a.id);
+  if (currentIds.size === 0) return [];
+
+  const related = [];
+  for (const [collectionKey, list] of Object.entries(projects)) {
+    for (const project of list) {
+      if (collectionKey === currentCollection && project.key === current.key) continue;
+      const sharedById = new Map();
+      for (const t of project.technologies || []) {
+        if (currentIds.has(t.id) && !sharedById.has(t.id)) sharedById.set(t.id, t);
+      }
+      for (const a of project.apis || []) {
+        if (currentIds.has(a.id) && !sharedById.has(a.id)) sharedById.set(a.id, a);
+      }
+      if (sharedById.size === 0) continue;
+      const sharedTechs = Array.from(sharedById.values()).map((t) => ({
+        id: t.id,
+        name: t.name,
+        img: t.img,
+      }));
+      related.push({
+        uid: `${collectionKey}/${project.key}`,
+        title: project.title,
+        img: project.img,
+        link: project.link,
+        startDate: project.startDate,
+        sharedTechs,
+        sharedCount: sharedTechs.length,
+      });
+    }
+  }
+
+  related.sort((a, b) => {
+    if (b.sharedCount !== a.sharedCount) return b.sharedCount - a.sharedCount;
+    return new Date(b.startDate) - new Date(a.startDate);
+  });
+
+  return related.slice(0, limit);
+}
+
 function stripHtml(html) {
   return String(html || '')
     .replace(/<br\s*\/?>/gi, ' ')
@@ -60,6 +103,7 @@ export default async function ProjectDetailPage({ params }) {
   const project = findProject(projects, collection, projectKey);
   if (!project) notFound();
 
+  const relatedProjects = buildRelatedProjects(projects, project, collection);
   const description = stripHtml(project.description?.[0]);
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -79,7 +123,7 @@ export default async function ProjectDetailPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ProjectDetail project={project} />
+      <ProjectDetail project={project} relatedProjects={relatedProjects} />
     </>
   );
 }

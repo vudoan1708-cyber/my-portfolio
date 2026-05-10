@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 import { Tooltip } from 'react-tooltip';
 
 import ProjectImageGallery from './ProjectImageGallery';
+import RelatedProjects from './RelatedProjects';
 import VideoDisplay from './VideoDisplay';
 
-export default function ProjectDetail({ project }) {
+export default function ProjectDetail({ project, relatedProjects = [] }) {
   if (!project) {
     return (
       <div className="min-h-screen flex items-center justify-center text-gray-300">
@@ -253,6 +254,8 @@ export default function ProjectDetail({ project }) {
           </div>
         </div>
       )}
+
+      <RelatedProjects related={relatedProjects} />
     </article>
   );
 }
