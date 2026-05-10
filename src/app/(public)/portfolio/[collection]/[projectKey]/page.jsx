@@ -39,6 +39,7 @@ function buildRelatedProjects(projects, current, currentCollection, { limit = 8 
         id: t.id,
         name: t.name,
         img: t.img,
+        tailwindCssClass: t.tailwindCssClass ?? null,
       }));
       related.push({
         uid: `${collectionKey}/${project.key}`,

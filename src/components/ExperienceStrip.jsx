@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
+import TechBadge from './TechBadge';
+
 function formatDateRange(startDate, endDate, current) {
   const end = current ? 'Present' : endDate || 'Present';
   if (!startDate) return end;
@@ -99,32 +101,18 @@ export default function ExperienceStrip({
 
                 {exp.technologies && exp.technologies.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mt-4">
-                    {exp.technologies.map((tech) => {
-                      const active = selected && selected.has(tech.id);
-                      return (
-                        <span
-                          key={tech.id}
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium ring-1 ${
-                            active
-                              ? 'bg-rose-500/20 text-rose-100 ring-rose-400/50'
-                              : 'bg-white/5 text-white/75 ring-white/10'
-                          }`}
-                        >
-                          {tech.img ? (
-                            <span className="relative w-3.5 h-3.5 rounded-sm overflow-hidden bg-white/10">
-                              <Image
-                                src={tech.img}
-                                alt=""
-                                fill
-                                sizes="14px"
-                                className="object-contain"
-                              />
-                            </span>
-                          ) : null}
-                          <span>{tech.name}</span>
-                        </span>
-                      );
-                    })}
+                    {exp.technologies.map((tech) => (
+                      <TechBadge
+                        key={tech.id}
+                        tech={tech}
+                        size="sm"
+                        variant={
+                          selected && selected.has(tech.id)
+                            ? 'activeSoft'
+                            : 'default'
+                        }
+                      />
+                    ))}
                   </div>
                 )}
 

@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
+import TechBadge from './TechBadge';
+
 export default function RelatedProjects({ related }) {
   if (!related?.length) return null;
 
@@ -60,21 +62,18 @@ export default function RelatedProjects({ related }) {
                     {p.title}
                   </h3>
                   {p.sharedTechs?.length > 0 ? (
-                    <div className="flex flex-row flex-wrap items-center gap-2">
-                      {p.sharedTechs.slice(0, 5).map((tech) => (
-                        <img
+                    <div className="flex flex-row flex-wrap items-center gap-1.5">
+                      {p.sharedTechs.slice(0, 4).map((tech) => (
+                        <TechBadge
                           key={tech.id}
-                          src={tech.img}
-                          alt={tech.name}
-                          title={tech.name}
-                          className="w-5 h-5 object-contain"
-                          loading="lazy"
-                          decoding="async"
+                          tech={tech}
+                          size="sm"
+                          className="backdrop-blur-sm"
                         />
                       ))}
-                      {p.sharedTechs.length > 5 ? (
-                        <span className="text-[10px] text-white/70">
-                          +{p.sharedTechs.length - 5}
+                      {p.sharedTechs.length > 4 ? (
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-medium text-white/60">
+                          +{p.sharedTechs.length - 4}
                         </span>
                       ) : null}
                     </div>

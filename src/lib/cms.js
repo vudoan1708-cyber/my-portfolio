@@ -106,13 +106,52 @@ export async function getCollection(key, { resolveAssets = true } = {}) {
   return resolveAssets ? resolveAssetsDeep(raw) : raw;
 }
 
+function overlayRegistryFields(arr, registryById) {
+  if (!Array.isArray(arr) || arr.length === 0) return arr;
+  return arr.map((item) => {
+    if (!item || typeof item.id !== 'string') return item;
+    const reg = registryById.get(item.id);
+    if (!reg) return item;
+    const cls = reg.tailwindCssClass ?? item.tailwindCssClass ?? null;
+    if ((item.tailwindCssClass ?? null) === cls) return item;
+    return { ...item, tailwindCssClass: cls };
+  });
+}
+
+function buildRegistryById(registryItems) {
+  return new Map((registryItems ?? []).map((t) => [t.id, t]));
+}
+
 export async function getProjects(options) {
-  return getCollection('projects', options);
+  const [data, registryItems] = await Promise.all([
+    getCollection('projects', options),
+    getTechRegistry(options),
+  ]);
+  if (!data?.projects) return data;
+  const registryById = buildRegistryById(registryItems);
+  const nextProjects = {};
+  for (const [collectionKey, list] of Object.entries(data.projects)) {
+    nextProjects[collectionKey] = (list || []).map((p) => ({
+      ...p,
+      technologies: overlayRegistryFields(p.technologies, registryById),
+      apis: overlayRegistryFields(p.apis, registryById),
+    }));
+  }
+  return { ...data, projects: nextProjects };
 }
 
 export async function getExperiences(options) {
-  const data = await getCollection('experiences', options);
-  return data?.experiences ?? [];
+  const [data, registryItems] = await Promise.all([
+    getCollection('experiences', options),
+    getTechRegistry(options),
+  ]);
+  const experiences = data?.experiences ?? [];
+  if (experiences.length === 0) return experiences;
+  const registryById = buildRegistryById(registryItems);
+  return experiences.map((e) => ({
+    ...e,
+    technologies: overlayRegistryFields(e.technologies, registryById),
+  }));
 }
 
 export async function getTracks(options) {

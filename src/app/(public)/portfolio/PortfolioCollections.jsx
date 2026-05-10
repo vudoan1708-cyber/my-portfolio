@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import ExperienceStrip from '@/components/ExperienceStrip';
+import TechBadge from '@/components/TechBadge';
 
 function buildAllProjects(projects) {
   return Object.entries(projects).flatMap(([collectionKey, list]) =>
@@ -34,6 +35,7 @@ function buildTechIndex(allProjects, experiences, techRegistry) {
       id: tech.id,
       name: tech.name,
       img: tech.img,
+      tailwindCssClass: tech.tailwindCssClass ?? null,
       count: 1,
       category: registryById.get(tech.id)?.category ?? 'tooling',
     });
@@ -177,33 +179,17 @@ export default function PortfolioCollections({
           {techList.map((tech) => {
             const active = selected.has(tech.id);
             return (
-              <button
+              <TechBadge
                 key={tech.id}
+                tech={tech}
+                size="md"
+                variant={active ? 'activeSolid' : 'default'}
+                count={tech.count}
+                interactive
                 type="button"
                 onClick={() => toggle(tech.id)}
                 aria-pressed={active}
-                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ring-1 transition-colors ${
-                  active
-                    ? 'bg-rose-500 text-white ring-rose-400'
-                    : 'bg-white/5 text-white/80 ring-white/10 hover:bg-white/10 hover:text-white'
-                }`}
-              >
-                {tech.img ? (
-                  <span className="relative w-4 h-4 rounded-sm overflow-hidden bg-white/10">
-                    <Image
-                      src={tech.img}
-                      alt=""
-                      fill
-                      sizes="16px"
-                      className="object-contain"
-                    />
-                  </span>
-                ) : null}
-                <span>{tech.name}</span>
-                <span className={active ? 'text-white/80' : 'text-white/40'}>
-                  {tech.count}
-                </span>
-              </button>
+              />
             );
           })}
         </div>

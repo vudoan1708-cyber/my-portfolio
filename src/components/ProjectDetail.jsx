@@ -105,7 +105,7 @@ export default function ProjectDetail({ project, relatedProjects = [] }) {
           {project.technologies.map((tech) => (
             <div key={tech.id}>
               <motion.a
-                className="block w-12"
+                className={`block w-12 ${tech.tailwindCssClass ?? ''}`}
                 target="_blank"
                 href={tech.link}
                 rel="noopener noreferrer"
