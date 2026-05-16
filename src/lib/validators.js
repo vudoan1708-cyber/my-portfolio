@@ -186,9 +186,13 @@ const profileSchema = z.object({
     name: z.string().min(1).max(120),
     url: url,
   }),
-  location: z.string().min(1).max(120),
-  email: z.email(),
-  phone: z.string().min(1).max(40),
+  location: z.string().max(120).optional().nullable(),
+  email: z
+    .email()
+    .optional()
+    .nullable()
+    .or(z.literal('').transform(() => null)),
+  phone: z.string().max(40).optional().nullable(),
   github: linkLabel,
   linkedin: linkLabel,
   portfolio: linkLabel,

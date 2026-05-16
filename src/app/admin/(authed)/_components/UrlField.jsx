@@ -89,7 +89,7 @@ export default function UrlField({
         {label}
       </span>
       <input
-        type="url"
+        type={kind === 'pathOrHttp' ? 'text' : 'url'}
         value={value ?? ''}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}

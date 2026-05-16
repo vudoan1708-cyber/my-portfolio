@@ -210,7 +210,6 @@ export default function ResumeForm({ initial }) {
                 value={resume.profile.location}
                 onChange={setProfile('location')}
                 error={errAt('profile.location')}
-                required
               />
               <TextField
                 label="Email"
@@ -218,14 +217,12 @@ export default function ResumeForm({ initial }) {
                 value={resume.profile.email}
                 onChange={setProfile('email')}
                 error={errAt('profile.email')}
-                required
               />
               <TextField
                 label="Phone"
                 value={resume.profile.phone}
                 onChange={setProfile('phone')}
                 error={errAt('profile.phone')}
-                required
               />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
