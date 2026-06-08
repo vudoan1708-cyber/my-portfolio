@@ -5,17 +5,17 @@ import { getProjects, getExperiences, getTechRegistry } from '@/lib/cms';
 
 function buildTechIndex(projects, experiences) {
   const map = new Map();
+  const upsert = (t) => {
+    if (!t || typeof t.id !== 'string' || map.has(t.id)) return;
+    map.set(t.id, { name: t.name, img: t.img ?? null });
+  };
   for (const list of Object.values(projects)) {
     for (const p of list) {
-      for (const t of p.technologies || []) {
-        if (!map.has(t.id)) map.set(t.id, t.name);
-      }
+      for (const t of p.technologies || []) upsert(t);
     }
   }
   for (const exp of experiences) {
-    for (const t of exp.technologies || []) {
-      if (!map.has(t.id)) map.set(t.id, t.name);
-    }
+    for (const t of exp.technologies || []) upsert(t);
   }
   return map;
 }
@@ -35,14 +35,19 @@ export async function generateMetadata({ params }) {
     getExperiences(),
   ]);
   const techIndex = buildTechIndex(projects, experiences);
-  const validNames = ids
-    .filter((id) => techIndex.has(id))
-    .map((id) => techIndex.get(id));
+  const validIds = ids.filter((id) => techIndex.has(id));
+  const validNames = validIds.map((id) => techIndex.get(id).name);
 
   if (validNames.length === 0) return {};
 
   const list = validNames.join(', ');
-  const canonical = `/portfolio/skills/${ids.filter((id) => techIndex.has(id)).join(',')}`;
+  const canonical = `/portfolio/skills/${validIds.join(',')}`;
+
+  // The crawler/social preview image is the icon of the first filtered tech.
+  const firstIcon = techIndex.get(validIds[0]).img;
+  const images = firstIcon
+    ? [{ url: firstIcon, alt: `${validNames[0]} logo` }]
+    : undefined;
 
   return {
     title: `${list} projects`,
@@ -52,6 +57,7 @@ export async function generateMetadata({ params }) {
       title: `${list} projects · Vu Doan`,
       description: `Projects by Vu Doan filtered by ${list}.`,
       url: canonical,
+      images,
     },
   };
 }
