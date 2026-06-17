@@ -2,6 +2,7 @@
   "profile": {
     "name": "Vu Doan",
     "role": "Software Engineer",
+    "summary": "Resourceful Software Engineer with 5+ years building and maintaining production web applications and developer-experience tooling for a UK fintech. Strong in React, Svelte, TypeScript, and Node.js, with backend experience across Go, GraphQL, and Python. Ships internal developer tools — a VSCode extension, a Storybook addon, and a Bitbucket Forge app — and uses AI agents such as Claude Code to accelerate delivery.",
     "company": {
       "name": "Voly",
       "url": "https://www.volygroup.com/"
@@ -48,27 +49,6 @@
       ]
     },
     {
-      "key": "muserfly",
-      "role": "Full-stack Developer",
-      "company": "Muserfly · Final-year project",
-      "companyURL": null,
-      "location": "Bristol, UK",
-      "employmentType": "University final project",
-      "startDate": "Oct 2020",
-      "endDate": "May 2021",
-      "current": false,
-      "summary": "A streaming app that prioritises mood as the primary discovery surface, using a map-based interaction pattern as a speculative alternative to list-based song selection.",
-      "bullets": [
-        "Built the Vue 3 frontend and Node.js backend, integrating the Spotify API for search and audio streaming.",
-        "Designed and implemented the mood-driven map UI end-to-end."
-      ],
-      "technologies": ["Vue 3", "Node.js", "Spotify API"],
-      "relatedProjectsLabel": "Project",
-      "relatedProjects": [
-        { "title": "Muserfly", "link": "/portfolio/web-apps/muserfly" }
-      ]
-    },
-    {
       "key": "cerberus",
       "role": "Backend Developer · Internship",
       "company": "Cerberus Security Laboratories",
@@ -96,7 +76,7 @@
       "institution": "University of the West of England, Bristol",
       "startDate": "Oct 2018",
       "endDate": "May 2021",
-      "notes": "Design (Adobe Creative Suite), 3D modelling and animation (Maya, Blender, ZBrush), creative coding (p5.js), and web development."
+      "notes": "Acquired proficiency in creative coding, web development (React, Vue, Nodejs...), design software (Adobe Creative Suite), 3D modelling and animation (Maya, Blender, ZBrush)."
     },
     {
       "degree": "IT (Networking)",

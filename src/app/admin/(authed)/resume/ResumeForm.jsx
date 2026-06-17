@@ -20,6 +20,7 @@ const EMPTY_RESUME = {
   profile: {
     name: '',
     role: '',
+    summary: '',
     company: { name: '', url: '' },
     location: '',
     email: '',
@@ -189,6 +190,15 @@ export default function ResumeForm({ initial }) {
                 error={errAt('profile.role')}
                 required
               />
+              <div className="sm:col-span-2">
+                <TextareaField
+                  label="Summary"
+                  value={resume.profile.summary ?? ''}
+                  onChange={setProfile('summary')}
+                  error={errAt('profile.summary')}
+                  rows={3}
+                />
+              </div>
               <TextField
                 label="Current company name"
                 value={resume.profile.company?.name ?? ''}

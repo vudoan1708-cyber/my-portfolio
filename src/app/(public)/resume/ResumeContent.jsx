@@ -52,24 +52,23 @@ function formatRange(start, end, current) {
 
 function SectionLabel({ children }) {
   return (
-    <p className="text-xs uppercase tracking-[0.3em] text-rose-300/70 mb-2 resume-accent">
+    <p className="resume-section-label text-xs uppercase tracking-[0.3em] text-rose-300/70 mb-2 resume-accent">
       {children}
     </p>
   );
 }
 
-function Chip({ children }) {
+function ChipList({ items }) {
+  if (!items || items.length === 0) return null;
   return (
-    <span className="resume-chip inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-white/5 text-white/80 ring-1 ring-white/10">
-      {children}
-    </span>
+    <p className="text-[13px] text-white/80 leading-snug">{items.join(', ')}</p>
   );
 }
 
 function RelatedProjects({ projects, label = 'Related work' }) {
   if (!projects || projects.length === 0) return null;
   return (
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-[13px]">
+    <div className="resume-related flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-[13px]">
       <span className="text-[10px] uppercase tracking-[0.2em] text-white/45">
         {label}
       </span>
@@ -127,9 +126,9 @@ function ContactItem({ icon: Icon, mark: Mark, href, external, children }) {
 
 function ContactList({ profile }) {
   return (
-    <section>
+    <section className="resume-contact-strip -mx-5 px-5 sm:-mx-7 sm:px-7 py-3 bg-rose-500/10 border-y border-rose-400/20">
       <SectionLabel>Contact</SectionLabel>
-      <ul className="space-y-1.5 text-[13px] text-white/80 leading-snug">
+      <ul className="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-2 text-[13px] text-white/80 leading-snug">
         {profile.location ? (
           <ContactItem icon={MapPin}>{profile.location}</ContactItem>
         ) : null}
@@ -166,6 +165,16 @@ function ContactList({ profile }) {
   );
 }
 
+function SummaryBlock({ summary }) {
+  if (!summary) return null;
+  return (
+    <section>
+      <SectionLabel>Summary</SectionLabel>
+      <p className="text-[13px] text-white/80 leading-snug">{summary}</p>
+    </section>
+  );
+}
+
 function SkillsBlock({ skills }) {
   if (!skills || skills.length === 0) return null;
   return (
@@ -177,11 +186,7 @@ function SkillsBlock({ skills }) {
             <p className="text-[10px] uppercase tracking-[0.2em] text-white/45 mb-1">
               {group}
             </p>
-            <div className="flex flex-wrap gap-1">
-              {(items ?? []).map((s) => (
-                <Chip key={s}>{s}</Chip>
-              ))}
-            </div>
+            <ChipList items={items} />
           </div>
         ))}
       </div>
@@ -194,11 +199,7 @@ function LanguagesBlock({ languages }) {
   return (
     <section>
       <SectionLabel>Languages</SectionLabel>
-      <div className="flex flex-wrap gap-1">
-        {languages.map((l) => (
-          <Chip key={l}>{l}</Chip>
-        ))}
-      </div>
+      <ChipList items={languages} />
     </section>
   );
 }
@@ -220,12 +221,6 @@ function ExperienceEntry({ exp }) {
           </a>
         ) : (
           <span className="text-rose-300 resume-accent">{exp.company}</span>
-        )}
-        {exp.current && (
-          <span className="print-hide inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-400/30">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Current
-          </span>
         )}
       </h3>
       <p className="resume-meta text-xs text-white/50 mt-0.5">
@@ -250,13 +245,6 @@ function ExperienceEntry({ exp }) {
             </li>
           ))}
         </ul>
-      )}
-      {exp.technologies && exp.technologies.length > 0 && (
-        <div className="flex flex-wrap gap-1 mt-2">
-          {exp.technologies.map((t) => (
-            <Chip key={t}>{t}</Chip>
-          ))}
-        </div>
       )}
       <RelatedProjects
         projects={exp.relatedProjects}
@@ -293,10 +281,22 @@ export default function ResumeContent({ data, hideHeader = false }) {
   const skills = data?.skills ?? [];
   const languages = data?.languages ?? [];
 
-  const handlePrint = () => window.print();
+  const handlePrint = () => {
+    // Give the saved PDF a descriptive, ATS-friendly filename instead of "Resume".
+    const previousTitle = document.title;
+    document.title = [profile.name, profile.role, 'Resume']
+      .filter(Boolean)
+      .join(' - ');
+    const restore = () => {
+      document.title = previousTitle;
+      window.removeEventListener('afterprint', restore);
+    };
+    window.addEventListener('afterprint', restore);
+    window.print();
+  };
 
   return (
-    <div className="resume-print-root max-w-5xl mx-auto px-4 sm:px-8 py-20">
+    <div className="resume-print-root max-w-3xl mx-auto px-4 sm:px-8 py-20">
       {hideHeader ? null : (
         <div className="print-hide flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-3">
           <div>
@@ -355,10 +355,19 @@ export default function ResumeContent({ data, hideHeader = false }) {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-[240px_1fr] gap-x-7 gap-y-6">
-          <main className="sm:col-start-2 sm:row-start-1 space-y-3 min-w-0">
+        {/* DOM order = visual/print order = ATS reading order: contact,
+            summary, skills, then experience and education. */}
+        <div className="resume-grid flex flex-col gap-6">
+          <aside className="resume-aside space-y-5 min-w-0">
+            <ContactList profile={profile} />
+            <SummaryBlock summary={profile.summary} />
+            <SkillsBlock skills={skills} />
+            <LanguagesBlock languages={languages} />
+          </aside>
+
+          <main className="resume-main space-y-3 min-w-0">
             <section>
-              <SectionLabel>Experience</SectionLabel>
+              <SectionLabel>Professional Experience</SectionLabel>
               <div className="space-y-4">
                 {experiences.map((exp) => (
                   <ExperienceEntry key={exp.key} exp={exp} />
@@ -375,12 +384,6 @@ export default function ResumeContent({ data, hideHeader = false }) {
               </div>
             </section>
           </main>
-
-          <aside className="sm:col-start-1 sm:row-start-1 space-y-5 min-w-0">
-            <ContactList profile={profile} />
-            <SkillsBlock skills={skills} />
-            <LanguagesBlock languages={languages} />
-          </aside>
         </div>
       </motion.article>
     </div>

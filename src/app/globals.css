@@ -91,6 +91,25 @@ a.anchor_highlight {
   .blob-1, .blob-2, .blob-3 { animation: none; }
 }
 
+/* Render the resume card at the same size on screen as in the printed PDF. */
+.resume-print-root { font-size: 11px; line-height: 1.5; }
+.resume-print-root h2 { font-size: 22px; }
+.resume-print-root h3 { font-size: 13px; }
+.resume-print-root p,
+.resume-print-root li,
+.resume-print-root a,
+.resume-print-root span { font-size: 11px; }
+.resume-print-root .resume-section-label { font-size: 12px; }
+.resume-print-root .resume-contact-strip ul { gap: 0.35rem 1.25rem; }
+.resume-print-root .resume-card > header { margin-bottom: 0.7rem; padding-bottom: 0.6rem; }
+.resume-print-root .resume-grid { gap: 0.7rem; }
+.resume-print-root .resume-main > * + * { margin-top: 0.8rem !important; }
+.resume-print-root .resume-aside > * + * { margin-top: 0.9rem !important; }
+.resume-print-root .resume-entry + .resume-entry { margin-top: 0.7rem !important; }
+.resume-print-root .resume-main ul { margin-top: 0.3rem; }
+.resume-print-root .resume-main ul li + li { margin-top: 0.25rem !important; }
+.resume-print-root li { line-height: 1.45; }
+
 @media print {
   @page {
     size: A4;
@@ -162,11 +181,7 @@ a.anchor_highlight {
     text-decoration: none;
   }
 
-  .resume-print-root .resume-chip {
-    background: #f3f4f6 !important;
-    border: 1px solid #e5e7eb !important;
-    color: #111 !important;
-  }
+  .resume-print-root { padding: 9mm !important; }
 
   .resume-print-root .resume-meta {
     color: #6b7280 !important;
@@ -175,5 +190,28 @@ a.anchor_highlight {
   .resume-print-root .resume-entry {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  /* Full-bleed themed contact strip: negative margins cancel the 9mm page
+     padding so the band reaches both page edges, then re-pad to align text.
+     All values rose so "Leeds, UK" matches the links. */
+  .resume-print-root .resume-contact-strip {
+    margin-left: -9mm !important;
+    margin-right: -9mm !important;
+    padding-left: 9mm !important;
+    padding-right: 9mm !important;
+    background: #fdf2f8 !important;
+    border-top: 1px solid #fbcfe8 !important;
+    border-bottom: 1px solid #fbcfe8 !important;
+  }
+  .resume-print-root .resume-contact-strip span { color: #be123c !important; }
+
+  /* Drop letter-spacing/uppercase on headings so ATS reads "Education" rather
+     than spaced-out "E D U C A T I O N". */
+  .resume-print-root .resume-section-label {
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.45rem !important;
   }
 }

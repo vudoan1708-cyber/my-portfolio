@@ -182,6 +182,7 @@ const linkLabel = z.object({
 const profileSchema = z.object({
   name: z.string().min(1).max(120),
   role: z.string().min(1).max(120),
+  summary: z.string().max(800).optional().nullable(),
   company: z.object({
     name: z.string().min(1).max(120),
     url: url,
