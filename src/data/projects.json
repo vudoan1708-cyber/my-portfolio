@@ -9,6 +9,7 @@
         "link": "/portfolio/web-apps/accountantbuddy",
         "startDate": "Jul 28, 2023",
         "endDate": "Aug 29, 2025",
+        "starred": false,
         "role": "Frontend Developer",
         "projectType": "Personal finance web application",
         "projectCode": {
@@ -41,16 +42,13 @@
         ],
         "apis": [],
         "description": [
-          "As a software engineer at <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.volygroup.com/\">Voly</a> (a UK fintech company), I always find it hard to understand financial terminology and calculation.",
+          "Working as a software engineer at <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.volygroup.com/\">Voly</a> — a UK fintech company — I regularly encountered financial terminology and calculations that fell outside my engineering background.",
           "<br />",
-          "And YES, I'm pretty sure this can be easily found on the internet.",
-          "And YES, this can also be easily asked for from ChatGPT nowadays.",
+          "Rather than relying on quick lookups or AI assistants for short-term answers, I built this application to deepen my own understanding by pairing an unfamiliar domain (finance) with one I'm fluent in (software development).",
           "<br />",
-          "But my idea is that I associate things that I love with things that I don't, so that <mark>I can fall in love with my weaknesses.</mark>",
-          "<br />",
-          "What I learned from this project is less about technology and more about finance, particularly:",
+          "The result is a personal finance web app that turns abstract formulas into interactive, visual tools — making each concept easier to internalise through hands-on exploration, such as:",
           "<li>How to calculate <mark>compounding returns from an interest rate</mark>.</li>",
-          "<li>And how DCF (Discounted Cash Flow) really messes with my head in why do we need to know <mark>the present value of an investment</mark>.</li>"
+          "<li>Discounted Cash Flow (DCF), was something that never quite clicked at first — especially the idea of <mark>translating future value into present value</mark>. Exploring it interactively helps answer the underlying question: why does the timing of money matter so much?</li>"
         ],
         "gallery": [
           {
@@ -536,6 +534,7 @@
         "link": "/portfolio/web-apps/echoarchitect",
         "startDate": "Dec 9, 2019",
         "endDate": "Apr 25, 2020",
+        "starred": false,
         "role": "Backend Engineer (Node.js, Socket.io) · 3D Designer (Maya, Rhino3D)",
         "projectType": "Web application with 3D prototyping and Arduino integration",
         "projectCode": {
@@ -577,6 +576,12 @@
             "name": "Socket.io",
             "link": "https://socket.io/",
             "img": "/projects/techs/socketio.webp"
+          },
+          {
+            "id": "arduino",
+            "name": "Arduino",
+            "link": "https://www.arduino.cc/en/software/",
+            "img": "/projects/techs/arduino.webp"
           }
         ],
         "apis": [],
@@ -684,6 +689,380 @@
           {
             "alt": "Profile details 2",
             "img": "/projects/petpolice/pet_profile_details_2.webp"
+          }
+        ]
+      },
+      {
+        "id": 1778272216140,
+        "key": "mayrajewelry",
+        "title": "Mayra Jewelry",
+        "img": "/projects/mayrajewelry/thumbnail.webp",
+        "img-lg": "/projects/mayrajewelry/thumbnail.webp",
+        "link": "/portfolio/web-apps/mayrajewelry",
+        "startDate": "Sep 27, 2025",
+        "endDate": "May 08, 2026",
+        "starred": true,
+        "role": "Full-stack Engineer",
+        "projectType": "Responsive E-commerce website",
+        "projectCode": {
+          "title": "Project Code",
+          "label": "Github URL",
+          "link": "https://github.com/vudoan1708-cyber/Mayra-Jewelry"
+        },
+        "projectLog": null,
+        "projectURL": {
+          "title": "Project URL",
+          "label": "Mayra Jewelry",
+          "link": "https://mayrajewelry.vercel.app"
+        },
+        "report": null,
+        "videos": [
+          {
+            "title": "Getting started",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=FO7ZsTdrjIE"
+          },
+          {
+            "title": "Facebook OAuth",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=G2zp_mfb_dc"
+          },
+          {
+            "title": "Product Zoom",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=yMe9iYktTLI"
+          },
+          {
+            "title": "Email verification and order status update",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=1ds_iaA_ayE"
+          },
+          {
+            "title": "UI Renovation",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=rWrNWZSLGEA"
+          },
+          {
+            "title": "Admin CMS - User",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=XFigVrqo61Q"
+          },
+          {
+            "title": "Admin CMS - Jewellery",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=c115-P4jg-w"
+          }
+        ],
+        "design": null,
+        "technologies": [
+          {
+            "id": "next",
+            "name": "Next.js",
+            "link": "https://nextjs.org/",
+            "img": "/projects/techs/next.webp"
+          },
+          {
+            "id": "go",
+            "name": "Golang",
+            "link": "https://go.dev/",
+            "img": "/projects/techs/golang.webp"
+          },
+          {
+            "id": "postgresql",
+            "name": "Postgresql",
+            "link": "https://www.postgresql.org/",
+            "img": "/projects/techs/postgresql.webp"
+          },
+          {
+            "id": "supabase",
+            "name": "Supabase",
+            "link": "https://supabase.com/",
+            "img": "/projects/techs/supabase.webp"
+          },
+          {
+            "id": "tailwind",
+            "name": "Tailwind CSS",
+            "link": "https://tailwindcss.com/",
+            "img": "/projects/techs/tailwind.webp"
+          },
+          {
+            "id": "docker",
+            "name": "Docker Container",
+            "link": "https://www.docker.com/",
+            "img": "/projects/techs/docker.webp"
+          },
+          {
+            "id": "upstash",
+            "name": "Upstash Redis",
+            "link": "https://upstash.com/",
+            "img": "/projects/techs/upstash.webp"
+          }
+        ],
+        "apis": [
+          {
+            "id": "facebook",
+            "name": "Facebook API",
+            "link": "https://developers.facebook.com/",
+            "img": "/projects/apis/facebook.webp"
+          },
+          {
+            "id": "cloudflare",
+            "name": "R2 Cloudflare",
+            "link": "https://www.cloudflare.com/en-gb/developer-platform/products/r2",
+            "img": "/projects/apis/cloudflare.webp"
+          },
+          {
+            "id": "resend",
+            "name": "Resend",
+            "link": "https://resend.com/",
+            "img": "/projects/apis/resend.webp"
+          },
+          {
+            "id": "tawk",
+            "name": "Tawk.to",
+            "link": "https://www.tawk.to/",
+            "img": "/projects/apis/tawk.webp"
+          },
+          {
+            "id": "vietqr",
+            "name": "VietQR",
+            "link": "https://vietqr.com/",
+            "img": "/projects/apis/vietqr.webp"
+          }
+        ],
+        "description": [
+          "Mayra Jewelry is a full-stack, responsive e-commerce experience built for a boutique Vietnamese jewellery brand — a polished customer-facing storefront paired with a self-serve admin CMS, designed to feel as crafted as the pieces it sells.",
+          "<br />",
+          "Architecturally, the project is split into two independently deployable apps that talk to each other over a versioned REST API: a <mark>Next.js</mark> frontend hosted on <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://vercel.com/\">Vercel</a>, and a <mark>Docker-wrapped Go</mark> backend hosted on <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://render.com/\">Render</a>. The frontend owns rendering, localisation and session; the backend owns data, payments, media and admin authentication.\n",
+          "<br />",
+          "This was also my first time shipping anything to <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://render.com/\">Render</a> — getting comfortable with its build pipeline, environment model and container-based service runtime alongside the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://vercel.com/\">Vercel</a> side I already knew.",
+          "<br />",
+          "What I learned from this project is:",
+          "<li>How to author <mark>per-page metadata</mark> (title, description, OpenGraph, Twitter cards) so Google, Facebook and other crawlers index each route correctly.</li>\n<li>How to set up <mark>i18n</mark> with <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://next-intl.dev/\">next-intl</a> for full Vietnamese and English localisation, with locale-aware routing and middleware-driven language detection.</li>\n<li>How to use <mark>GORM</mark> as an object-relational mapper in Go, modelling jewellery, orders, sessions and admin users against a <mark>Postgres</mark> database.</li>\n<li>How to integrate <mark>VietQR</mark> for native Vietnamese bank-transfer payments, generating dynamic QR codes that customers scan inside any local banking app.</li>\n<li>How to add <mark>two-factor authentication</mark> for admin users using TOTP, with secure recovery and rate-limited login flows.</li>\n<li>How to handle <mark>image uploads to S3</mark> directly from a Go backend, with signed URLs and access-controlled buckets feeding the storefront and CMS.</li>\n<li>How to build a <mark>headless admin CMS</mark> from scratch — content authoring, media management and order workflows — instead of bolting onto an off-the-shelf platform.</li>\n<li>How to combine <mark>NextAuth v5</mark> on the frontend with a custom JWT-based session layer on the Go backend, so a single sign-in flow grants the right scopes to both apps.</li>\n"
+        ],
+        "gallery": [
+          {
+            "alt": "Browse products",
+            "img": "/projects/mayrajewelry/browse.webp"
+          },
+          {
+            "alt": "Product view",
+            "img": "/projects/mayrajewelry/product.webp"
+          },
+          {
+            "alt": "Size measure guides",
+            "img": "/projects/mayrajewelry/size-measure.webp"
+          },
+          {
+            "alt": "Order tracking",
+            "img": "/projects/mayrajewelry/orders.webp"
+          },
+          {
+            "alt": "Admin Signin",
+            "img": "/projects/mayrajewelry/admin_signin.webp"
+          },
+          {
+            "alt": "Admin Signin - 2FA",
+            "img": "/projects/mayrajewelry/admin_2FA.webp"
+          },
+          {
+            "alt": "Admin Dashboard",
+            "img": "/projects/mayrajewelry/admin_dashboard.webp"
+          },
+          {
+            "alt": "Admin - Jewelry",
+            "img": "/projects/mayrajewelry/admin_jewelry.webp"
+          },
+          {
+            "alt": "Admin - Jewelry CMS",
+            "img": "/projects/mayrajewelry/admin_jewelry_cms.webp"
+          },
+          {
+            "alt": "Admin - Adjust image",
+            "img": "/projects/mayrajewelry/admin_jewelry_cms_adjust_img.webp"
+          },
+          {
+            "alt": "Mobile - Home",
+            "img": "/projects/mayrajewelry/mobile_home.webp"
+          },
+          {
+            "alt": "Mobile - Home bio",
+            "img": "/projects/mayrajewelry/mobile_home_bio.webp"
+          },
+          {
+            "alt": "Mobile - Nav UI",
+            "img": "/projects/mayrajewelry/mobile_nav.webp"
+          },
+          {
+            "alt": "Mobile - Collections",
+            "img": "/projects/mayrajewelry/mobile_collections.webp"
+          },
+          {
+            "alt": "Mobile - Browse",
+            "img": "/projects/mayrajewelry/mobile_browse.webp"
+          },
+          {
+            "alt": "Mobile - Product",
+            "img": "/projects/mayrajewelry/mobile_product.webp"
+          },
+          {
+            "alt": "Mobile - QR Payment",
+            "img": "/projects/mayrajewelry/mobile_qrcode.webp"
+          },
+          {
+            "alt": "Mobile - Admin Signin",
+            "img": "/projects/mayrajewelry/mobile_admin.webp"
+          },
+          {
+            "alt": "Mobile - Admin Nav UI",
+            "img": "/projects/mayrajewelry/mobile_admin_nav.webp"
+          },
+          {
+            "alt": "Mobile - Admin Jewelry CMS",
+            "img": "/projects/mayrajewelry/mobile_admin_cms.webp"
+          },
+          {
+            "alt": "Mobile - Admin Jewelry CMS Preview",
+            "img": "/projects/mayrajewelry/mobile_admin_cms_preview.webp"
+          }
+        ]
+      },
+      {
+        "id": 1779903510279,
+        "key": "inkprint",
+        "title": "InkPrint",
+        "img": "/projects/inkprint/thumbnail.webp",
+        "link": "/portfolio/web-apps/inkprint",
+        "startDate": "May 20, 2026",
+        "endDate": "May 27, 2026",
+        "starred": true,
+        "role": "Product & AI Prompt Engineer",
+        "projectType": "Software-as-a-Service",
+        "projectCode": {
+          "title": "Project Code",
+          "label": "Github URL",
+          "link": "https://github.com/vudoan1708-cyber/inkprint"
+        },
+        "projectLog": null,
+        "projectURL": {
+          "title": "Project URL",
+          "label": "Ink Print",
+          "link": "https://inkprintweb.vercel.app"
+        },
+        "report": null,
+        "videos": [
+          {
+            "title": "Display handwriting font",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=Jx2dxl5ZUKM"
+          },
+          {
+            "title": "Multi-device session reclaim",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=iBp8EdY-kJ0"
+          },
+          {
+            "title": "Resolve local + cloud conflicts",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=uO-Ih7R7xEc"
+          },
+          {
+            "title": "Move tool",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=Jw2EAzJt15o"
+          },
+          {
+            "title": "Smooth Edit",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=Lb4xzk6AnZg"
+          }
+        ],
+        "design": null,
+        "technologies": [
+          {
+            "id": "next",
+            "name": "Next.js",
+            "link": "https://nextjs.org/",
+            "img": "/projects/techs/next.webp"
+          },
+          {
+            "id": "typescript",
+            "name": "Typescript",
+            "link": "https://www.typescriptlang.org/",
+            "img": "/projects/techs/typescript.webp"
+          },
+          {
+            "id": "tailwind",
+            "name": "Tailwind CSS",
+            "link": "https://tailwindcss.com/",
+            "img": "/projects/techs/tailwind.webp"
+          },
+          {
+            "id": "zod",
+            "name": "Zod 4",
+            "link": "https://zod.dev/",
+            "img": "/projects/techs/zod.webp"
+          },
+          {
+            "id": "opentype",
+            "name": "opentype.js",
+            "link": "https://opentype.js.org/",
+            "img": "/projects/techs/opentypejs.webp"
+          },
+          {
+            "id": "postgresql",
+            "name": "Postgresql",
+            "link": "https://www.postgresql.org/",
+            "img": "/projects/techs/postgresql.webp"
+          },
+          {
+            "id": "supabase",
+            "name": "Supabase",
+            "link": "https://supabase.com/",
+            "img": "/projects/techs/supabase.webp"
+          },
+          {
+            "id": "turborepo",
+            "name": "Turborepo",
+            "link": "https://turborepo.dev/",
+            "img": "/projects/techs/turborepo.svg"
+          },
+          {
+            "id": "claude",
+            "name": "Claude Code",
+            "link": "https://claude.ai/new",
+            "img": "/projects/techs/claude_ai.svg"
+          }
+        ],
+        "apis": [
+          {
+            "id": "google",
+            "name": "Google OAuth",
+            "link": "https://developers.google.com/identity/protocols/oauth2",
+            "img": "/projects/apis/google.webp"
+          },
+          {
+            "id": "cloudflare",
+            "name": "R2 Cloudflare",
+            "link": "https://www.cloudflare.com/en-gb/developer-platform/products/r2",
+            "img": "/projects/apis/cloudflare.webp"
+          }
+        ],
+        "description": [
+          "InkPrint is a full-stack web app that turns your own handwriting into a real, installable font — you draw each glyph once and it compiles them into a working typeface. A companion browser extension, <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"/portfolio/utilities/inkwell\">Inkwell</a>, then lets you carry that font across the web.",
+          "<br />",
+          "Architecturally, the project is a <mark>Turborepo</mark> monorepo built around a <mark>Next.js</mark> web app where fonts are drawn and generated, with a lightweight companion browser extension sharing the same UI package. Data, auth and storage are handled by <mark>Supabase</mark> and <mark>Cloudflare R2</mark>, keeping the app thin and the heavy assets out of the deploy.",
+          "The heart of the project is the font pipeline: hand-drawn strokes are captured on a canvas, smoothed, and compiled into a valid <mark>OpenType</mark> font with <mark>opentype.js</mark> — no external font service involved. Generated fonts and media are streamed to <mark>Cloudflare R2</mark> through its S3-compatible API rather than shipped in the bundle.",
+          "<mark>Supabase</mark> backs the data layer — <mark>Postgres</mark> for glyphs and fonts, Realtime so a typeface updates live as new characters are added, and auth that supports both Google sign-in and anonymous users so anyone can start drawing without an account."
+        ],
+        "gallery": [
+          {
+            "alt": "Ligature lab - Compare with Gemini AI",
+            "img": "/projects/inkprint/lab-comparison-ai.webp"
+          },
+          {
+            "alt": "Ligature Lab - Compare with other tools",
+            "img": "/projects/inkprint/lab-comparison-calligraphr.webp"
           }
         ]
       }
@@ -1132,6 +1511,96 @@
           "<li>How flexible Atlassian can become with its <mark>extensibility</mark></li>",
           "<li>How to create an <mark>automatic CI / CD deployment</mark> using anything but a <mark>yaml</mark> file alone.</li>",
           "<li>And how to keep losing sleeps over these side projects 😆.</li>"
+        ],
+        "gallery": []
+      },
+      {
+        "id": 1779917345534,
+        "key": "inkwell",
+        "title": "InkWell",
+        "img": "/projects/inkwell/thumbnail.webp",
+        "link": "/portfolio/utilities/inkwell",
+        "startDate": "May 25, 2026",
+        "endDate": "May 27, 2026",
+        "starred": false,
+        "role": "Developer",
+        "projectType": "Browser Extension",
+        "projectCode": {
+          "title": "Project Code",
+          "label": "Github URL",
+          "link": "https://github.com/vudoan1708-cyber/inkprint/tree/main/apps/inkwell"
+        },
+        "projectLog": null,
+        "projectURL": {
+          "title": "Mozilla Addon",
+          "label": "InkWell",
+          "link": "https://addons.mozilla.org/en-GB/firefox/addon/inkwell-from-inkprint"
+        },
+        "report": null,
+        "videos": [
+          {
+            "title": "InkWell + InkPrint",
+            "source": "youtube",
+            "link": "https://www.youtube.com/watch?v=Jx2dxl5ZUKM"
+          }
+        ],
+        "design": null,
+        "technologies": [
+          {
+            "id": "wxt",
+            "name": "WXT",
+            "link": "https://wxt.dev/",
+            "img": "/projects/techs/wxt.svg"
+          },
+          {
+            "id": "react",
+            "name": "React.js",
+            "link": "https://react.dev/",
+            "img": "/projects/techs/react.svg"
+          },
+          {
+            "id": "tailwind",
+            "name": "Tailwind CSS",
+            "link": "https://tailwindcss.com/",
+            "img": "/projects/techs/tailwind.webp"
+          },
+          {
+            "id": "typescript",
+            "name": "Typescript",
+            "link": "https://www.typescriptlang.org/",
+            "img": "/projects/techs/typescript.webp"
+          },
+          {
+            "id": "turborepo",
+            "name": "Turborepo",
+            "link": "https://turborepo.dev/",
+            "img": "/projects/techs/turborepo.svg"
+          },
+          {
+            "id": "vite",
+            "name": "Vite",
+            "link": "https://vite.dev/",
+            "img": "/projects/techs/vite.webp"
+          },
+          {
+            "id": "claude",
+            "name": "Claude Code",
+            "link": "https://claude.ai/new",
+            "img": "/projects/techs/claude_ai.svg"
+          }
+        ],
+        "apis": [
+          {
+            "id": "webextension",
+            "name": "Web Extension API",
+            "link": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions",
+            "img": "/projects/techs/webextension.webp"
+          }
+        ],
+        "description": [
+          "Inkwell is the companion browser extension to <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"/portfolio/web-apps/inkprint\">InkPrint</a> — it takes the handwriting font you generate there and applies it across every page you browse, so the whole web reads in your own hand.",
+          "<br />",
+          "Built with <mark>WXT</mark> and <mark>React</mark>, it ships to Chrome, Firefox, Edge and Safari from a single codebase. It mirrors your InkPrint session, caches your compiled font locally, and injects it as an <mark>@font-face</mark> rule on every page — re-applying instantly across tabs and through single-page navigations."
         ],
         "gallery": []
       }

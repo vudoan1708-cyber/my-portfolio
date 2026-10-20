@@ -9,6 +9,15 @@
       "category": "design"
     },
     {
+      "id": "arduino",
+      "name": "Arduino",
+      "link": "https://www.arduino.cc/en/software/",
+      "img": "/projects/techs/arduino.webp",
+      "type": "tech",
+      "category": "backend",
+      "tailwindCssClass": null
+    },
+    {
       "id": "babel",
       "name": "Babel",
       "link": "https://babeljs.io/",
@@ -25,12 +34,55 @@
       "category": "tooling"
     },
     {
+      "id": "chakra",
+      "name": "Chakra UI",
+      "link": "https://chakra-ui.com/",
+      "img": "/projects/techs/chakra.webp",
+      "type": "tech",
+      "category": "frontend",
+      "tailwindCssClass": null
+    },
+    {
+      "id": "claude",
+      "name": "Claude Code",
+      "link": "https://claude.ai/new",
+      "img": "/projects/techs/claude_ai.svg",
+      "type": "tech",
+      "category": "tooling",
+      "tailwindCssClass": null
+    },
+    {
+      "id": "cloudflare",
+      "name": "R2 Cloudflare",
+      "link": "https://www.cloudflare.com/en-gb/developer-platform/products/r2",
+      "img": "/projects/apis/cloudflare.webp",
+      "type": "api",
+      "tailwindCssClass": null
+    },
+    {
       "id": "d3",
       "name": "D3",
       "link": "https://d3js.org/",
       "img": "/projects/techs/d3.webp",
       "type": "tech",
       "category": "frontend"
+    },
+    {
+      "id": "docker",
+      "name": "Docker Container",
+      "link": "https://www.docker.com/",
+      "img": "/projects/techs/docker.webp",
+      "type": "tech",
+      "tailwindCssClass": null,
+      "category": "tooling"
+    },
+    {
+      "id": "facebook",
+      "name": "Facebook API",
+      "link": "https://developers.facebook.com/",
+      "img": "/projects/apis/facebook.webp",
+      "type": "api",
+      "tailwindCssClass": null
     },
     {
       "id": "forge",
@@ -47,6 +99,14 @@
       "img": "/projects/techs/golang.webp",
       "type": "tech",
       "category": "backend"
+    },
+    {
+      "id": "google",
+      "name": "Google OAuth",
+      "link": "https://developers.google.com/identity/protocols/oauth2",
+      "img": "/projects/apis/google.webp",
+      "type": "api",
+      "tailwindCssClass": null
     },
     {
       "id": "graphql",
@@ -78,7 +138,8 @@
       "link": "https://koajs.com/",
       "img": "/projects/techs/koa.webp",
       "type": "tech",
-      "category": "backend"
+      "category": "backend",
+      "tailwindCssClass": "bg-white"
     },
     {
       "id": "localtunnel",
@@ -94,7 +155,8 @@
       "link": "https://www.makerbot.com/",
       "img": "/projects/techs/makerbot.webp",
       "type": "tech",
-      "category": "design"
+      "category": "design",
+      "tailwindCssClass": null
     },
     {
       "id": "mappajs",
@@ -129,12 +191,22 @@
       "category": "frontend"
     },
     {
+      "id": "next",
+      "name": "Next.js",
+      "link": "https://nextjs.org/",
+      "img": "/projects/techs/next.webp",
+      "type": "tech",
+      "tailwindCssClass": null,
+      "category": "fullstack"
+    },
+    {
       "id": "nodejs",
       "name": "Node.js",
       "link": "https://nodejs.org/en/",
       "img": "/projects/techs/node.webp",
       "type": "tech",
-      "category": "backend"
+      "category": "backend",
+      "tailwindCssClass": "bg-white rounded-md"
     },
     {
       "id": "openaq",
@@ -145,12 +217,30 @@
       "tailwindCssClass": "bg-white"
     },
     {
+      "id": "opentype",
+      "name": "opentype.js",
+      "link": "https://opentype.js.org/",
+      "img": "/projects/techs/opentypejs.webp",
+      "type": "tech",
+      "category": "frontend",
+      "tailwindCssClass": null
+    },
+    {
       "id": "p5js",
       "name": "p5.js",
       "link": "https://p5js.org/",
       "img": "/projects/techs/p5.webp",
       "type": "tech",
       "category": "frontend"
+    },
+    {
+      "id": "postgresql",
+      "name": "Postgresql",
+      "link": "https://www.postgresql.org/",
+      "img": "/projects/techs/postgresql.webp",
+      "type": "tech",
+      "tailwindCssClass": null,
+      "category": "backend"
     },
     {
       "id": "premierepro",
@@ -175,6 +265,14 @@
       "img": "/projects/techs/react.svg",
       "type": "tech",
       "category": "frontend"
+    },
+    {
+      "id": "resend",
+      "name": "Resend",
+      "link": "https://resend.com/",
+      "img": "/projects/apis/resend.webp",
+      "type": "api",
+      "tailwindCssClass": null
     },
     {
       "id": "rhino6",
@@ -256,6 +354,23 @@
       "category": "fullstack"
     },
     {
+      "id": "tailwind",
+      "name": "Tailwind CSS",
+      "link": "https://tailwindcss.com/",
+      "img": "/projects/techs/tailwind.webp",
+      "type": "tech",
+      "tailwindCssClass": null,
+      "category": "frontend"
+    },
+    {
+      "id": "tawk",
+      "name": "Tawk.to",
+      "link": "https://www.tawk.to/",
+      "img": "/projects/apis/tawk.webp",
+      "type": "api",
+      "tailwindCssClass": null
+    },
+    {
       "id": "tensorflow",
       "name": "Tensorflow",
       "link": "https://www.tensorflow.org/",
@@ -264,12 +379,38 @@
       "category": "backend"
     },
     {
+      "id": "turborepo",
+      "name": "Turborepo",
+      "link": "https://turborepo.dev/",
+      "img": "/projects/techs/turborepo.svg",
+      "type": "tech",
+      "category": "tooling",
+      "tailwindCssClass": "bg-white p-1 px-2 rounded"
+    },
+    {
       "id": "typescript",
       "name": "Typescript",
       "link": "https://www.typescriptlang.org/",
       "img": "/projects/techs/typescript.webp",
       "type": "tech",
       "category": "fullstack"
+    },
+    {
+      "id": "upstash",
+      "name": "Upstash Redis",
+      "link": "https://upstash.com/",
+      "img": "/projects/techs/upstash.webp",
+      "type": "tech",
+      "category": "backend",
+      "tailwindCssClass": null
+    },
+    {
+      "id": "vietqr",
+      "name": "VietQR",
+      "link": "https://vietqr.com/",
+      "img": "/projects/apis/vietqr.webp",
+      "type": "api",
+      "tailwindCssClass": null
     },
     {
       "id": "visualstudiocode",
@@ -295,6 +436,14 @@
       "category": "frontend"
     },
     {
+      "id": "webextension",
+      "name": "Web Extension API",
+      "link": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions",
+      "img": "/projects/techs/webextension.webp",
+      "type": "api",
+      "tailwindCssClass": "bg-white rounded-md"
+    },
+    {
       "id": "webpack5",
       "name": "Webpack 5",
       "link": "https://webpack.js.org/",
@@ -311,12 +460,30 @@
       "category": "fullstack"
     },
     {
+      "id": "wxt",
+      "name": "WXT",
+      "link": "https://wxt.dev/",
+      "img": "/projects/techs/wxt.svg",
+      "type": "tech",
+      "category": "frontend",
+      "tailwindCssClass": null
+    },
+    {
       "id": "zbrush",
       "name": "ZBrush",
       "link": "https://www.maxon.net/en/zbrush",
       "img": "/projects/techs/zbrush.webp",
       "type": "tech",
       "category": "design"
+    },
+    {
+      "id": "zod",
+      "name": "Zod 4",
+      "link": "https://zod.dev/",
+      "img": "/projects/techs/zod.webp",
+      "type": "tech",
+      "category": "tooling",
+      "tailwindCssClass": null
     }
   ]
 }

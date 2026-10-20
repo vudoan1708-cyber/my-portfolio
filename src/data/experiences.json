@@ -12,7 +12,7 @@
       "endDate": null,
       "current": true,
       "logo": "/projects/volyfequickdev/Voly_Group.webp",
-      "summary": "UK fintech building financial management software for the superyacht industry. My day-to-day production frontend experience comprises of component library work, internal tooling development, bugfixes, and shipping features against a real codebase under real deadlines.",
+      "summary": "UK fintech company developing financial management software for the superyacht industry. My day-to-day work in frontend development includes building and maintaining a component library, developing internal tools, resolving bugs, and delivering features within consistent two-week sprint cycles.",
       "technologies": [
         {
           "id": "react",
@@ -27,6 +27,12 @@
           "img": "/projects/techs/svelte.webp"
         },
         {
+          "id": "chakra",
+          "name": "Chakra UI",
+          "link": "https://chakra-ui.com/",
+          "img": "/projects/techs/chakra.webp"
+        },
+        {
           "id": "typescript",
           "name": "Typescript",
           "link": "https://www.typescriptlang.org/",
@@ -39,10 +45,28 @@
           "img": "/projects/techs/storybook.svg"
         },
         {
+          "id": "nodejs",
+          "name": "Node.js",
+          "link": "https://nodejs.org/en/",
+          "img": "/projects/techs/node.webp"
+        },
+        {
+          "id": "zod",
+          "name": "Zod 4",
+          "link": "https://zod.dev/",
+          "img": "/projects/techs/zod.webp"
+        },
+        {
           "id": "vite",
           "name": "Vite",
           "link": "https://vite.dev/",
           "img": "/projects/techs/vite.webp"
+        },
+        {
+          "id": "claude",
+          "name": "Claude Code",
+          "link": "https://claude.ai/new",
+          "img": "/projects/techs/claude_ai.svg"
         }
       ],
       "relatedProjectKeys": [
