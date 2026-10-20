@@ -214,4 +214,11 @@ a.anchor_highlight {
     font-weight: 600 !important;
     margin-bottom: 0.45rem !important;
   }
+  /* Same for skill-group and related-projects labels ("Frontend",
+     "Side projects"). */
+  .resume-print-root .resume-sub-label {
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    font-weight: 600 !important;
+  }
 }

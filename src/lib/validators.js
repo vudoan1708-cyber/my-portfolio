@@ -183,10 +183,17 @@ const profileSchema = z.object({
   name: z.string().min(1).max(120),
   role: z.string().min(1).max(120),
   summary: z.string().max(800).optional().nullable(),
-  company: z.object({
-    name: z.string().min(1).max(120),
-    url: url,
-  }),
+  // Optional so the header can show a target role instead of the current
+  // job; both fields blank means "no company".
+  company: z.preprocess(
+    (v) => (v && (v.name || v.url) ? v : null),
+    z
+      .object({
+        name: z.string().min(1).max(120),
+        url: url,
+      })
+      .nullable(),
+  ),
   location: z.string().max(120).optional().nullable(),
   email: z
     .email()

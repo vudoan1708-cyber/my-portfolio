@@ -69,7 +69,7 @@ function RelatedProjects({ projects, label = 'Related work' }) {
   if (!projects || projects.length === 0) return null;
   return (
     <div className="resume-related flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-[13px]">
-      <span className="text-[10px] uppercase tracking-[0.2em] text-white/45">
+      <span className="resume-sub-label text-[10px] uppercase tracking-[0.2em] text-white/45">
         {label}
       </span>
       {projects.map((p, i) => (
@@ -183,7 +183,7 @@ function SkillsBlock({ skills }) {
       <div className="space-y-2.5">
         {skills.map(({ group, items }) => (
           <div key={group}>
-            <p className="text-[10px] uppercase tracking-[0.2em] text-white/45 mb-1">
+            <p className="resume-sub-label text-[10px] uppercase tracking-[0.2em] text-white/45 mb-1">
               {group}
             </p>
             <ChipList items={items} />

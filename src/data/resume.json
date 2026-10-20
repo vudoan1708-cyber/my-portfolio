@@ -1,12 +1,9 @@
 {
   "profile": {
     "name": "Vu Doan",
-    "role": "Software Engineer",
-    "summary": "Resourceful Software Engineer with 5+ years building and maintaining production web applications and developer-experience tooling for a UK fintech. Strong in React, Svelte, TypeScript, and Node.js, with backend experience across Go, GraphQL, and Python. Ships internal developer tools — a VSCode extension, a Storybook addon, and a Bitbucket Forge app — and uses AI agents such as Claude Code to accelerate delivery.",
-    "company": {
-      "name": "Voly",
-      "url": "https://www.volygroup.com/"
-    },
+    "role": "Software Engineer (Frontend)",
+    "summary": "Software engineer with 5 years on the frontend at a UK fintech, working in React, Svelte and TypeScript. Builds developer tooling that speeds up the team, and is growing into backend work with Node.js and PostgreSQL.",
+    "company": null,
     "location": "Leeds, UK",
     "email": "vutd1708@gmail.com",
     "phone": "+44 7877 854 757",
@@ -36,16 +33,16 @@
       "current": true,
       "summary": "UK fintech building financial management software for the superyacht industry.",
       "bullets": [
-        "Build and maintain the production frontend — component library, internal tooling, bug-fixes, and feature delivery against real deadlines.",
-        "Develop internal developer-experience tools used across the engineering team: a VSCode extension, a Storybook addon, and a Bitbucket Forge app.",
-        "Adopted Claude Code as an AI development agent to accelerate debugging and code generation across the codebase."
+        "Build and maintain the production frontend in React, Svelte and TypeScript, including the shared Storybook component library, delivering features and fixes against release deadlines.",
+        "Built FE Quick Dev, a VSCode extension (TypeScript, Node.js) on the Visual Studio Marketplace that serves local builds into the live app, cutting a 3–10 minute deploy-to-test cycle to a near-instant rebuild. Used by all 5 frontend engineers, and by a backend engineer moving into frontend work.",
+        "Prototyped and pitched two further developer tools: interaction-2-test, an open-source Storybook addon on npm that records UI interactions and generates Jest tests, and a Bitbucket Forge app that triggers deployment pipelines automatically on push."
       ],
-      "technologies": ["React", "Svelte", "TypeScript", "Storybook", "Vite", "Jest"],
-      "relatedProjectsLabel": "Side projects",
+      "technologies": ["React", "Svelte", "TypeScript", "Node.js", "Storybook", "Vite", "Rollup", "Jest", "Bitbucket Pipelines"],
+      "relatedProjectsLabel": "Projects",
       "relatedProjects": [
-        { "title": "volyfequickdev", "link": "/portfolio/utilities/volyfequickdev" },
-        { "title": "interaction-2-test", "link": "/portfolio/utilities/i2t" },
-        { "title": "voly-fe-auto-deploy", "link": "/portfolio/utilities/voly-fe-auto-deploy" }
+        { "title": "FE Quick Dev (VSCode extension)", "link": "/portfolio/utilities/volyfequickdev" },
+        { "title": "interaction-2-test (Storybook addon)", "link": "/portfolio/utilities/i2t" },
+        { "title": "FE Auto Deploy (Bitbucket Forge app)", "link": "/portfolio/utilities/voly-fe-auto-deploy" }
       ]
     },
     {
@@ -58,10 +55,9 @@
       "startDate": "Nov 2020",
       "endDate": "Apr 2021",
       "current": false,
-      "summary": "Group internship project: a screen-based interface for A&E wristbands managed by the Cerberus team.",
+      "summary": null,
       "bullets": [
-        "Built server architecture and inter-service communication in Go and GraphQL.",
-        "Wrote a Python dummy-data generator to support API and smoke testing."
+        "Built Go and GraphQL services and a Python test-data generator for a group project: an A&E patient-wristband management system."
       ],
       "technologies": ["Go", "GraphQL", "Python"],
       "relatedProjectsLabel": "Project",
@@ -76,32 +72,32 @@
       "institution": "University of the West of England, Bristol",
       "startDate": "Oct 2018",
       "endDate": "May 2021",
-      "notes": "Acquired proficiency in creative coding, web development (React, Vue, Nodejs...), design software (Adobe Creative Suite), 3D modelling and animation (Maya, Blender, ZBrush)."
+      "notes": "Creative coding (p5.js), web development and interaction design."
     },
     {
-      "degree": "IT (Networking)",
+      "degree": "IT (Networking), UK progression programme",
       "institution": "Ho Chi Minh City International University",
       "startDate": "Sep 2016",
       "endDate": "Apr 2018",
-      "notes": "UK connecting programme. Foundations in C, C++, Assembly, networking, and Arduino."
+      "notes": null
     }
   ],
   "skills": [
     {
       "group": "Frontend",
-      "items": ["React", "Svelte / SvelteKit", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"]
+      "items": ["React", "Svelte / SvelteKit", "TypeScript", "Next.js", "Tailwind CSS", "Storybook"]
     },
     {
       "group": "Backend",
-      "items": ["Node.js", "Go", "GraphQL", "Python", "REST APIs"]
+      "items": ["Node.js", "Koa", "REST APIs", "Supabase (PostgreSQL)", "Redis"]
     },
     {
       "group": "Tooling",
-      "items": ["Storybook", "Vite", "Jest", "Git", "Bitbucket Forge", "VSCode extensions", "Claude Code"]
+      "items": ["Vite", "Rollup", "Webpack", "Jest", "Git", "Bitbucket Pipelines", "VSCode Extension API", "Atlassian Forge"]
     },
     {
       "group": "Design",
-      "items": ["Figma", "Adobe Creative Suite", "Blender"]
+      "items": ["Figma"]
     }
   ],
   "languages": ["English (fluent)", "Vietnamese (native)"]

@@ -200,11 +200,10 @@ export default function ResumeForm({ initial }) {
                 />
               </div>
               <TextField
-                label="Current company name"
+                label="Current company name (leave both blank to hide)"
                 value={resume.profile.company?.name ?? ''}
                 onChange={setProfileNested('company', 'name')}
                 error={errAt('profile.company.name')}
-                required
               />
               <UrlField
                 label="Current company URL"
@@ -213,7 +212,6 @@ export default function ResumeForm({ initial }) {
                 error={errAt('profile.company.url')}
                 validityKey="profile.company.url"
                 onValidityChange={onFieldValidity}
-                required
               />
               <TextField
                 label="Location"
