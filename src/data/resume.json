@@ -35,7 +35,7 @@
       "bullets": [
         "Build and maintain the production frontend in React, Svelte and TypeScript, including the shared Storybook component library, delivering features and fixes against release deadlines.",
         "Built FE Quick Dev, a VSCode extension (TypeScript, Node.js) on the Visual Studio Marketplace that serves local builds into the live app, cutting a 3–10 minute deploy-to-test cycle to a near-instant rebuild. Used by 3 frontend engineers, plus a backend engineer moving into frontend work.",
-        "Built interaction-2-test, an open-source Storybook addon on npm that records UI interactions and generates the matching Jest test code, and a Bitbucket Forge app that triggers deployment pipelines on push."
+        "Built interaction-2-test, an open-source Storybook addon on npm that records UI interactions and generates the matching Jest test code."
       ],
       "technologies": ["React", "Svelte", "TypeScript", "Node.js", "Storybook", "Vite", "Rollup", "Jest", "Bitbucket Pipelines"],
       "relatedProjectsLabel": null,
@@ -101,7 +101,7 @@
     },
     {
       "group": "Tooling",
-      "items": ["Vite", "Rollup", "Webpack", "Jest", "Git", "Bitbucket Pipelines", "VSCode Extension API", "Atlassian Forge", "Figma"]
+      "items": ["Vite", "Rollup", "Webpack", "Jest", "Git", "Bitbucket Pipelines", "VSCode Extension API", "Figma"]
     }
   ],
   "languages": ["English (fluent)", "Vietnamese (native)"]
