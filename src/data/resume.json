@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "Vu Doan",
-    "role": "Software Engineer (Frontend & Full-Stack)",
+    "role": "Software Engineer (Frontend)",
     "summary": "Software engineer with 5 years on the frontend at a UK fintech, working in React, Svelte and TypeScript and building developer tooling that speeds up the team. Outside work, ships full-stack products with Next.js, Node.js and PostgreSQL.",
     "company": null,
     "location": "Leeds, UK",
@@ -33,9 +33,8 @@
       "current": true,
       "summary": "UK fintech building financial management software for the superyacht industry.",
       "bullets": [
-        "Build and maintain the production frontend in React, Svelte and TypeScript, including the shared Storybook component library, delivering features and fixes against release deadlines.",
-        "Built FE Quick Dev, a VSCode extension (TypeScript, Node.js) on the Visual Studio Marketplace that serves local builds into the live app, cutting an 8–10 minute deploy-to-test cycle to a near-instant rebuild, now faster still after the move to Vite. Used daily by 3 frontend engineers, saving an estimated 4 hours a week, and by a backend engineer for live bug fixes.",
-        "Built interaction-2-test, an open-source Storybook addon on npm that records UI interactions and generates the matching Jest test code."
+        "Build and maintain the production frontend in React, Svelte and TypeScript, including the shared Storybook component library.",
+        "Built FE Quick Dev, a VSCode extension (TypeScript, Node.js, Koa) on the Visual Studio Marketplace that serves local builds into the live app, cutting an 8–10 minute deploy-to-test cycle to a near-instant rebuild, now faster still after the move to Vite. Used daily by 3 frontend engineers, saving an estimated 4 hours a week, and by a backend engineer for live bug fixes."
       ],
       "technologies": ["React", "Svelte", "TypeScript", "Node.js", "Storybook", "Vite", "Rollup", "Jest", "Bitbucket Pipelines"],
       "relatedProjectsLabel": null,
@@ -65,13 +64,19 @@
       "title": "InkPrint",
       "link": "https://inkprintweb.vercel.app",
       "technologies": ["Next.js", "TypeScript", "Supabase (PostgreSQL)", "Cloudflare R2", "Turborepo", "WXT"],
-      "description": "Turns hand-drawn glyphs into an installable font: compiles OTF files in the browser with opentype.js, stores them in R2 with metadata in Postgres, and syncs them to a companion browser extension that applies the font across every page, sharing sign-in between both apps."
+      "description": "Turns hand-drawn glyphs into an installable font: compiles OTF in the browser with opentype.js, stores it in R2 and Postgres, and syncs it to a companion browser extension that applies it to every page. Live at inkprintweb.vercel.app."
+    },
+    {
+      "title": "interaction-2-test",
+      "link": "https://www.npmjs.com/package/interaction-2-test",
+      "technologies": ["React", "Storybook", "Node.js", "WebSocket", "Babel"],
+      "description": "Open-source Storybook addon on npm that records UI interactions and API calls in Storybook and generates the matching Jest test code."
     },
     {
       "title": "vudoan.vercel.app",
       "link": "https://vudoan.vercel.app",
       "technologies": ["Next.js", "React", "Upstash Redis", "Zod", "Vercel"],
-      "description": "This portfolio and CV, backed by a self-built CMS: content in Redis, edited through an admin behind password and TOTP two-factor login, with Zod-validated server actions and tag-based cache revalidation."
+      "description": "This portfolio and CV, on a self-built Redis CMS with a password + TOTP admin and Zod-validated server actions."
     }
   ],
   "education": [
@@ -97,11 +102,11 @@
     },
     {
       "group": "Backend",
-      "items": ["Node.js", "Koa", "REST APIs", "Supabase (PostgreSQL)", "Redis"]
+      "items": ["Node.js", "Koa", "REST APIs", "Supabase (PostgreSQL)", "Redis", "Cloudflare R2", "Zod"]
     },
     {
       "group": "Tooling",
-      "items": ["Vite", "Rollup", "Webpack", "Jest", "Git", "Bitbucket Pipelines", "VSCode Extension API", "Figma"]
+      "items": ["Vite", "Rollup", "Webpack", "Turborepo", "Jest", "Git", "Bitbucket Pipelines", "VSCode Extension API", "WXT", "Figma"]
     }
   ],
   "languages": ["English (fluent)", "Vietnamese (native)"]
