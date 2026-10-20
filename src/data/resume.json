@@ -33,10 +33,10 @@
       "current": true,
       "summary": "UK fintech building financial management software for the superyacht industry.",
       "bullets": [
-        "Build and maintain the production frontend in React, Svelte and TypeScript, including the shared Storybook component library.",
+        "Build the production frontend in React, Svelte and TypeScript; co-manage a 30+ component Chakra UI library shared across products.",
         "Built FE Quick Dev, a VSCode extension (TypeScript, Node.js, Koa) on the Visual Studio Marketplace that serves local builds into the live app, cutting an 8–10 minute deploy-to-test cycle to a near-instant rebuild, now faster still after the move to Vite. Used daily by 3 frontend engineers, saving an estimated 4 hours a week, and by a backend engineer for live bug fixes."
       ],
-      "technologies": ["React", "Svelte", "TypeScript", "Node.js", "Storybook", "Vite", "Rollup", "Jest", "Bitbucket Pipelines"],
+      "technologies": ["React", "Svelte", "TypeScript", "Node.js", "Chakra UI", "Storybook", "Vite", "Rollup", "Jest", "Bitbucket Pipelines"],
       "relatedProjectsLabel": null,
       "relatedProjects": []
     },
@@ -98,7 +98,7 @@
   "skills": [
     {
       "group": "Frontend",
-      "items": ["React", "Svelte / SvelteKit", "TypeScript", "Next.js", "Tailwind CSS", "Storybook"]
+      "items": ["React", "Svelte / SvelteKit", "TypeScript", "Next.js", "Chakra UI", "Tailwind CSS", "Storybook"]
     },
     {
       "group": "Backend",
