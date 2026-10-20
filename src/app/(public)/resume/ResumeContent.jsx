@@ -254,6 +254,36 @@ function ExperienceEntry({ exp }) {
   );
 }
 
+function ProjectEntry({ project }) {
+  return (
+    <article className="resume-entry">
+      <h3 className="text-[15px] font-semibold text-white tracking-tight">
+        {project.link ? (
+          <Link
+            href={absUrl(project.link)}
+            {...(/^https?:\/\//i.test(project.link)
+              ? { target: '_blank', rel: 'noopener noreferrer' }
+              : {})}
+            className="text-rose-300 hover:text-rose-200 resume-accent transition-colors"
+          >
+            {project.title}
+          </Link>
+        ) : (
+          <span className="text-rose-300 resume-accent">{project.title}</span>
+        )}
+      </h3>
+      {project.technologies?.length > 0 && (
+        <p className="resume-meta text-xs text-white/50 mt-0.5">
+          {project.technologies.join(' · ')}
+        </p>
+      )}
+      <p className="text-[13px] text-white/85 mt-1 leading-snug">
+        {project.description}
+      </p>
+    </article>
+  );
+}
+
 function EducationEntry({ edu }) {
   return (
     <article className="resume-entry">
@@ -277,6 +307,7 @@ function EducationEntry({ edu }) {
 export default function ResumeContent({ data, hideHeader = false }) {
   const profile = data?.profile ?? {};
   const experiences = data?.experiences ?? [];
+  const projects = data?.projects ?? [];
   const education = data?.education ?? [];
   const skills = data?.skills ?? [];
   const languages = data?.languages ?? [];
@@ -374,6 +405,17 @@ export default function ResumeContent({ data, hideHeader = false }) {
                 ))}
               </div>
             </section>
+
+            {projects.length > 0 && (
+              <section>
+                <SectionLabel>Projects</SectionLabel>
+                <div className="space-y-3">
+                  {projects.map((project, idx) => (
+                    <ProjectEntry key={idx} project={project} />
+                  ))}
+                </div>
+              </section>
+            )}
 
             <section>
               <SectionLabel>Education</SectionLabel>

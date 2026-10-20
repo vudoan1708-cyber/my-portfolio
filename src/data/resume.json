@@ -1,8 +1,8 @@
 {
   "profile": {
     "name": "Vu Doan",
-    "role": "Software Engineer (Frontend)",
-    "summary": "Software engineer with 5 years on the frontend at a UK fintech, working in React, Svelte and TypeScript. Builds developer tooling that speeds up the team. Outside work, builds personal projects with Node.js and PostgreSQL, with a strong interest in backend development.",
+    "role": "Software Engineer (Frontend & Full-Stack)",
+    "summary": "Software engineer with 5 years on the frontend at a UK fintech, working in React, Svelte and TypeScript and building developer tooling that speeds up the team. Outside work, ships full-stack products with Next.js, Node.js and PostgreSQL.",
     "company": null,
     "location": "Leeds, UK",
     "email": "vutd1708@gmail.com",
@@ -35,15 +35,11 @@
       "bullets": [
         "Build and maintain the production frontend in React, Svelte and TypeScript, including the shared Storybook component library, delivering features and fixes against release deadlines.",
         "Built FE Quick Dev, a VSCode extension (TypeScript, Node.js) on the Visual Studio Marketplace that serves local builds into the live app, cutting a 3–10 minute deploy-to-test cycle to a near-instant rebuild. Used by all 5 frontend engineers, and by a backend engineer moving into frontend work.",
-        "Prototyped and pitched two further developer tools: interaction-2-test, an open-source Storybook addon on npm that records UI interactions and generates Jest tests, and a Bitbucket Forge app that triggers deployment pipelines automatically on push."
+        "Built interaction-2-test, an open-source Storybook addon on npm that records UI interactions and generates the matching Jest test code, and a Bitbucket Forge app that triggers deployment pipelines on push."
       ],
       "technologies": ["React", "Svelte", "TypeScript", "Node.js", "Storybook", "Vite", "Rollup", "Jest", "Bitbucket Pipelines"],
-      "relatedProjectsLabel": "Projects",
-      "relatedProjects": [
-        { "title": "FE Quick Dev (VSCode extension)", "link": "/portfolio/utilities/volyfequickdev" },
-        { "title": "interaction-2-test (Storybook addon)", "link": "/portfolio/utilities/i2t" },
-        { "title": "FE Auto Deploy (Bitbucket Forge app)", "link": "/portfolio/utilities/voly-fe-auto-deploy" }
-      ]
+      "relatedProjectsLabel": null,
+      "relatedProjects": []
     },
     {
       "key": "cerberus",
@@ -60,10 +56,22 @@
         "Built Go and GraphQL services and a Python test-data generator for a group project: an A&E patient-wristband management system."
       ],
       "technologies": ["Go", "GraphQL", "Python"],
-      "relatedProjectsLabel": "Project",
-      "relatedProjects": [
-        { "title": "Cerberus A&E Wristbands", "link": "/portfolio/web-apps/cerberus" }
-      ]
+      "relatedProjectsLabel": null,
+      "relatedProjects": []
+    }
+  ],
+  "projects": [
+    {
+      "title": "InkPrint",
+      "link": "https://inkprintweb.vercel.app",
+      "technologies": ["Next.js", "TypeScript", "Supabase (PostgreSQL)", "Cloudflare R2", "Turborepo", "WXT"],
+      "description": "Turns hand-drawn glyphs into an installable font: compiles OTF files in the browser with opentype.js, stores them in R2 with metadata in Postgres, and syncs them to a companion browser extension that applies the font across every page, sharing sign-in between both apps."
+    },
+    {
+      "title": "vudoan.vercel.app",
+      "link": "https://vudoan.vercel.app",
+      "technologies": ["Next.js", "React", "Upstash Redis", "Zod", "Vercel"],
+      "description": "This portfolio and CV, backed by a self-built CMS: content in Redis, edited through an admin behind password and TOTP two-factor login, with Zod-validated server actions and tag-based cache revalidation."
     }
   ],
   "education": [
@@ -93,11 +101,7 @@
     },
     {
       "group": "Tooling",
-      "items": ["Vite", "Rollup", "Webpack", "Jest", "Git", "Bitbucket Pipelines", "VSCode Extension API", "Atlassian Forge"]
-    },
-    {
-      "group": "Design",
-      "items": ["Figma"]
+      "items": ["Vite", "Rollup", "Webpack", "Jest", "Git", "Bitbucket Pipelines", "VSCode Extension API", "Atlassian Forge", "Figma"]
     }
   ],
   "languages": ["English (fluent)", "Vietnamese (native)"]

@@ -230,6 +230,12 @@ const resumeExperienceSchema = z.object({
     .default([]),
 });
 
+const resumeProjectSchema = z.object({
+  title: z.string().min(1).max(120),
+  link: pathOrHttpUrl.optional().nullable(),
+  technologies: z.array(z.string().min(1)).default([]),
+  description: z.string().min(1).max(400),
+});
 const resumeEducationSchema = z.object({
   degree: z.string().min(1).max(160),
   institution: z.string().min(1).max(160),
@@ -246,6 +252,7 @@ const skillGroupSchema = z.object({
 export const resumeSchema = z.object({
   profile: profileSchema,
   experiences: z.array(resumeExperienceSchema).default([]),
+  projects: z.array(resumeProjectSchema).default([]),
   education: z.array(resumeEducationSchema).default([]),
   skills: z.array(skillGroupSchema).default([]),
   languages: z.array(z.string().min(1).max(60)).default([]),

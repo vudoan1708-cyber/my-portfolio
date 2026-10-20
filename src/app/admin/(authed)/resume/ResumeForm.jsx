@@ -30,6 +30,7 @@ const EMPTY_RESUME = {
     portfolio: { label: '', url: '' },
   },
   experiences: [],
+  projects: [],
   education: [],
   skills: [],
   languages: [],
@@ -52,6 +53,9 @@ function newExperience() {
     relatedProjectsLabel: null,
     relatedProjects: [],
   };
+}
+function newProject() {
+  return { title: '', link: null, technologies: [], description: '' };
 }
 function newEducation() {
   return {
@@ -293,6 +297,62 @@ export default function ResumeForm({ initial }) {
                   errAt={errAt}
                   onFieldValidity={onFieldValidity}
                 />
+              )}
+            />
+          </FieldGroup>
+
+          <FieldGroup title="Projects">
+            <Repeater
+              items={resume.projects}
+              onChange={setTop('projects')}
+              newItem={newProject}
+              itemLabel="Project"
+              renderItem={(proj, update, idx) => (
+                <div className="space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <TextField
+                      label="Title"
+                      value={proj.title}
+                      onChange={(v) => update({ ...proj, title: v })}
+                      error={errAt(`projects.${idx}.title`)}
+                      required
+                    />
+                    <UrlField
+                      label="Link (optional, path or URL)"
+                      value={proj.link ?? ''}
+                      onChange={(v) =>
+                        update({ ...proj, link: v === '' ? null : v })
+                      }
+                      error={errAt(`projects.${idx}.link`)}
+                      kind="pathOrHttp"
+                      validityKey={`projects.${idx}.link`}
+                      onValidityChange={onFieldValidity}
+                      placeholder="https://example.com"
+                    />
+                  </div>
+                  <TextareaField
+                    label="Description"
+                    value={proj.description}
+                    onChange={(v) => update({ ...proj, description: v })}
+                    error={errAt(`projects.${idx}.description`)}
+                    rows={2}
+                  />
+                  <Repeater
+                    items={proj.technologies ?? []}
+                    onChange={(technologies) => update({ ...proj, technologies })}
+                    newItem={() => ''}
+                    itemLabel="Tech"
+                    renderItem={(text, updateTech, tIdx) => (
+                      <TextField
+                        label="Technology"
+                        value={text}
+                        onChange={updateTech}
+                        error={errAt(`projects.${idx}.technologies.${tIdx}`)}
+                        required
+                      />
+                    )}
+                  />
+                </div>
               )}
             />
           </FieldGroup>
@@ -593,6 +653,7 @@ function mergeWithDefaults(initial) {
       },
     },
     experiences: initial.experiences ?? [],
+    projects: initial.projects ?? [],
     education: initial.education ?? [],
     skills: initial.skills ?? [],
     languages: initial.languages ?? [],
